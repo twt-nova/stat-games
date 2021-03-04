@@ -12,13 +12,10 @@ export default function Header() {
           <Link href="/">Home</Link>
         </li>
         <li className={styles.link}>
-          <Link href="/">About Us</Link>
-        </li>
-        <li className={styles.link}>
           <Link href="/">Games</Link>
         </li>
         <li className={styles.link}>
-          <Link href="/">Contact Us</Link>
+          <Link href="/">About Us</Link>
         </li>
         <li>
           <a className={styles.signin} href="/">

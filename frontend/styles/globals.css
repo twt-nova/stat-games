@@ -54,9 +54,9 @@ a {
   --border-white: 2px var(--white-color) solid;
 
   --button-width: 180px;
-  --button-height: 32px;
+  --button-height: 44px;
 
-  --transition: all 0.2s ease-in-out;
+  --transition: all 0.3s ease-in-out;
 }
 
 /* =========================== */

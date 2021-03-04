@@ -27,7 +27,7 @@
 }
 
 .header ul {
-  width: 40%;
+  width: 30%;
   display: flex;
   justify-content: space-between;
 
@@ -75,4 +75,5 @@
 
 .signin:hover {
   background-color: var(--main-color);
+  color: var(--bg-color);
 }
