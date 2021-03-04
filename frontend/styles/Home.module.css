@@ -1,0 +1,5 @@
+.container {
+  height: 100vh;
+
+  background: linear-gradient(to right, var(--bg-color), #202737);
+}
