@@ -1,9 +1,29 @@
-html,
-body {
+/* ========== FONTS ========== */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+/* =========================== */
+
+/* ========== GLOBAL ========= */
+
+* {
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Poppins";
+}
+body {
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.1;
+}
+
+li {
+  list-style: none;
 }
 
 a {
@@ -11,6 +31,30 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+/* =========================== */
+
+/* ======= VARIABLES ========= */
+
+:root {
+  --main-color: #3ebfbb;
+  --secondary-color: #ff7260;
+  --bg-color: #1d2029;
+  --white-color: #f4f4f4;
+  --overlay-color: #363943;
+
+  --font-size-large: 3rem;
+  --font-size-medium: 2rem;
+  --font-size-small: 1rem;
+
+  --padding: 1.5rem;
+  --margin-top: 4rem;
+
+  --border-radius: 7px;
+  --border: 2px var(--main-color) solid;
+  --border-white: 2px var(--white-color) solid;
+
+  --button-width: 180px;
+  --button-height: 32px;
 }
+
+/* =========================== */
