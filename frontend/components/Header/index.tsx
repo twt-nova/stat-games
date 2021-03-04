@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/client";
 import styles from "../../styles/Header.module.css";
 
 export default function Header() {
+  const [session, loading] = useSession();
+
   return (
     <header className={styles.header}>
       <div>
@@ -18,9 +21,11 @@ export default function Header() {
           <Link href="/">About Us</Link>
         </li>
         <li>
-          <a className={styles.signin} href="/">
-            Sign In
-          </a>
+          {!session && (
+            <a className={styles.signin} href="/" onClick={() => signIn()}>
+              Sign In
+            </a>
+          )}
         </li>
       </ul>
     </header>
