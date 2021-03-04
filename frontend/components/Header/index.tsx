@@ -8,20 +8,22 @@ export default function Header() {
         <h1>StatGames</h1>
       </div>
       <ul>
-        <li>
+        <li className={styles.link}>
           <Link href="/">Home</Link>
         </li>
-        <li>
+        <li className={styles.link}>
           <Link href="/">About Us</Link>
         </li>
-        <li>
+        <li className={styles.link}>
           <Link href="/">Games</Link>
         </li>
-        <li>
+        <li className={styles.link}>
           <Link href="/">Contact Us</Link>
         </li>
         <li>
-          <Link href="/">Sign In</Link>
+          <a className={styles.signin} href="/">
+            Sign In
+          </a>
         </li>
       </ul>
     </header>

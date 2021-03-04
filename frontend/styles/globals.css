@@ -55,6 +55,8 @@ a {
 
   --button-width: 180px;
   --button-height: 32px;
+
+  --transition: all 0.2s ease-in-out;
 }
 
 /* =========================== */
