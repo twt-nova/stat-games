@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
 
 //tag: 99C8RR2YG
 // players
+//tag: 99C8RR2YG
 router.get("/player/:tag", async (req, res) => {
   const tag = req.params.tag;
   const result = await getPlayerByTag(tag);
@@ -83,6 +84,9 @@ async function getPlayerByTag(tag) {
   } else {
     tag = "%23" + tag
   }
+}
+
+async function getPlayerByTag(tag) {
   const url = `${clashRoyaleAPI}/players/${tag}`;
   return await fetchFrom(url, TOKEN);
 }
