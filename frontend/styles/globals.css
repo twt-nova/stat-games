@@ -57,6 +57,9 @@ a {
   --button-height: 44px;
 
   --transition: all 0.3s ease-in-out;
+
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* =========================== */
