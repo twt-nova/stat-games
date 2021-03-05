@@ -57,6 +57,8 @@ a {
   --button-height: 44px;
 
   --transition: all 0.3s ease-in-out;
+
+  --gradient: linear-gradient(to right, var(--bg-color), #202737);
 }
 
 /* =========================== */

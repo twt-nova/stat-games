@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.circleBg}>
-        <h1>StatGames</h1>
+        <Link href="/">StatGames</Link>
       </div>
       <ul>
         <li className={styles.link}>
