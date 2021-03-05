@@ -17,6 +17,11 @@ router.get("/player/:tag", async (req, res) => {
 });
 
 async function getPlayerByTag(tag) {
+  if (tag.startsWith("#") || tag.startsWith("%23")) {
+    tag = tag.replace("#", "%23")
+  } else {
+    tag = "%23" + tag
+  }
   const url = `${clashOfClansAPI}/players/%${tag}`;
   return await fetchFrom(url, TOKEN);
 }
