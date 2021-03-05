@@ -8,7 +8,7 @@ export default function Header() {
 
   const dropdown = useRef<HTMLDivElement>(null);
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const showDropdown = () => {
     if (open) {
