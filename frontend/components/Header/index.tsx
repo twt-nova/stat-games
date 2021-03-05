@@ -4,7 +4,6 @@ import styles from "../../styles/Header.module.css";
 
 export default function Header() {
   const [session, loading] = useSession();
-
   return (
     <header className={styles.header}>
       <div>
