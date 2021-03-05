@@ -17,6 +17,18 @@ async function fetchFrom(url, token) {
   }
   return result;
 }
+function sanitazeTag(tag) {
+  if (tag.startsWith("#")) tag = tag.replace("#", "%23");
+  if (!tag.startsWith("%23")) tag = "%23" + tag;
+  return tag;
+}
+
+function getLimitQuery(limit) {
+  return limit > 0 ? `?limit=${limit}` : "";
+}
+
 module.exports = {
   fetchFrom,
+  sanitazeTag,
+  getLimitQuery,
 };
