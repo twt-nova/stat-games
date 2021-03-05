@@ -1,23 +1,21 @@
+
 const express = require("express");
 const app = express();
-const cors = require("cors");
-const brawlStars = require('./routers/brawlStars.js');
-const clashOfClans = require('./routers/clashOfClans.js');
-const clashRoyale = require('./routers/clashRoyale.js');
-const hypixel = require('./routers/hypixel.js');
+require("dotenv").config();
+const morgan = require("morgan");
+const port = process.env.PORT || 3000;
+const clashRoyale = require("./routes/clashRoyale");
+const brawlStars = require("./routes/brawlStars");
+const clashOfClans = require("./routes/clashOfClans");
 
-app.use(cors());
-app.use('/brawlStars', brawlStars);
-app.use('/clashOfClans', clashOfClans);
-app.use('/clashRoyale', clashRoyale);
-app.use('/hypixel', hypixel);
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  res.send({
-    status: "ok",
-  });
-});
+app.use("/api/v1/clash_royale", clashRoyale);
+app.use("/api/v1/brawl_stars", brawlStars);
+app.use("/api/v1/clash_of_clans", clashOfClans);
 
-app.listen(3000, () => {
-  console.log(`Listening at http://localhost:3000`);
-});
+app.listen(port, () =>
+  console.log(`Server listening on http://localhost:${port}/`)
+);
