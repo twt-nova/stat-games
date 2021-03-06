@@ -1,11 +1,12 @@
 .clashRoyale {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   width: 100%;
-  background: var(--gradient);
+  background: linear-gradient(to right, var(--bg-color), #202737);
 }
 
 .clashRoyaleText {
-  height: 90vh;
+  height: 100%;
   width: 100%;
 
   display: flex;
@@ -87,4 +88,66 @@
 .clashRoyaleLeft form button:hover {
   color: var(--white-color);
   background: none;
+}
+
+/* DATA */
+
+.clashRoyaleData {
+  height: 90vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  color: var(--white-color);
+}
+
+.clashRoyaleName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 2rem;
+}
+
+.clashRoyaleName h1 {
+  font-size: var(--font-size-large);
+  font-weight: 400;
+}
+.clashRoyaleName h2 {
+  font-size: var(--font-size-medium);
+  font-weight: 400;
+  color: var(--main-color);
+  margin-right: 1.5rem;
+}
+
+.clashRoyaleTrophies,
+.clashRoyaleClan,
+.clashRoyaleArena {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 2rem;
+
+  text-align: center;
+}
+
+.clashRoyaleClan {
+  margin-top: 2rem;
+}
+
+.clashRoyaleArena {
+  width: 40%;
+}
+
+.clashRoyaleTowerLevel {
+  font-size: 21px;
+}
+
+.clashRoyaleTowerLevel span {
+  color: var(--main-color);
 }
