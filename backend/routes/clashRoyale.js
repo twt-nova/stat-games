@@ -104,8 +104,9 @@ async function getCards(limit = 10) {
   return await fetchFrom(url, TOKEN);
 }
 
-async function getPlayerBattleLogByTag(playerTag) {
+async function getPlayerBattleLogByTag(playerTag, limit=100) {
   playerTag = sanitazeTag(playerTag);
+  const imitQuery = getLimitQuery(limit)
   const url = `${clashRoyaleAPI}/players/${playerTag}/battlelog`;
   return await fetchFrom(url, TOKEN);
 }
