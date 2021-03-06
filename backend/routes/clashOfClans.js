@@ -77,4 +77,6 @@ async function getBestPlayersByLocation(locationId) {
   return await fetchFrom(url, TOKEN);
 }
 
+
+
 module.exports = router;

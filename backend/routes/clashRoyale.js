@@ -1,7 +1,7 @@
-const express = require("express");
-const router = express.Router();
-const clashRoyaleAPI = "https://api.clashroyale.com/v1";
-const TOKEN = process.env.CLASH_ROYALE_TOKEN;
+                      const express = require("express");
+                      const router = express.Router();
+                      const clashRoyaleAPI = "https://api.clashroyale.com/v1";
+                      const TOKEN = process.env.CLASH_ROYALE_TOKEN;
 const {
   fetchFrom,
   sanitazeTag,
@@ -10,7 +10,7 @@ const {
 
 //  root:   /api/v1/clash_royale/
 router.get("/cards", async (req, res) => {
-  const result = await getCards();
+  const result = await getCards();                          
   res.json(result);
 });
 
@@ -59,6 +59,44 @@ router.get("/clan/:tag/war_log", async (req, res) => {
   const result = await getClanLogByTag(tag);
   res.json(result);
 });
+
+
+//locations
+router.get("/locations/:limit", async (req, res) => {
+  const limit = req.params.limit;
+  const result = await getLocations(limit);
+  res.json(result);
+});
+
+router.get("/locations/:locationId/rankings/clans", async (req, res) => {
+  const locationId = req.params.locationId;
+  const result = await getBestClansByLocation(locationId);
+  res.json(result);
+});
+
+router.get("/locations/:locationId/rankings/players", async (req, res) => {
+  const locationId = req.params.locationId;
+  const result = await getBestPlayersByLocation(locationId);
+  res.json(result);
+});
+
+async function getLocations(limit = 10) {
+  const limitQuery = getLimitQuery(limit);
+  const url = `${clashRoyaleAPI}/locations${limitQuery}`;
+  return await fetchFrom(url, TOKEN);
+}
+
+// locationId 32000006
+async function getBestClansByLocation(locationId) {
+  const url = `${clashRoyaleAPI}/locations/${locationId}/rankings/clans?limit=10`;
+  return await fetchFrom(url, TOKEN);
+}
+
+async function getBestPlayersByLocation(locationId) {
+  const url = `${clashRoyaleAPI}/locations/${locationId}/rankings/players?limit=10`;
+  return await fetchFrom(url, TOKEN);
+}
+
 
 async function getCards(limit = 10) {
   const limitQuery = getLimitQuery(limit);
