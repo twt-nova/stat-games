@@ -1,4 +1,3 @@
-
 const express = require("express");
 const app = express();
 require("dotenv").config();
@@ -14,6 +13,7 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use("/api/v1/clash_royale", clashRoyale);
 app.use("/api/v1/brawl_stars", brawlStars);
