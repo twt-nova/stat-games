@@ -15,11 +15,7 @@ router.get("/brawler/:id", async (req, res) => {
 });
 
 async function getBrawlerById(id) {
-  if (id.startsWith("#") || id.startsWith("%23")) {
-    id = id.replace("#", "%23")
-  } else {
-    id = "%23" + id
-  }  const url = `${brawlStarsAPI}/brawlers/${id}`;
+  const url = `${brawlStarsAPI}/brawlers/${id}`;
   return await fetchFrom(url, TOKEN);
 }
 

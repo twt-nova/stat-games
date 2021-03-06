@@ -59,7 +59,12 @@ a {
 
   --transition: all 0.3s ease-in-out;
 
+<<<<<<< HEAD
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
+=======
   --gradient: linear-gradient(to right, var(--bg-color), #202737);
+>>>>>>> 22d34a20d17a4df2f0d2236841bbe4bc5dca8705
 }
 
 /* =========================== */
