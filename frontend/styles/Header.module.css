@@ -138,14 +138,24 @@
   font-size: var(--font-size-small);
   text-align: center;
 
+  background-color: var(--main-color);
+
+  color: var(--bg-color);
+
   transition: var(--transition);
 }
 
 .divUnder a:hover {
-  background-color: var(--main-color);
-  color: var(--bg-color);
+  background: var(--bg-color);
+  color: var(--white-color);
 }
 
 .divUnder a:not(:last-child) {
   border-bottom: var(--border);
+}
+
+@media screen and (max-width: 1450px) {
+  .circleBg {
+    background: none;
+  }
 }
