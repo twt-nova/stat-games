@@ -77,4 +77,29 @@ async function getBestPlayersByLocation(locationId) {
   return await fetchFrom(url, TOKEN);
 }
 
+async function getClanByTag(clanTag) {
+  clanTag = sanitazeTag(clanTag);
+  const url = `${clashOfClansAPI}/clans/${clanTag}`;
+  return await fetchFrom(url, TOKEN);
+}
+
+async function getLocations(limit = 10) {
+  const limitQuery = getLimitQuery(limit);
+  const url = `${clashOfClansAPI}/locations${limitQuery}`;
+  return await fetchFrom(url, TOKEN);
+}
+
+// locationId 32000006
+async function getBestClansByLocation(locationId) {
+  const url = `${clashOfClansAPI}/locations/${locationId}/rankings/clans?limit=10`;
+  return await fetchFrom(url, TOKEN);
+}
+
+async function getBestPlayersByLocation(locationId) {
+  const url = `${clashOfClansAPI}/locations/${locationId}/rankings/players?limit=10`;
+  return await fetchFrom(url, TOKEN);
+}
+
+
+
 module.exports = router;
