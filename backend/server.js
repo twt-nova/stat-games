@@ -21,15 +21,19 @@ const limiter = rateLimit({
 //  apply to all requests
 app.use(limiter);
 
+
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use("/api/v1/clash_royale", clashRoyale);
 app.use("/api/v1/brawl_stars", brawlStars);
 app.use("/api/v1/clash_of_clans", clashOfClans);
 app.use("/api/v1/hypixel", hypixel);
+
+
 app.listen(port, () =>
   console.log(`Server listening on http://localhost:${port}/`)
 );

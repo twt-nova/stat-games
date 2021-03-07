@@ -1,7 +1,7 @@
-                      const express = require("express");
-                      const router = express.Router();
-                      const clashRoyaleAPI = "https://api.clashroyale.com/v1";
-                      const TOKEN = process.env.CLASH_ROYALE_TOKEN;
+const express = require("express");
+const router = express.Router();
+const clashRoyaleAPI = "https://api.clashroyale.com/v1";
+const TOKEN = process.env.CLASH_ROYALE_TOKEN;
 const {
   fetchFrom,
   sanitazeTag,
@@ -101,6 +101,13 @@ async function getBestPlayersByLocation(locationId) {
 async function getCards(limit = 10) {
   const limitQuery = getLimitQuery(limit);
   const url = `${clashRoyaleAPI}/cards${limitQuery}`;
+  return await fetchFrom(url, TOKEN);
+}
+
+async function getPlayerBattleLogByTag(playerTag) {
+  playerTag = sanitazeTag(playerTag);
+  const limitQuery = getLimitQuery(limit);
+  const url = `${clashRoyaleAPI}/players/${playerTag}/battlelog${limitQuery}`;
   return await fetchFrom(url, TOKEN);
 }
 
