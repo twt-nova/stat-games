@@ -8,18 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
-<<<<<<< HEAD
     "chalk": "^2.4.2",
-    "next": "10.0.7",
-    "react-dom": "17.0.1",
-    "supports-color": "^5.5.0"
-=======
     "mongodb": "^3.6.4",
     "next": "10.0.7",
-    "next-auth": "^3.7.0",
+    "next-auth": "^3.11.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
->>>>>>> b3195ecaa6ecc88855d6bb7a108e131c99d5ed95
+    "react-dom": "17.0.1",
+    "supports-color": "^5.5.0"
   },
   "devDependencies": {
     "@types/next-auth": "^3.1.25",
