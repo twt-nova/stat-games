@@ -25,6 +25,7 @@ router.get("/", async (req, res) => {
 //tag: 99C8RR2YG
 router.get("/player/:tag", async (req, res) => {
   const tag = req.params.tag;
+  console.log(tag);
   const result = await getPlayerByTag(tag);
   res.json(result);
 });
