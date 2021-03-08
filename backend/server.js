@@ -21,7 +21,6 @@ const limiter = rateLimit({
 //  apply to all requests
 app.use(limiter);
 
-
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
