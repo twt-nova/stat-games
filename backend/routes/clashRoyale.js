@@ -1,7 +1,7 @@
-                      const express = require("express");
-                      const router = express.Router();
-                      const clashRoyaleAPI = "https://api.clashroyale.com/v1";
-                      const TOKEN = process.env.CLASH_ROYALE_TOKEN;
+const express = require("express");
+const router = express.Router();
+const clashRoyaleAPI = "https://api.clashroyale.com/v1";
+const TOKEN = process.env.CLASH_ROYALE_TOKEN;
 const {
   fetchFrom,
   sanitazeTag,
@@ -25,6 +25,7 @@ router.get("/", async (req, res) => {
 //tag: 99C8RR2YG
 router.get("/player/:tag", async (req, res) => {
   const tag = req.params.tag;
+  console.log(tag);
   const result = await getPlayerByTag(tag);
   res.json(result);
 });
@@ -104,9 +105,15 @@ async function getCards(limit = 10) {
   return await fetchFrom(url, TOKEN);
 }
 
-async function getPlayerBattleLogByTag(playerTag, limit=100) {
+async function getPlayerBattleLogByTag(playerTag) {
   playerTag = sanitazeTag(playerTag);
-  const imitQuery = getLimitQuery(limit)
+  const limitQuery = getLimitQuery(limit);
+  const url = `${clashRoyaleAPI}/players/${playerTag}/battlelog${limitQuery}`;
+  return await fetchFrom(url, TOKEN);
+}
+
+async function getPlayerBattleLogByTag(playerTag) {
+  playerTag = sanitazeTag(playerTag);
   const url = `${clashRoyaleAPI}/players/${playerTag}/battlelog`;
   return await fetchFrom(url, TOKEN);
 }
