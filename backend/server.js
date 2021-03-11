@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000;
 const clashRoyale = require("./routes/clashRoyale");
 const brawlStars = require("./routes/brawlStars");
 const clashOfClans = require("./routes/clashOfClans");
+const genshinImpact = require("./routes/genshinImpact");
 const cors = require("cors");
 
 app.use(cors());
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/v1/clash_royale", clashRoyale);
 app.use("/api/v1/brawl_stars", brawlStars);
 app.use("/api/v1/clash_of_clans", clashOfClans);
+app.use("/api/v1/genshin_impact", genshinImpact);
 app.listen(port, () =>
   console.log(`Server listening on http://localhost:${port}/`)
 );

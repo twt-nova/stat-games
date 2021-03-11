@@ -14,7 +14,6 @@ async function fetchFrom(url, token) {
       status: response.status,
       data: response.data,
     };
-    //console.log("RESPONSE___", response);
   } catch (err) {
     if (err.response) {
       const response = err.response;
