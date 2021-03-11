@@ -49,4 +49,16 @@ router.get("/weapons/:type", async (req, res) => {
   res.status(result.status).json(result.data);
 });
 
+//artifacts
+router.get("/artifacts", async (req, res) => {
+  const result = await genshinImpact.getArtifacts();
+  res.status(result.status).json(result.data);
+});
+
+router.get("/artifacts/:id", async (req, res) => {
+  const id = req.params.id;
+  const result = await genshinImpact.getArtifactbyId(id);
+  res.status(result.status).json(result.data);
+});
+
 module.exports = router;

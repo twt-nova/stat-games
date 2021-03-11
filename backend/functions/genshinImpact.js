@@ -38,9 +38,10 @@ async function getCharacters() {
 
 async function getCharacterById(id) {
   const result = await getCharacters();
+  id = parseInt(id);
   try {
     result.data.forEach((character) => {
-      if (parseInt(id) === character.id) {
+      if (id === character.id) {
         result.data = character;
       }
     });
@@ -133,6 +134,30 @@ async function getWeaponsByAttack() {
   return result;
 }
 
+async function getArtifacts() {
+  const result = await fetch(`${genhinImpactApi}/artifacts`);
+  return result;
+}
+async function getArtifactbyId(id) {
+  const result = await getArtifacts();
+  id = parseInt(id);
+  try {
+    result.data.forEach((artifact) => {
+      if (id === artifact.id) {
+        result.data = artifact;
+      }
+    });
+  } catch (err) {
+    result.data = {
+      title: "The artifact was not found",
+      description: "There's no such artifact with the given id",
+      error: err,
+    };
+    result.status = 404;
+  }
+  return result;
+}
+
 module.exports = {
   getCharacters,
   getCharacterById,
@@ -142,4 +167,6 @@ module.exports = {
   getWeaponByCharacterId,
   getWeaponsByAttack,
   getWeaponsByType,
+  getArtifacts,
+  getArtifactbyId,
 };
