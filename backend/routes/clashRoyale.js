@@ -17,6 +17,7 @@ router.get("/players/:tag", async (req, res) => {
   const tag = req.params.tag;
   const result = await clashRoyale.getPlayerByTag(tag);
   res.status(result.status).json(result.data);
+
 });
 
 router.get("/players/:tag/battles", async (req, res) => {
