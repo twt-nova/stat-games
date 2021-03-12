@@ -10,9 +10,27 @@ async function fetchFrom(url, token) {
       },
     };
     const response = await axios.get(url, config);
-    result = response.data;
+    result = {
+      status: response.status,
+      data: response.data,
+    };
   } catch (err) {
-    result = { error: "Internal server error" };
+    if (err.response) {
+      const response = err.response;
+      result = {
+        status: response.status,
+        data: response.data,
+      };
+    } else {
+      //send generic message
+      result = {
+        status: 400,
+        data: {
+          title: "Internal server error",
+          error: err,
+        },
+      };
+    }
     console.error(err);
   }
   return result;

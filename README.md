@@ -13,12 +13,14 @@ npm start
 ```
 cd backend
 npm i
-npm start
+npm start --> for deployment
+npm run devstart --> for development
 ```
 
 ## Creating enviorment variables
 1. Make a file `backend/.env`
 2. Add the following to the file, where you replace the api_key with the respectable api key:
+
 ```env
 PORT=3000
 CLASH_ROYALE_TOKEN=api_key
