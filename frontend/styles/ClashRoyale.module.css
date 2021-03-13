@@ -8,7 +8,7 @@
 }
 
 .clashRoyaleText {
-  height: 100%;
+  height: 100vh;
   width: 100%;
 
   display: flex;
@@ -95,7 +95,7 @@
 /* DATA */
 
 .clashRoyaleData {
-  height: 90vh;
+  height: 100%;
   width: 100%;
 
   display: flex;
@@ -108,7 +108,7 @@
 
 .clashRoyaleName {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
   margin-bottom: 2rem;
@@ -126,20 +126,24 @@
 }
 
 .clashRoyaleTrophies,
-.clashRoyaleInfo {
-  width: 50%;
+.clashRoyaleInfo,
+.clashRoyaleClanInfo {
+  max-width: 800px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   text-align: center;
 }
+.clashRoyaleClanInfo {
+  max-width: 900px !important;
+}
 
 .clashRoyaleInfo {
-  margin-top: 2rem;
-  width: 60%;
+  margin-top: 3rem;
 }
 .clashRoyaleTemplate {
   font-size: 21px;
@@ -147,4 +151,40 @@
 
 .clashRoyaleTemplate span {
   color: var(--main-color);
+}
+
+/* CLAN */
+
+.clanVisualization {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.btnClan {
+  padding: 0.5rem 2rem;
+
+  color: var(--bg-color);
+
+  outline: none;
+  border: var(--border);
+
+  border-radius: var(--border-radius);
+  background-color: var(--main-color);
+
+  font-size: var(--font-size-small);
+
+  transition: var(--transition);
+
+  cursor: pointer;
+}
+
+.btnClan:hover {
+  background-color: transparent;
+  color: var(--white-color);
 }

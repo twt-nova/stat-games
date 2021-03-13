@@ -1,5 +1,5 @@
 import Header from "../../components/Header";
-import { useSession, getSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import Axios from "axios";
 import Head from "next/head";
 import styles from "../../styles/ClashRoyale.module.css";
@@ -7,89 +7,9 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { url } from "../../lib/url";
 import { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
-import Data from "../../components/ClashRoyale/Data";
-
-interface Badge {
-  name: string;
-  level: number;
-  maxLevel: number;
-  progress: number;
-}
-
-interface Achievement {
-  name: string;
-  stars: number;
-  value: number;
-  target: number;
-  info: string;
-  completionInfo: null | boolean;
-}
-
-interface IconUrls {
-  medium: string;
-}
-
-interface Card {
-  name: string;
-  id: number;
-  level: number;
-  maxLevel: number;
-  count: number;
-  iconUrls: IconUrls;
-}
-
-interface CurrentFavouriteCard {
-  name: string;
-  id: number;
-  maxLevel: number;
-  iconUrls: IconUrls;
-}
-
-interface LeagueStatistics {
-  currentSeason: { rank: number; trophies: number; bestTrophies: number };
-  previousSeason: {
-    id: string;
-    rank: number;
-    trophies: number;
-    bestTrophies: number;
-  };
-  bestSeason: {
-    id: string;
-    rank: number;
-    trophies: number;
-  };
-}
-
-interface Data {
-  tag: string;
-  name: string;
-  expLevel: number;
-  trophies: number;
-  bestTrophies: number;
-  wins: number;
-  losses: number;
-  battleCount: number;
-  threeCrownWins: number;
-  challengeCardsWon: number;
-  challengeMaxWins: number;
-  tournamentCardsWon: number;
-  tournamentBattleCount: number;
-  role: string;
-  donations: number;
-  donationsReceived: number;
-  totalDonations: number;
-  warDayWins: number;
-  clanCardsCollected: number;
-  clan: { tag: string; name: string; badgeId: number };
-  arena: { id: number; name: string };
-  leagueStatistics: LeagueStatistics;
-  badges: Badge[];
-  achievements: Achievement[];
-  cards: Card[];
-  currentDeck: Card[];
-  currentFavouriteCard: CurrentFavouriteCard;
-  starPoints: number;
-}
+import ClashRoyaleData from "../../components/ClashRoyale/ClashRoyaleData";
+import { Data } from "../../lib/types";
+import Footer from "../../components/Footer";
 
 export default function ClashRoyale() {
   const [session, loading] = useSession();
@@ -132,7 +52,7 @@ export default function ClashRoyale() {
       <Header />
 
       {data ? (
-        <Data data={data} />
+        <ClashRoyaleData data={data} />
       ) : (
         <div className={styles.clashRoyaleText}>
           <div className={styles.clashRoyaleLeft}>
@@ -161,6 +81,7 @@ export default function ClashRoyale() {
           <img src="/data.svg" alt="data" />
         </div>
       )}
+      <Footer />
     </div>
   );
 }

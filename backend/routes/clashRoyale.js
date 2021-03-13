@@ -34,12 +34,6 @@ router.get("/player/:tag/battles", async (req, res) => {
   res.json(result);
 });
 
-router.get("/player/:tag/cards", async (req, res) => {
-  const tag = req.params.tag;
-  const result = await getPlayerCardsByTag(tag);
-  res.json(result);
-});
-
 // clans
 router.get("/clan/:tag", async (req, res) => {
   const tag = req.params.tag;
@@ -69,16 +63,6 @@ async function getPlayerBattleLogByTag(tag) {
   return await fetchFrom(url, TOKEN);
 }
 
-async function getPlayerCardsByTag(tag) {
-  if (tag.startsWith("#") || tag.startsWith("%23")) {
-    tag = tag.replace("#", "%23");
-  } else {
-    tag = "%23" + tag;
-  }
-  const url = `${clashRoyaleAPI}/players/${tag}/battlelog`;
-  return await fetchFrom(url, TOKEN);
-}
-
 async function getPlayerByTag(tag) {
   if (tag.startsWith("#") || tag.startsWith("%23")) {
     tag = tag.replace("#", "%23");
@@ -96,7 +80,7 @@ async function getClanByTag(tag) {
   } else {
     tag = "%23" + tag;
   }
-  const url = `${clashRoyaleAPI}/players/${tag}`;
+  const url = `${clashRoyaleAPI}/clans/${tag}`;
   return await fetchFrom(url, TOKEN);
 }
 
