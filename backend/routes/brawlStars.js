@@ -1,22 +1,38 @@
 const express = require("express");
 const router = express.Router();
-const brawlStarsAPI = "https://api.brawlstars.com/v1";
-const TOKEN = process.env.BRAWL_STARS_TOKEN;
-const { fetchFrom } = require("../utils/routesUtils");
-//    /api/v1/brawl_stars/
-router.get("/", (req, res) => {
-  res.json({ msg: "Brawl stars route" });
+const brawlStars = require("../functions/brawlStars");
+
+//  root:/api/v1/brawl_stars/
+
+//brawlers
+router.get("/brawler", async (req, res) => {
+  const brawler = await brawlStars.getABrawlers();
+  res.status(brawler.status).json(brawler.data);
 });
 
 router.get("/brawler/:id", async (req, res) => {
   const id = req.params.id;
-  const brawler = await getBrawlerById(id);
-  res.json(brawler);
+  const brawler = await brawlStars.getBrawlerById(id);
+  res.status(brawler.status).json(brawler.data);
 });
 
-async function getBrawlerById(id) {
-  const url = `${brawlStarsAPI}/brawlers/${id}`;
-  return await fetchFrom(url, TOKEN);
-}
+//players
+router.get("/player/:tag", async (req, res) => {
+  const tag = req.params.tag;
+  const result = await brawlStars.getPlayerByTag(tag);
+  res.status(result.status).json(result.data);
+});
 
+router.get("/player/:tag/battles", async (req, res) => {
+  const tag = req.params.tag;
+  const result = await brawlStars.getPlayerBattleLogByTag(tag);
+  res.status(result.status).json(result.data);
+});
+
+//rankings
+router.get("/rankings/:country", async (req, res) => {
+  const country = req.params.country;
+  const result = await brawlStars.getRankingOf(country);
+  res.status(result.status).json(result.data);
+});
 module.exports = router;
