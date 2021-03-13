@@ -64,7 +64,7 @@ export default function Header() {
         </li>
         <li>
           {!session && (
-            <a className={styles.signin} onClick={() => signIn()}>
+            <a className={styles.signin} onClick={() => signIn("discord")}>
               Sign In
             </a>
           )}
