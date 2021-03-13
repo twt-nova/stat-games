@@ -20,7 +20,7 @@ async function fetchFrom(url, token) {
       result = {
         status: response.status,
         data: response.data,
-      };
+      };                                                                                  
     } else {
       //send generic message
       result = {
