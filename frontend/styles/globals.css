@@ -59,7 +59,28 @@ a {
 
   --transition: all 0.3s ease-in-out;
 
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
   --gradient: linear-gradient(to right, var(--bg-color), #202737);
+
+  --gradient: linear-gradient(to right, var(--bg-color), #202737);
+}
+
+/* =========================== */
+
+/* ======= Scrollbar ========= */
+
+:root::-webkit-scrollbar-track {
+  background-color: #333844;
+}
+
+:root::-webkit-scrollbar {
+  width: 8px;
+  background-color: #333844;
+}
+
+:root::-webkit-scrollbar-thumb {
+  background-color: var(--bg-color);
 }
 
 /* =========================== */

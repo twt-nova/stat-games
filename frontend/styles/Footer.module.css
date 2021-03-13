@@ -1,0 +1,17 @@
+.footer {
+  height: 10vh;
+  width: 100%;
+
+  background: var(--gradient);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--white-color);
+}
+
+.footer h2 {
+  font-weight: 400;
+  font-size: var(--font-size-small);
+}
