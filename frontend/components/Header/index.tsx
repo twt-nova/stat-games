@@ -64,12 +64,12 @@ export default function Header() {
         </li>
         <li>
           {!session && (
-            <a className={styles.signin} href="/" onClick={() => signIn()}>
+            <a className={styles.signin} onClick={() => signIn()}>
               Sign In
             </a>
           )}
           {session && (
-            <a className={styles.signin} href="/" onClick={() => signOut()}>
+            <a className={styles.signin} onClick={() => signOut()}>
               Sign Out
             </a>
           )}

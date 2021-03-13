@@ -52,7 +52,10 @@ export default function ClashRoyale() {
       <Header />
 
       {data ? (
-        <ClashRoyaleData data={data} />
+        <>
+          <ClashRoyaleData data={data} />
+          <Footer />
+        </>
       ) : (
         <div className={styles.clashRoyaleText}>
           <div className={styles.clashRoyaleLeft}>
@@ -81,7 +84,6 @@ export default function ClashRoyale() {
           <img src="/data.svg" alt="data" />
         </div>
       )}
-      <Footer />
     </div>
   );
 }
