@@ -85,9 +85,7 @@ async function getPlayerByTag(tag) {
   } else {
     tag = "%23" + tag;
   }
-}
 
-async function getPlayerByTag(tag) {
   const url = `${clashRoyaleAPI}/players/${tag}`;
   return await fetchFrom(url, TOKEN);
 }
