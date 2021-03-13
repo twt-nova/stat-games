@@ -43,6 +43,8 @@ jspm_packages/
 
 frontend/node_modules
 backend/node_modules
+backend/.env
+backend/test.REST
 
 
 backend/.env

@@ -6,8 +6,8 @@
   align-items: center;
 }
 
-.header div {
-  width: 33%;
+.circleBg {
+  width: 540px;
   height: 35vh;
 
   display: flex;
@@ -19,9 +19,7 @@
   background-repeat: no-repeat;
 }
 
-.header h1 {
-  /* margin-left: var(--margin); */
-
+.circleBg a {
   font-size: var(--font-size-large);
   font-weight: 400;
 }
@@ -76,4 +74,88 @@
 .signin:hover {
   background-color: var(--main-color);
   color: var(--bg-color);
+}
+
+.ddWrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.ddHeader {
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.iconDown {
+  height: var(--font-size-small);
+  margin-left: 0.5rem;
+}
+
+.ddList {
+  display: none;
+  position: absolute;
+  margin-top: 1.7rem;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  animation-name: listAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+}
+
+.arrowUp {
+  height: 10px;
+}
+
+.divUnder {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  border: var(--border);
+}
+
+@keyframes listAnimation {
+  0% {
+    transform: rotateX(-90deg);
+  }
+  70% {
+    transform: rotateX(20deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.divUnder a {
+  padding: 0.5rem 2rem;
+
+  font-size: var(--font-size-small);
+  text-align: center;
+
+  background-color: var(--main-color);
+
+  color: var(--bg-color);
+
+  transition: var(--transition);
+}
+
+.divUnder a:hover {
+  background: var(--bg-color);
+  color: var(--white-color);
+}
+
+.divUnder a:not(:last-child) {
+  border-bottom: var(--border);
+}
+
+@media screen and (max-width: 1450px) {
+  .circleBg {
+    background: none;
+  }
 }

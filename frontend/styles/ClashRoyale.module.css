@@ -1,0 +1,150 @@
+.clashRoyale {
+  min-height: 100vh;
+  width: 100%;
+  background-image: var(--gradient);
+  background-color: var(--bg-color);
+  background-size: cover;
+  background-position: center;
+}
+
+.clashRoyaleText {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--white-color);
+}
+
+.clashRoyaleText img {
+  max-width: 700px;
+  width: 100%;
+}
+
+.clashRoyaleLeft {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.clashRoyaleLeft h1 {
+  font-size: var(--font-size-large);
+  font-weight: 400;
+
+  color: var(--main-color);
+}
+
+.clashRoyaleLeft span {
+  font-size: var(--font-size-medium);
+}
+
+.clashRoyaleLeft form {
+  width: 97%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clashRoyaleLeft form input {
+  width: 350px;
+  height: 50px;
+
+  padding: 0rem 1.5rem;
+
+  font-size: var(--font-size-small);
+
+  border: var(--border);
+  border-radius: var(--border-radius);
+  outline: none;
+  background: none;
+
+  color: var(--white-color);
+}
+
+.clashRoyaleLeft form input::placeholder {
+  color: var(--white-color);
+  font-size: var(--font-size-small);
+}
+
+.clashRoyaleLeft form button {
+  width: 200px;
+  height: 50px;
+
+  font-size: var(--font-size-small);
+
+  border: var(--border);
+  border-radius: var(--border-radius);
+  outline: none;
+  background-color: var(--main-color);
+
+  color: var(--bg-color);
+
+  cursor: pointer;
+
+  transition: var(--transition);
+}
+
+.clashRoyaleLeft form button:hover {
+  color: var(--white-color);
+  background: none;
+}
+
+/* DATA */
+
+.clashRoyaleData {
+  height: 90vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  color: var(--white-color);
+}
+
+.clashRoyaleName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 2rem;
+}
+
+.clashRoyaleName h1 {
+  font-size: var(--font-size-large);
+  font-weight: 400;
+}
+.clashRoyaleName h2 {
+  font-size: var(--font-size-medium);
+  font-weight: 400;
+  color: var(--main-color);
+  margin-right: 1.5rem;
+}
+
+.clashRoyaleTrophies,
+.clashRoyaleInfo {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 2rem;
+
+  text-align: center;
+}
+
+.clashRoyaleInfo {
+  margin-top: 2rem;
+  width: 60%;
+}
+.clashRoyaleTemplate {
+  font-size: 21px;
+}
+
+.clashRoyaleTemplate span {
+  color: var(--main-color);
+}
