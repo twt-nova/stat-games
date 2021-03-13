@@ -1,56 +1,48 @@
 const express = require("express");
+const clashRoyale = require("../functions/clashRoyale");
 const router = express.Router();
-const axios = require("axios").default;
-const clashRoyaleAPI = "https://api.clashroyale.com/v1";
-const TOKEN = process.env.CLASH_ROYALE_TOKEN;
-const { fetchFrom } = require("../utils/routesUtils");
 
-//      /api/v1/clash_royale/
-router.get("/cards", async (req, res) => {
-  const result = await getCards();
-  res.json(result);
+//  root:/api/v1/clash_royale/
+
+//cards
+router.get("/cards/:limit", async (req, res) => {
+  const limit = req.params.limit;
+  const result = await clashRoyale.getCards(limit);
+  res.status(result.status).json(result);
 });
 
-router.get("/", async (req, res) => {
-  res.json({
-    status: "Ok",
-    game: "clash_royale",
-  });
-});
-
-//tag: 99C8RR2YG
 // players
 //tag: 99C8RR2YG
-router.get("/player/:tag", async (req, res) => {
+router.get("/players/:tag", async (req, res) => {
   const tag = req.params.tag;
-  console.log(tag);
-  const result = await getPlayerByTag(tag);
-  res.json(result);
+  const result = await clashRoyale.getPlayerByTag(tag);
+  res.status(result.status).json(result.data);
+
 });
 
-router.get("/player/:tag/battles", async (req, res) => {
+router.get("/players/:tag/battles", async (req, res) => {
   const tag = req.params.tag;
-  const result = await getPlayerBattleLogByTag(tag);
-  res.json(result);
+  const result = await clashRoyale.getPlayerBattleLogByTag(tag);
+  res.status(result.status).json(result.data);
 });
 
 // clans
 router.get("/clan/:tag", async (req, res) => {
   const tag = req.params.tag;
-  const result = await getClanByTag(tag);
-  res.json(result);
+  const result = await clashRoyale.getClanByTag(tag);
+  res.status(result.status).json(result.data);
 });
 
 router.get("/clan/:tag/current_war", async (req, res) => {
   const tag = req.params.tag;
-  const result = await getClanWarByTag(tag);
-  res.json(result);
+  const result = await clashRoyale.getClanWarByTag(tag);
+  res.status(result.status).json(result.data);
 });
 
 router.get("/clan/:tag/war_log", async (req, res) => {
   const tag = req.params.tag;
-  const result = await getClanLogByTag(tag);
-  res.json(result);
+  const result = await clashRoyale.getClanLogByTag(tag);
+  res.status(result.status).json(result.data);
 });
 
 async function getPlayerBattleLogByTag(tag) {
