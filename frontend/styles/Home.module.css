@@ -1,5 +1,6 @@
 .container {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 
   background: var(--gradient);
 }
@@ -86,5 +87,5 @@
 
 .buttons button:hover {
   background-color: transparent;
-  color: white;
+  color: var(--white-color);
 }
