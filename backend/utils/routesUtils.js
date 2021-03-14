@@ -62,7 +62,7 @@ async function ensureUUID(name) {
   return result.id
 }
 
-function sanitazeTag(tag) {
+function sanitizeTag(tag) {
   if (tag.startsWith("#")) tag = tag.replace("#", "%23");
   if (!tag.startsWith("%23")) tag = "%23" + tag;
   return tag;
@@ -104,7 +104,7 @@ async function fetchFromWithParams(url, params){
 
 module.exports = {
   fetchFrom,
-  sanitazeTag,
+  sanitizeTag,
   getLimitQuery,
   checkUUID,
   fetchFromWithoutAuth,

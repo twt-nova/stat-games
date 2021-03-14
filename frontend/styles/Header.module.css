@@ -69,6 +69,8 @@
   border-radius: var(--border-radius);
 
   transition: var(--transition);
+
+  cursor: pointer;
 }
 
 .signin:hover {
