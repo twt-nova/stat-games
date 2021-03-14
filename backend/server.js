@@ -2,7 +2,14 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const morgan = require("morgan");
-const port = 5001;
+const port = process.env.PORT || 5001;
+
+const mongoose = require("mongoose");
+require("./models/stats");
+
+
+
+const logRequest = require("./routes/logRequest")
 const clashRoyale = require("./routes/clashRoyale");
 const brawlStars = require("./routes/brawlStars");
 const clashOfClans = require("./routes/clashOfClans");
@@ -19,6 +26,14 @@ const limiter = rateLimit({
   },
 });
 
+
+
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true , useUnifiedTopology: true});
+
+mongoose.connection.on("error", function (e) {
+  console.error(e);
+});
+
 //  apply to all requests
 app.use(limiter);
 
@@ -27,6 +42,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(logRequest)
 app.use("/v1/clash_royale", clashRoyale);
 app.use("/v1/brawl_stars", brawlStars);
 app.use("/v1/clash_of_clans", clashOfClans);
