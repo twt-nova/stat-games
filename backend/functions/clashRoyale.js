@@ -73,18 +73,17 @@ module.exports = {
 
   getLocationTopPlayersByID: async function (id = "global", limit = 100) {
     const limitQuery = getLimitQuery(limit);
-    const url = `${clashRoyaleAPI}/locations/${id}${limitQuery}`;
+    const url = `${clashRoyaleAPI}/locations/${id}/rankings/players${limitQuery}`;
     return await fetchFrom(url, TOKEN);
   },
-  getLocationTopCLansByID: async function (id = "global") {
+  getLocationTopClansByID: async function (id = "global", limit = 100) {
     const limitQuery = getLimitQuery(limit);
-    const url = `${clashRoyaleAPI}/locations/${id}${limitQuery}`;
+    const url = `${clashRoyaleAPI}/locations/${id}/rankings/clans${limitQuery}`;
     return await fetchFrom(url, TOKEN);
   },
-  getLocationByID: async function (id = "global") {
+  getLocationTopClanWarByID: async function (id = "global", limit = 100) {
     const limitQuery = getLimitQuery(limit);
-
-    const url = `${clashRoyaleAPI}/locations/${id}${limitQuery}`;
+    const url = `${clashRoyaleAPI}/locations/${id}/rankings/clanwars${limitQuery}`;
     return await fetchFrom(url, TOKEN);
   },
 };
