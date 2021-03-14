@@ -3,7 +3,6 @@ import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
 import four from "../styles/404.module.css";
 
-
 export default function Custom404() {
   return (
     <div className={styles.container}>
