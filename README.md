@@ -1,4 +1,4 @@
-<img src="branding/statgames long with slogan.jpeg">
+<img src="branding/statgames long with slogan.jpg">
 
 ---
 
