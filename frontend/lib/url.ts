@@ -1,1 +1,3 @@
-export const url = "http://localhost:5001/api/v1/clash_royale";
+export const url = process.env.PRODUCTION
+  ? "https://api.statgames.net/v1"
+  : "http://localhost:5001/v1";

@@ -25,7 +25,7 @@ export default function PlayerStats({ data, battleLog }: PageProps) {
           Most Trophies: <span>{data.bestTrophies}</span>
         </p>
         <p className={styles.clashRoyaleTemplate}>
-          Win Ratio: <span>{(data.wins / data.losses).toFixed(2)}%</span>
+          Win Ratio: <span>{(data.wins / data.battleCount).toFixed(2)}%</span>
         </p>
       </div>
       <Pie

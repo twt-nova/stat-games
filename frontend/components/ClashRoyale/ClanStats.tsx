@@ -29,7 +29,7 @@ export default function ClanStats({ data }: PageProps) {
     e.preventDefault();
     const tag = data.clan.tag.replace("#", "%23");
     setLoading(true);
-    const response = await Axios.get(`${url}/clan/${tag}`);
+    const response = await Axios.get(`${url}/clash_royale/clan/${tag}`);
     const dataFromRes = response.data;
 
     console.log(dataFromRes);
