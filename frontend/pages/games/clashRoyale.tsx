@@ -35,7 +35,7 @@ export default function ClashRoyale() {
     const value = e.currentTarget.tag.value;
     const tag = value.replace("#", "%23");
 
-    const response = await Axios.get(`${url}/players/${tag}`);
+    const response = await Axios.get(`${url}/clash_royale/players/${tag}`);
     const data = response.data;
     setData(data);
     localStorage.setItem("data", JSON.stringify(data));
