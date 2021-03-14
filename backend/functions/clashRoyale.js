@@ -63,7 +63,7 @@ module.exports = {
   getAllLocations: async function (limit = 10) {
     const limitQuery = getLimitQuery(limit);
     const url = `${clashRoyaleAPI}/locations${limitQuery}`;
-    return await fetchFrom(url);
+    return await fetchFrom(url, TOKEN);
   },
 
   getLocationByID: async function (id = "global") {

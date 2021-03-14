@@ -57,7 +57,13 @@ router.get("/clan/:tag/war_log", async (req, res) => {
 // example: global
 
 router.get("/locations", async (req, res) => {
-  const result = await clashRoyale.getAllLocations();
+  const limit = req.query.limit || 10;
+  const result = await clashRoyale.getAllLocations(limit);
+  res.status(result.status).json(result.data);
+});
+router.get("/locations/:id", async (req, res) => {
+  const id = req.params.id;
+  const result = await clashRoyale.getLocationByID(id);
   res.status(result.status).json(result.data);
 });
 
