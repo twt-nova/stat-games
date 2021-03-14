@@ -12,31 +12,25 @@ router.get("/", (req, res) => {
 
 router.get("/player/:name/", async (req, res) => {
   const name = req.params.name;
-  const uuid = await ensureUUID(name);
-  let player = await getPlayerByUUID(uuid);
-  delete player.player.stats;
+  let player = await hypixel.getPlayerByUUID(name);
   res.json(player.player);
 });
+
 router.get("/player/:name/raw", async (req, res) => {
   const name = req.params.name;
-  const uuid = await ensureUUID(name);
-  let player = await getPlayerByUUID(uuid);
-  res.json(player.player);
+  let player = await hypixel.getPlayerByUUID(name);
+  res.json(player);
 });
 
 router.get("/player/:name/bedwars/", async (req, res) => {
   const name = req.params.name;
-  const uuid = await ensureUUID(name);
-  let player = await getPlayerByUUID(uuid);
-  let data = formatBedwars(player.player.stats.Bedwars);
+  let data = await hypixel.getBedwarsByUUID(name);
   res.json(data);
 });
 
 router.get("/player/:name/skywars/", async (req, res) => {
   const name = req.params.name;
-  const uuid = await ensureUUID(name);
-  let player = await hypixel.getPlayerByUUID(uuid);
-  let data = formatSkyWars(player.player.stats.SkyWars);
+  let data = await hypixel.getSkyWarsByUUID(name);
   res.json(data);
 });
 

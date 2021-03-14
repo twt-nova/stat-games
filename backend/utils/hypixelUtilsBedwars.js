@@ -157,7 +157,7 @@ let features = [
 ];
 
 modes.sort((a, b) => {
-  return b.id.length - a.id.length 
+  return b.id.length - a.id.length;
 });
 // not copied from stack overflow, idk what your talking abotu
 function titleCase(str) {
@@ -204,13 +204,12 @@ const formatBedwars = (data) => {
             };
           }
         }
-
         z = true;
         break;
       }
     }
     if (!z) {
-      clean.overall[key] = data[key]
+      clean.overall[key] = data[key];
     }
   }
   return clean;

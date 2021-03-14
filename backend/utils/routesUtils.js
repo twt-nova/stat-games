@@ -47,7 +47,22 @@ async function fetchFromWithoutAuth(url) {
     const response = await axios.get(url, config);
     result = response.data;
   } catch (err) {
-    result = { error: "Internal server error" };
+    if (err.response) {
+      const response = err.response;
+      result = {
+        status: response.status,
+        data: response.data,
+      };                                                                                  
+    } else {
+      //send generic message
+      result = {
+        status: 400,
+        data: {
+          title: "Internal server error",
+          error: err,
+        },
+      };
+    }
     console.error(err);
   }
   return result;
@@ -73,6 +88,7 @@ function getLimitQuery(limit) {
 }
 
 function checkUUID(uuid) {
+  // this regex was copied from internet, yes. 
   const reg = new RegExp(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i);
   return uuid.match(reg);
 }
@@ -96,7 +112,22 @@ async function fetchFromWithParams(url, params){
     const response = await axios.get(url, config);
     result = response.data;
   } catch (err) {
-    result = { error: "Internal server error" };
+    if (err.response) {
+      const response = err.response;
+      result = {
+        status: response.status,
+        data: response.data,
+      };                                                                                  
+    } else {
+      //send generic message
+      result = {
+        status: 400,
+        data: {
+          title: "Internal server error",
+          error: err,
+        },
+      };
+    }
     console.error(err);
   }
   return result;
