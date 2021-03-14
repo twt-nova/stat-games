@@ -15,7 +15,7 @@ module.exports = {
 
   getClanByTag: async function (clanTag) {
     clanTag = sanitazeTag(clanTag);
-    const url = `${clashRoyaleAPI}/players/${clanTag}`;
+    const url = `${clashRoyaleAPI}/clans/${clanTag}`;
     return await fetchFrom(url, TOKEN);
   },
 
