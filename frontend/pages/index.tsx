@@ -1,9 +1,15 @@
 import Head from "next/head";
+import Link from "next/link";
+import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  const [selected, setSelected] = useState("clash-royale");
+
+  const l: string = "/games/" + selected;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -19,13 +25,18 @@ export default function Home() {
             <span>Favorite game</span>
           </h1>
           <div className={styles.buttons}>
-            <select name="options">
+            <select
+              name="options"
+              onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+                setSelected(event.currentTarget.value);
+              }}
+            >
               <option value="clash-royale">Clash Royale</option>
               <option value="clash-of-clans">Clash Of Clans</option>
               <option value="brawl-stars">Brawl Stars</option>
               <option value="minecraft">Minecraft</option>
             </select>
-            <button>Check stats</button>
+            <Link href={l}>Check stats</Link>
           </div>
         </div>
         <img src="/chart.svg" alt="chart" className={styles.chart} />

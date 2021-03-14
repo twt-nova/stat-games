@@ -67,7 +67,7 @@
   border: none;
 }
 
-.buttons button {
+.buttons a {
   padding: 0.5rem 2rem;
 
   color: var(--bg-color);
@@ -85,7 +85,7 @@
   cursor: pointer;
 }
 
-.buttons button:hover {
+.buttons a:hover {
   background-color: transparent;
   color: var(--white-color);
 }
