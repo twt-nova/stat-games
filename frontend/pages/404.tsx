@@ -7,7 +7,7 @@ import Custom404 from "../components/404/Custom404";
 export default function FourOhFour() {
   return (
     <>
-      <Custom404 login={true} />
+      <Custom404 login={false} />
     </>
   );
 }
