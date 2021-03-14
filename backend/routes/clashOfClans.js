@@ -25,13 +25,13 @@ router.get("/locations/:limit", async (req, res) => {
   res.status(result.status).json(result.data);
 });
 
-router.get("/locations/:locationId/rankings/clans", async (req, res) => {
+router.get("/locations/:locationId/clans", async (req, res) => {
   const locationId = req.params.locationId;
   const result = await clashOfClans.getBestClansByLocation(locationId);
   res.status(result.status).json(result.data);
 });
 
-router.get("/locations/:locationId/rankings/players", async (req, res) => {
+router.get("/locations/:locationId/players", async (req, res) => {
   const locationId = req.params.locationId;
   const result = await clashOfClans.getBestPlayersByLocation(locationId);
   res.status(result.status).json(result.data);

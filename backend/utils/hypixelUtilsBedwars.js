@@ -1,4 +1,4 @@
-const modes = [
+let modes = [
   {
     name: "Solo",
     id: "eight_one",
@@ -156,6 +156,9 @@ let features = [
   },
 ];
 
+modes.sort((a, b) => {
+  return b.id.length - a.id.length 
+});
 // not copied from stack overflow, idk what your talking abotu
 function titleCase(str) {
   var splitStr = str.toLowerCase().split(" ");
@@ -180,18 +183,6 @@ const formatBedwars = (data) => {
     for (const i in modes) {
       let m = modes[i];
       if (key.startsWith(m.id)) {
-        let oof;
-        for (const i2 in modes) {
-          let m2 = modes[i2];
-          if (m2.id == m.id) {
-            continue;
-          } else if (key.startsWith(m2.id) && m2.id.length > m.id.lenght) {
-            console.log(key)
-            oof = true;
-            break;
-          }
-        }
-        if (oof) {continue;};
         let o;
         for (let a in features) {
           let f = features[a];
@@ -219,10 +210,7 @@ const formatBedwars = (data) => {
       }
     }
     if (!z) {
-      clean.overall[key] = {
-        value: data[key],
-        name: titleCase(key.split("_").join(" ")),
-      };
+      clean.overall[key] = data[key]
     }
   }
   return clean;
