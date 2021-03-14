@@ -52,9 +52,9 @@ export default function Header() {
             <img src="/arrow-up-filled.svg" className={styles.arrowUp} />
 
             <div className={styles.divUnder}>
-              <Link href="/games/clashRoyale">Clash Royale</Link>
-              <Link href="/games/clashOfClans">Clash Of Clans</Link>
-              <Link href="/games/brawlStars">Brawl Stars</Link>
+              <Link href="/games/clash-royale">Clash Royale</Link>
+              <Link href="/games/clash-of-clans">Clash Of Clans</Link>
+              <Link href="/games/brawl-stars">Brawl Stars</Link>
               <Link href="/games/minecraft">Minecraft</Link>
             </div>
           </div>
