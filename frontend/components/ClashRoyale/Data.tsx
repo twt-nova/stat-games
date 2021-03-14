@@ -1,9 +1,7 @@
-import { Pie, Line } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import styles from "../../styles/ClashRoyale.module.css";
 import { defaults } from "react-chartjs-2";
-import { useEffect, useState } from "react";
-import Axios from "axios";
-import { url } from "../../lib/url";
+import { useRef } from "react";
 
 interface Badge {
   name: string;
@@ -91,101 +89,9 @@ interface PageProps {
   data: Data;
 }
 
-interface BattleLog {
-  type: string;
-  battleTime: string;
-  isLadderTournament: boolean;
-  arena: {
-    id: number;
-    name: string;
-  };
-  gameMode: {
-    id: number;
-    name: number;
-  };
-  deckSelection: string;
-  team: [
-    {
-      tag: string;
-      name: string;
-      startingTrophies: number;
-      trophyChange: number;
-      crowns: number;
-      kingTowerHitPoints: number;
-      princessTowersHitPoints: number[];
-      clan: {
-        tag: string;
-        name: string;
-        badgeId: number;
-      };
-      cards: [
-        {
-          name: string;
-          id: number;
-          level: number;
-          starLevel: number;
-          maxLevel: number;
-          iconUrls: {
-            medium: string;
-          };
-        }
-      ];
-    }
-  ];
-  opponent: [
-    {
-      tag: string;
-      name: string;
-      startingTrophies: number;
-      trophyChange: number;
-      crowns: number;
-      kingTowerHitPoints: number;
-      princessTowersHitPoints: number[];
-      clan: {
-        tag: string;
-        name: string;
-        badgeId: number;
-      };
-      cards: [
-        {
-          name: string;
-          id: number;
-          level: number;
-          starLevel: number;
-          maxLevel: number;
-          iconUrls: {
-            medium: string;
-          };
-        }
-      ];
-    }
-  ];
-  isHostedMatch: boolean;
-}
-
 defaults.global.responsive = true;
 
 export default function Data({ data }: PageProps) {
-  const [battleLog, setBattleLog] = useState<BattleLog[]>([]);
-  useEffect(() => {
-    const dataL: string | null = localStorage.getItem("battleLog");
-    if (dataL) {
-      setBattleLog(JSON.parse(dataL));
-    } else {
-      const tag = data.tag.replace("#", "%23");
-      Axios.get(`${url}/player/${tag}/battles`).then((res) => {
-        const tempArr = res.data;
-
-        for (let i = 0; i < tempArr.length; i++) {
-          if (typeof tempArr[i].team.startingTrophies === "undefined") {
-            tempArr.slice(i, 1);
-          }
-        }
-        localStorage.setItem("battleLog", JSON.stringify(tempArr));
-        setBattleLog(tempArr);
-      });
-    }
-  }, []);
   return (
     <div className={styles.clashRoyaleData}>
       <div className={styles.clashRoyaleName}>
@@ -193,16 +99,16 @@ export default function Data({ data }: PageProps) {
         <h1>{data.name}</h1>
       </div>
       <div className={styles.clashRoyaleTrophies}>
-        <p className={styles.clashRoyaleTemplate}>
+        <p className={styles.clashRoyaleTowerLevel}>
           King Tower Level: <span>{data.expLevel}</span>
         </p>
-        <p className={styles.clashRoyaleTemplate}>
+        <p className={styles.clashRoyaleTowerLevel}>
           Trophies: <span>{data.trophies}</span>
         </p>
-        <p className={styles.clashRoyaleTemplate}>
+        <p className={styles.clashRoyaleTowerLevel}>
           Most Trophies: <span>{data.bestTrophies}</span>
         </p>
-        <p className={styles.clashRoyaleTemplate}>
+        <p className={styles.clashRoyaleTowerLevel}>
           Win Ratio: <span>{(data.wins / data.battleCount).toFixed(2)}%</span>
         </p>
       </div>
@@ -225,42 +131,36 @@ export default function Data({ data }: PageProps) {
           ],
         }}
       />
-      <div className={styles.clashRoyaleInfo}>
-        {data.clan ? (
-          <>
-            <p className={styles.clashRoyaleTemplate}>
-              Clan Tag: <span>{data.clan.tag}</span>
-            </p>
-            <p className={styles.clashRoyaleTemplate}>
-              Clan Name: <span>{data.clan.name}</span>
-            </p>
-            <p className={styles.clashRoyaleTemplate}>
-              Role In Clan: <span>{data.role}</span>
-            </p>
-            <p className={styles.clashRoyaleTemplate}>
-              Badge Id: <span>{data.clan.badgeId}</span>
-            </p>
-          </>
-        ) : (
-          <></>
-        )}
-        <p className={styles.clashRoyaleTemplate}>
+      <div className={styles.clashRoyaleClan}>
+        <p className={styles.clashRoyaleTowerLevel}>
+          Clan Tag: <span>{data.clan.tag}</span>
+        </p>
+        <p className={styles.clashRoyaleTowerLevel}>
+          Clan Name: <span>{data.clan.name}</span>
+        </p>
+        <p className={styles.clashRoyaleTowerLevel}>
+          Role In Clan: <span>{data.role}</span>
+        </p>
+        <p className={styles.clashRoyaleTowerLevel}>
+          Badge Id: <span>{data.clan.badgeId}</span>
+        </p>
+      </div>
+      <div className={styles.clashRoyaleArena}>
+        <p className={styles.clashRoyaleTowerLevel}>
+          Arena Id: <span>{data.arena.id}</span>
+        </p>
+        <p className={styles.clashRoyaleTowerLevel}>
           Arena Name: <span>{data.arena.name}</span>
         </p>
       </div>
-      <Line
-        data={{
-          labels: battleLog.map((value, index) => index + 1),
-          datasets: [
-            {
-              data: battleLog.map((value) => value.team[0].startingTrophies),
-              label: "Trophies in last 25 battles",
-              borderColor: "#3e95cd",
-              fill: false,
-            },
-          ],
-        }}
-      />
+      <div className={styles.clashRoyaleArena}>
+        <p className={styles.clashRoyaleTowerLevel}>
+          Arena Id: <span>{data.arena.id}</span>
+        </p>
+        <p className={styles.clashRoyaleTowerLevel}>
+          Arena Name: <span>{data.arena.name}</span>
+        </p>
+      </div>
     </div>
   );
 }

@@ -60,7 +60,7 @@ export default function Header() {
           </div>
         </div>
         <li className={styles.link}>
-          <Link href="/">About Us</Link>
+          <Link href="/about">About Us</Link>
         </li>
         <li>
           {!session && (

@@ -1,0 +1,15 @@
+.container {
+    margin-left: 43%;
+    color:whitesmoke;
+    margin-top:17%
+}
+
+.error {
+    font-size: 8rem;
+    margin-left: -20%;
+}
+
+.errorSmall {
+    font-size: 2rem;
+    margin-left: -10%;
+}

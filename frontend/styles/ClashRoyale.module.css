@@ -1,10 +1,8 @@
 .clashRoyale {
   min-height: 100vh;
+  height: 100%;
   width: 100%;
-  background-image: var(--gradient);
-  background-color: var(--bg-color);
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(to right, var(--bg-color), #202737);
 }
 
 .clashRoyaleText {
@@ -126,7 +124,8 @@
 }
 
 .clashRoyaleTrophies,
-.clashRoyaleInfo {
+.clashRoyaleClan,
+.clashRoyaleArena {
   width: 50%;
   display: flex;
   justify-content: space-between;
@@ -137,14 +136,18 @@
   text-align: center;
 }
 
-.clashRoyaleInfo {
+.clashRoyaleClan {
   margin-top: 2rem;
-  width: 60%;
 }
-.clashRoyaleTemplate {
+
+.clashRoyaleArena {
+  width: 40%;
+}
+
+.clashRoyaleTowerLevel {
   font-size: 21px;
 }
 
-.clashRoyaleTemplate span {
+.clashRoyaleTowerLevel span {
   color: var(--main-color);
 }

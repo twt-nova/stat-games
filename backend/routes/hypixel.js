@@ -9,6 +9,8 @@ const {
   fetchFromWithParams,
 } = require("../utils/routesUtils");
 
+const { formatBedwars } = require("../utils/hypixelUtilsBedwars");
+
 router.get("/", (req, res) => {
   res.json({
     status: "Ok",
@@ -28,7 +30,8 @@ router.get("/player/:name/bedwars/", async (req, res) => {
   const name = req.params.name;
   const uuid = await ensureUUID(name);
   let player = await getPlayerByUUID(uuid);
-  res.json(player.player.stats.Bedwars);
+  let data = formatBedwars(player.player.stats.Bedwars)
+  res.json(data);
 });
 
 router.get("/player/:name/skywars/", async (req, res) => {
