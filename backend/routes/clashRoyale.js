@@ -3,6 +3,15 @@ const clashRoyale = require("../functions/clashRoyale");
 const router = express.Router();
 
 //  root:/api/v1/clash_royale/
+router.get("/", async (req, res) => {
+  const result = {
+    status: 200,
+    game: {
+      name: "Clash Royale",
+      id: "clash_royale",
+    },
+  };
+});
 
 //cards
 router.get("/cards/:limit", async (req, res) => {
@@ -17,7 +26,6 @@ router.get("/players/:tag", async (req, res) => {
   const tag = req.params.tag;
   const result = await clashRoyale.getPlayerByTag(tag);
   res.status(result.status).json(result.data);
-
 });
 
 router.get("/players/:tag/battles", async (req, res) => {
@@ -45,60 +53,34 @@ router.get("/clan/:tag/war_log", async (req, res) => {
   res.status(result.status).json(result.data);
 });
 
-async function getPlayerBattleLogByTag(tag) {
-  if (tag.startsWith("#") || tag.startsWith("%23")) {
-    tag = tag.replace("#", "%23");
-  } else {
-    tag = "%23" + tag;
-  }
-  const url = `${clashRoyaleAPI}/players/${tag}/battlelog`;
-  return await fetchFrom(url, TOKEN);
-}
+//locations
+// example: global
 
-async function getPlayerByTag(tag) {
-  if (tag.startsWith("#") || tag.startsWith("%23")) {
-    tag = tag.replace("#", "%23");
-  } else {
-    tag = "%23" + tag;
-  }
+router.get("/locations", async (req, res) => {
+  const limit = req.query.limit || 10;
+  const result = await clashRoyale.getAllLocations(limit);
+  res.status(result.status).json(result.data);
+});
+router.get("/locations/:id", async (req, res) => {
+  const id = req.params.id;
+  const result = await clashRoyale.getLocationByID(id);
+  res.status(result.status).json(result.data);
+});
 
-  const url = `${clashRoyaleAPI}/players/${tag}`;
-  return await fetchFrom(url, TOKEN);
-}
-
-async function getClanByTag(tag) {
-  if (tag.startsWith("#") || tag.startsWith("%23")) {
-    tag = tag.replace("#", "%23");
-  } else {
-    tag = "%23" + tag;
-  }
-  const url = `${clashRoyaleAPI}/clans/${tag}`;
-  return await fetchFrom(url, TOKEN);
-}
-
-async function getClanWarByTag(tag) {
-  if (tag.startsWith("#") || tag.startsWith("%23")) {
-    tag = tag.replace("#", "%23");
-  } else {
-    tag = "%23" + tag;
-  }
-  const url = `${clashRoyaleAPI}/clans/${tag}/currentriverrace`;
-  return await fetchFrom(url, TOKEN);
-}
-
-async function getClanLogByTag(tag) {
-  if (tag.startsWith("#") || tag.startsWith("%23")) {
-    tag = tag.replace("#", "%23");
-  } else {
-    tag = "%23" + tag;
-  }
-  const url = `${clashRoyaleAPI}/clans/${tag}/riverracelog`;
-  return await fetchFrom(url, TOKEN);
-}
-
-async function getCards() {
-  const url = `${clashRoyaleAPI}/cards`;
-  return await fetchFrom(url, TOKEN);
-}
+router.get("/locations/:id/players", async (req, res) => {
+  const id = req.params.id;
+  const result = await clashRoyale.getLocationTopPlayersByID(id);
+  res.status(result.status).json(result.data);
+});
+router.get("/locations/:id/clans", async (req, res) => {
+  const id = req.params.id;
+  const result = await clashRoyale.getLocationTopClansByID(id);
+  res.status(result.status).json(result.data);
+});
+router.get("/locations/:id/clanwars", async (req, res) => {
+  const id = req.params.id;
+  const result = await clashRoyale.getLocationTopClanWarByID(id);
+  res.status(result.status).json(result.data);
+});
 
 module.exports = router;
