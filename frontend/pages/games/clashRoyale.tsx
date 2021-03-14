@@ -10,6 +10,7 @@ import Loader from "react-loader-spinner";
 import ClashRoyaleData from "../../components/ClashRoyale/ClashRoyaleData";
 import { Data } from "../../lib/types";
 import Footer from "../../components/Footer";
+import Custom404 from "../../components/404/Custom404";
 
 export default function ClashRoyale() {
   const [session, loading] = useSession();
@@ -25,7 +26,7 @@ export default function ClashRoyale() {
 
   if (loading) return null;
 
-  if (!loading && !session) return <p>Access Denied</p>;
+  if (!loading && !session) return <Custom404 login={true} />;
 
   const getData = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading1(true);
