@@ -51,7 +51,7 @@ Choose the categories below that you need help for!
             try:
                 if not cog.help_cmd:
                     raise Exception
-            except Exception as e:
+            except:
                 rm.append(cog)
 
 
