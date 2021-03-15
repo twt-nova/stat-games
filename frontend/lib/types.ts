@@ -191,3 +191,150 @@ export interface ClanData {
   members: number;
   memberList: Member[];
 }
+
+interface CocAch {
+  name: string;
+  stars: number;
+  value: number;
+  target: number;
+  info: string;
+  completionInfo: string;
+  village: string;
+}
+
+interface CocLabel {
+  id: number;
+  name: string;
+  iconUrls: {
+    small: string;
+    medium: string;
+  };
+}
+
+interface CocSame {
+  name: string;
+  level: number;
+  maxLevel: number;
+  village: string;
+}
+
+export interface CocData {
+  tag: string;
+  name: string;
+  townHallLevel: number;
+  townHallWeaponLevel: number;
+  expLevel: number;
+  trophies: number;
+  bestTrophies: number;
+  warStars: number;
+  attackWins: number;
+  defenseWins: number;
+  builderHallLevel: number;
+  versusTrophies: number;
+  bestVersusTrophies: number;
+  versusBattleWins: number;
+  donations: number;
+  donationsReceived: number;
+  clan?: {
+    tag: string;
+    name: string;
+    clanLevel: number;
+    badgeUrls: {
+      small: string;
+      large: string;
+      medium: string;
+    };
+  };
+  league?: {
+    id: number;
+    name: string;
+    iconUrls: {
+      small: string;
+      tiny: string;
+      medium: string;
+    };
+  };
+  legendStatistics: {
+    legendTrophies: number;
+    bestSeason: {
+      id: string;
+      rank: number;
+      trophies: number;
+    };
+    currentSeason: {
+      trophies: number;
+    };
+  };
+  achievements: CocAch[];
+  versusBattleWinCount: number;
+  labels: CocLabel[];
+  troops: CocSame[];
+  heroes: CocSame[];
+  spells: CocSame[];
+}
+
+interface CocClanMember {
+  tag: string;
+  name: string;
+  role: string;
+  expLevel: number;
+  league: {
+    id: number;
+    name: string;
+    iconUrls: {
+      small: string;
+      tiny: string;
+      medium: string;
+    };
+  };
+  trophies: number;
+  versusTrophies: number;
+  clanRank: number;
+  previousClanRank: number;
+  donations: number;
+  donationsReceived: number;
+}
+
+export interface CocClanData {
+  tag: string;
+  name: string;
+  type: string;
+  description: string;
+  location: {
+    id: number;
+    name: string;
+    isCountry: boolean;
+    countryCode: string;
+  };
+  badgeUrls: {
+    small: string;
+    large: string;
+    medium: string;
+  };
+  clanLevel: number;
+  clanPoints: number;
+  clanVersusPoints: number;
+  requiredTrophies: number;
+  warFrequency: string;
+  warWinStreak: number;
+  warWins: number;
+  warTies: number;
+  warLosses: number;
+  isWarLogPublic: boolean;
+  warLeague: {
+    id: number;
+    name: string;
+  };
+  members: number;
+  memberList: CocClanMember[];
+  labels: [
+    {
+      id: number;
+      name: string;
+      iconUrls: {
+        small: string;
+        medium: string;
+      };
+    }
+  ];
+}

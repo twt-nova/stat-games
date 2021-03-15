@@ -8,7 +8,8 @@
 }
 
 .clashRoyaleText {
-  height: 90vh;
+  min-height: 90vh;
+  height: 100%;
   width: 100%;
 
   display: flex;
@@ -23,7 +24,8 @@
 }
 
 .clashRoyaleLeft {
-  height: 200px;
+  min-height: 20vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -42,14 +44,15 @@
 }
 
 .clashRoyaleLeft form {
-  width: 97%;
+  width: 100%;
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .clashRoyaleLeft form input {
-  width: 350px;
+  width: 370px;
   height: 50px;
 
   padding: 0rem 1.5rem;
@@ -90,6 +93,44 @@
 .clashRoyaleLeft form button:hover {
   color: var(--white-color);
   background: none;
+}
+
+.buttonsClashRoyale {
+  width: 100%;
+
+  margin-top: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonsClashRoyale a {
+  width: 45%;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--bg-color);
+
+  outline: none;
+  border: var(--border);
+
+  border-radius: var(--border-radius);
+  background-color: var(--main-color);
+
+  font-size: var(--font-size-small);
+
+  transition: var(--transition);
+
+  cursor: pointer;
+}
+
+.buttonsClashRoyale a:hover {
+  background-color: transparent;
+  color: var(--white-color);
 }
 
 /* DATA */
@@ -142,7 +183,7 @@
   max-width: 900px !important;
 }
 
-.clashRoyaleInfo {
+.clashRoyaleInfo, .clashRoyaleClanInfo {
   margin-top: 3rem;
 }
 .clashRoyaleTemplate {
@@ -167,6 +208,7 @@
 }
 
 .btnClan {
+  margin-bottom: 3rem;
   padding: 0.5rem 2rem;
 
   color: var(--bg-color);
@@ -188,3 +230,77 @@
   background-color: transparent;
   color: var(--white-color);
 }
+
+.btn {
+  margin-bottom: 1rem;
+  padding: 0.5rem 2rem;
+
+  color: var(--bg-color);
+
+  outline: none;
+  border: var(--border);
+
+  border-radius: var(--border-radius);
+  background-color: var(--main-color);
+
+  font-size: var(--font-size-small);
+
+  transition: var(--transition);
+
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: transparent;
+  color: var(--white-color);
+}
+
+@media screen and (max-width: 1366px) {
+  .clashRoyaleText {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .clashRoyaleText {
+    flex-direction: column;
+  }
+  .clashRoyaleLeft {
+    text-align: center;
+  }
+
+  .clashRoyaleLeft form {
+    flex-direction: column;
+    padding: 0rem 1rem;
+  } 
+
+  .clashRoyaleLeft form input {
+    max-width: auto !important;
+    width: 100%;
+  }
+
+  .clashRoyaleLeft form button {
+    max-width: auto !important;
+    width: 100%;
+    margin-top: 0.7rem;
+  }
+
+  .buttonsClashRoyale {
+    padding: 0rem 1rem;
+  }
+}
+
+@media screen and (max-width: 350px) { 
+  .buttonsClashRoyale {
+    margin-top: 0.7rem !important;
+    flex-direction: column;
+  }
+
+  .buttonsClashRoyale > *:first-child {
+    margin-bottom: 0.7rem;
+  }
+
+  .buttonsClashRoyale a {
+    width: 100%;
+  }
+ }

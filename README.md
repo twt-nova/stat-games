@@ -1,5 +1,4 @@
-# Stat Games
-A website to view all of your favorite games' stats
+<img src="branding/statgames long with slogan.png">
 
 ---
 

@@ -1,16 +1,17 @@
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import { useSession } from "next-auth/client";
 import Axios from "axios";
 import Head from "next/head";
-import styles from "../../styles/ClashRoyale.module.css";
+import styles from "../../../styles/ClashRoyale.module.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { url } from "../../lib/url";
+import { url } from "../../../lib/url";
 import { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
-import ClashRoyaleData from "../../components/ClashRoyale/ClashRoyaleData";
-import { Data } from "../../lib/types";
-import Footer from "../../components/Footer";
-import Custom404 from "../../components/404/Custom404";
+import ClashRoyaleData from "../../../components/ClashRoyale/ClashRoyaleData";
+import { Data } from "../../../lib/types";
+import Footer from "../../../components/Footer";
+import Custom404 from "../../../components/404/Custom404";
+import Link from "next/link";
 
 export default function ClashRoyale() {
   const [session, loading] = useSession();
@@ -70,15 +71,23 @@ export default function ClashRoyale() {
                 width={100}
               />
             ) : (
-              <form onSubmit={getData}>
-                <input
-                  type="text"
-                  name="tag"
-                  placeholder="Your clash royale tag... ex. #123"
-                  required
-                />
-                <button>Visualize your stats</button>
-              </form>
+              <>
+                <form onSubmit={getData}>
+                  <input
+                    type="text"
+                    name="tag"
+                    placeholder="Your clash royale tag... ex. #123"
+                    required
+                  />
+                  <button>Visualize your stats</button>
+                </form>
+                <div className={styles.buttonsClashRoyale}>
+                  <Link href="/games/clash-royale/clans">Search for clan</Link>
+                  <Link href="/games/clash-royale/statistics">
+                    See statistics
+                  </Link>
+                </div>
+              </>
             )}
           </div>
 
