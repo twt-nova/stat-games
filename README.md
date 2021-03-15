@@ -1,4 +1,4 @@
-<img src="branding/statgames long with slogan.jpeg">
+<img src="branding/statgames long with slogan.png">
 
 ---
 
@@ -52,3 +52,5 @@ BRAWL_STARS_TOKEN=api_key
 HYPIXEL_KEY=api_key
 MONGO_URL=mongo_url
 ```
+
+
