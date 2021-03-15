@@ -25,7 +25,7 @@ class Help(commands.HelpCommand):
         embed.colour = self.context.bot.colour
         embed.title = f"Help for {group.name}"
         embed.description = group.description
-        for command in group.commmands:
+        for command in group.commands:
             embed.add_field(name=f"{group.name} {command.name}",
                             value=self.get_command_signature(command))
 
@@ -47,20 +47,20 @@ Choose the categories below that you need help for!
 
         rm = []
 
-        for item in items:
+        for cog, commands in items:
             try:
-                if not item.help_cmd:
-                    raise KeyError
-            except KeyError:
-                rm.append(item)
+                if not cog.help_cmd:
+                    raise Exception
+            except Exception as e:
+                rm.append(cog)
 
-        for r in rm:
-            del items[r]
 
         n = []
 
-        for item in items:
-            n.append((item, items[items]))
+        for key, value in items:
+            if not key or key in rm: 
+                continue
+            n.append((key, value))
 
         items = n.copy()
 
@@ -70,9 +70,9 @@ Choose the categories below that you need help for!
             l1.append((cog, commands))
             l2.append(cog.help_cmd["emoji"])
         embed.add_field(name="🏠 Home", value="Go back to this screen.")
-
+        await msg.add_reaction("🏠")
         for cog, commands in items:
-            msg.add_reaction(cog.help_cmd["emoji"])
+            await msg.add_reaction(cog.help_cmd["emoji"])
             embed.add_field(
                 name=cog.help_cmd["emoji"] + " " + cog.help_cmd["name"], value=cog.help_cmd["description"])
         await msg.edit(embed=embed)
@@ -85,9 +85,10 @@ Choose the categories below that you need help for!
 
             except TimeoutError:
                 break
-
-            await msg.remove_reaction(str(r.emoji), self.context.author)
-
+            try:
+                await msg.remove_reaction(str(r.emoji), self.context.author)
+            except discord.Forbidden:
+                pass
             if str(r.emoji) == "🏠":
                 await msg.edit(embed=embed)
                 continue
@@ -97,13 +98,13 @@ Choose the categories below that you need help for!
             command_sigs = "\n".join(
                 [self.get_command_signature(command) for command in cmds])
             new_embed = discord.Embed()
-            new_embed.colour = self.context.bot
+            new_embed.colour = self.context.bot.colour
             new_embed.title = f"{cog.help_cmd['emoji']} {cog.help_cmd['name']}"
             new_embed.description = cog.help_cmd["description"]
             if command_sigs:
                 new_embed.add_field(name="Commands", value=command_sigs)
 
-            msg.edit(embed=new_embed)
+            await msg.edit(embed=new_embed)
 
 
 class Bot(commands.Bot):

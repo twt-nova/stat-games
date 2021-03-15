@@ -2,7 +2,8 @@ import discord
 from discord.ext import commands
 from utils.fetch_from import fetch_from
 
-def crtag(tag): # from clash_royale pypi
+
+def crtag(tag):  # from clash_royale pypi
     tag = tag.strip('#').upper().replace('O', '0')
     allowed = '0289PYLQGRJCUV'
     bad = []
@@ -14,27 +15,27 @@ def crtag(tag): # from clash_royale pypi
         if c not in allowed:
             bad.append(c)
     if bad:
-        raise ValueError('Invalid tag characters passed: {}'.format(', '.join(bad)))
+        raise ValueError(
+            'Invalid tag characters passed: {}'.format(', '.join(bad)))
     if len(tag[3:]) < 3:
-        raise ValueError('Tag ({}) too short, length {}, expected 3'.format(tag[3:], len(tag[3:])))
+        raise ValueError(
+            'Tag ({}) too short, length {}, expected 3'.format(tag[3:], len(tag[3:])))
     return tag
 
 
 class ClashRoyale(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
 
-    @commands.group(aliases=["clashroyale", "clashr", "cr", "croyale"])
+    @commands.group(aliases=["clashroyale", "clashr", "cr", "croyale"],
+                    description="See stats for Clash Royale!")
     async def clash_royale(self, ctx):
-        """
-        Check and see stats for clash royale players and clans
-        """
         if not ctx.invoked_subcommand:
             await ctx.send_group_help(self.clash_royale)
 
-    @clash_royale.group(aliases=["p", "person"])
-    async def player(self, ctx, tag:crtag):
+    @clash_royale.group(aliases=["p", "person"],
+                        description="Get statistics for a certain player")
+    async def player(self, ctx, tag: crtag):
         url = f"{self.bot.config['base_url']}/clash_royale/players/{tag}"
         data = await fetch_from(url, self.bot)
         embed = discord.Embed()
@@ -46,13 +47,11 @@ class ClashRoyale(commands.Cog):
         await ctx.send(embed=embed)
 
 
-        
-
 def setup(bot):
     Cog = ClashRoyale(bot)
     Cog.help_cmd = {
         "name": "Clash Royale",
-        "emoji": "",
-        "description" : "Check and See your stats for clash royale"
+        "emoji": "<:clashroyale:820959551821971466>",
+        "description": "Check and See your stats for clash royale"
     }
     bot.add_cog(Cog)
