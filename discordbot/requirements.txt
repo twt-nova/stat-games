@@ -1,0 +1,4 @@
+discord
+pyyaml
+aiohttp
+pillow
