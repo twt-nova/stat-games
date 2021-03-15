@@ -1,1 +1,1 @@
-export const url = "http://localhost:5001/v1";
+export const url = "https://api.statgames.net/v1";
