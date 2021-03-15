@@ -47,7 +47,7 @@ export default function ClashRoyale() {
       <Head>
         <meta
           name="description"
-          content="Visualize your stats from Clash Royale in few clicks. Enter your profile tag, and visualize your data"
+          content="Visualize clan stats from Clash Royale in few clicks. Enter clan tag, and visualize clan data"
         />
         <title>StatGames | Visualize clan data for Clash Royale</title>
       </Head>
