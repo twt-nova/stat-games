@@ -38,6 +38,16 @@ export default function ClashRoyaleData({ data }: PageProps) {
     <div className={styles.clashRoyaleData}>
       <PlayerStats data={data} battleLog={battleLog} />
       {data.clan ? <ClanStats data={data} /> : <></>}
+      <button
+        className={styles.btn}
+        onClick={() => {
+          localStorage.removeItem("data");
+          localStorage.removeItem("clanData");
+          location.reload();
+        }}
+      >
+        New search for player
+      </button>
     </div>
   );
 }
