@@ -8,6 +8,7 @@ class Help(commands.HelpCommand):
     def get_command_signature(self, command):
         return f"`{self.clean_prefix}{command.qualified_name} {command.signature}`"
 
+
     async def send_command_help(self, command):
         embed = discord.Embed()
         embed.colour = self.context.bot.colour
@@ -20,16 +21,19 @@ class Help(commands.HelpCommand):
 
         await self.context.send(embed=embed)
 
+
     async def send_group_help(self, group):
         embed = discord.Embed()
         embed.colour = self.context.bot.colour
         embed.title = f"Help for {group.name}"
         embed.description = group.description
+
         for command in group.commands:
             embed.add_field(name=f"{group.name} {command.name}",
                             value=self.get_command_signature(command))
 
         await self.context.send(embed=embed)
+
 
     async def send_bot_help(self, mapping):
         embed = discord.Embed()
@@ -46,6 +50,7 @@ Choose the categories below that you need help for!
         items = mapping.items()
 
         rm = []
+
 
         for cog, commands in items:
             try:
@@ -70,6 +75,7 @@ Choose the categories below that you need help for!
             l1.append((cog, commands))
             l2.append(cog.help_cmd["emoji"])
         embed.add_field(name="🏠 Home", value="Go back to this screen.")
+
         await msg.add_reaction("🏠")
         for cog, commands in items:
             await msg.add_reaction(cog.help_cmd["emoji"])
@@ -80,11 +86,14 @@ Choose the categories below that you need help for!
             try:
                 r, u = await self.context.bot.wait_for("reaction_add",
                                                        check=lambda r, u: r.message.id == msg.id and u.id == self.context.author.id and (
+
                                                            str(r.emoji) in l2 or str(r.emoji) == "🏠"),
                                                        timeout=300)
 
             except TimeoutError:
                 break
+
+
             try:
                 await msg.remove_reaction(str(r.emoji), self.context.author)
             except discord.Forbidden:
@@ -98,11 +107,13 @@ Choose the categories below that you need help for!
             command_sigs = "\n".join(
                 [self.get_command_signature(command) for command in cmds])
             new_embed = discord.Embed()
+
             new_embed.colour = self.context.bot.colour
             new_embed.title = f"{cog.help_cmd['emoji']} {cog.help_cmd['name']}"
             new_embed.description = cog.help_cmd["description"]
             if command_sigs:
                 new_embed.add_field(name="Commands", value=command_sigs)
+
 
             await msg.edit(embed=new_embed)
 
@@ -111,6 +122,7 @@ class Bot(commands.Bot):
     def __init__(self, config, **options):
         self.config = config
         self.prefix = options.get("prefix") or config["prefix"]
+
         help_command = options.get("help_command") or Help()
         self.session = options.get("session") or aiohttp.ClientSession()
         self.colour = discord.Colour(
@@ -119,7 +131,8 @@ class Bot(commands.Bot):
 
     def format_ext(self, path):
         replacements = ((".py", ""), ("\\", "."), ("/", "."))
-        for o, n in replacements:            path = str(path).replace(o, n)
+        for o, n in replacements:
+            path = str(path).replace(o, n)
         return path
 
     def load_all_exts(self, base_path="exts"):
@@ -131,6 +144,7 @@ class Bot(commands.Bot):
                 print(f"Loaded Cog {name}!")
             except Exception as e:
                 print(f"{e.__class__.__name__}: {e}")
+
 
 
     async def on_ready(self):
