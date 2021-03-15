@@ -50,4 +50,5 @@ CLASH_ROYALE_TOKEN=api_key
 CLASH_OF_CLANS_TOKEN=api_key
 BRAWL_STARS_TOKEN=api_key
 HYPIXEL_KEY=api_key
+MONGO_URL=mongo_url
 ```
