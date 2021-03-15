@@ -1,12 +1,14 @@
 from discord.ext import commands
 import discord
+from pathlib import Path
+import aiohttp
 
 
 class Help(commands.HelpCommand):
     def get_command_signature(self, command):
         return f"`{self.clean_prefix}{command.qualified_name} {command.signature}`"
 
-    def send_command_help(self, command):
+    async def send_command_help(self, command):
         embed = discord.Embed()
         embed.colour = self.context.bot.colour
         embed.title = f"Help for {command.name}"
@@ -18,7 +20,7 @@ class Help(commands.HelpCommand):
 
         await self.context.send(embed=embed)
 
-    def send_group_help(self, group):
+    async def send_group_help(self, group):
         embed = discord.Embed()
         embed.colour = self.context.bot.colour
         embed.title = f"Help for {group.name}"
@@ -29,12 +31,12 @@ class Help(commands.HelpCommand):
 
         await self.context.send(embed=embed)
 
-    def send_bot_help(self, mapping):
+    async def send_bot_help(self, mapping):
         embed = discord.Embed()
-        embed.colour = self.context.colour
+        embed.colour = self.context.bot.colour
         embed.title = "Help for StatGames"
         embed.description = """
-Welcome To (StatGames)[https://statgames.net], 
+Welcome To [StatGames](https://statgames.net), 
 A website and a discord bot that can show you the stats for your favorite games!
 Choose the categories below that you need help for!
         """
@@ -78,7 +80,7 @@ Choose the categories below that you need help for!
             try:
                 r, u = await self.context.bot.wait_for("reaction_add",
                                                        check=lambda r, u: r.message.id == msg.id and u.id == self.context.author.id and (
-                                                           str(r.emoji) in li2 or str(r.emoji) == "🏠"),
+                                                           str(r.emoji) in l2 or str(r.emoji) == "🏠"),
                                                        timeout=300)
 
             except TimeoutError:
@@ -100,7 +102,7 @@ Choose the categories below that you need help for!
             new_embed.description = cog.help_cmd["description"]
             if command_sigs:
                 new_embed.add_field(name="Commands", value=command_sigs)
-            
+
             msg.edit(embed=new_embed)
 
 
@@ -108,15 +110,15 @@ class Bot(commands.Bot):
     def __init__(self, config, **options):
         self.config = config
         self.prefix = options.get("prefix") or config["prefix"]
-        self.help_command = options.get("help_command") or Help()
+        help_command = options.get("help_command") or Help()
+        self.session = options.get("session") or aiohttp.ClientSession()
         self.colour = discord.Colour(
             options.get("colour") or self.config["colour"])
-        super().__init__(self.prefix, **options)
+        super().__init__(self.prefix, help_command=help_command, **options)
 
     def format_ext(self, path):
         replacements = ((".py", ""), ("\\", "."), ("/", "."))
-        for r in replacements:
-            path = path.replace(*r)
+        for o, n in replacements:            path = str(path).replace(o, n)
         return path
 
     def load_all_exts(self, base_path="exts"):
@@ -128,3 +130,8 @@ class Bot(commands.Bot):
                 print(f"Loaded Cog {name}!")
             except Exception as e:
                 print(f"{e.__class__.__name__}: {e}")
+
+
+    async def on_ready(self):
+        await self.change_presence(activity=discord.Game("video games."))
+        print(f"Started as {self.user}")
