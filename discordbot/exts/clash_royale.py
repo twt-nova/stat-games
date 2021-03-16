@@ -71,6 +71,13 @@ class ClashRoyale(commands.Cog):
                 output.seek(0)
                 await ctx.send(file=discord.File(output, filename="fancy.png"), embed=embed)
 
+    @clash_royale.command(aliases=["c", "clans"])
+    async def clan(self, ctx, tag:crtag):
+        async with ctx.typing():
+            url = f"{self.bot.config['base_url']}/clash_royale/clan/{tag}"
+            data = await fetch_from(url, self.bot)
+            await ctx.send(data["name"])
+
     async def generate_deck(self, data):
         deck = data["currentDeck"]
         bg = Image.open("./assets/clashbanner.jpg")
