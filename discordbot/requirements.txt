@@ -2,3 +2,4 @@ discord
 pyyaml
 aiohttp
 pillow
+matplotlib

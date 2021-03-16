@@ -4,7 +4,7 @@ from utils.fetch_from import fetch_from
 from PIL import Image, ImageDraw, ImageFont
 import io
 from utils import charts
-
+import tempfile
 
 def crtag(tag):  # from clash_royale pypi
     tag = tag.strip('#').upper().replace('O', '0')
@@ -36,9 +36,10 @@ class ClashRoyale(commands.Cog):
         if not ctx.invoked_subcommand:
             await ctx.send_group_help(self.clash_royale)
 
-    @clash_royale.group(aliases=["p", "person"],
+    @clash_royale.command(aliases=["p", "person"],
                         description="Get statistics for a certain player")
     async def player(self, ctx, tag: crtag):
+
         async with ctx.typing():
             url = f"{self.bot.config['base_url']}/clash_royale/players/{tag}"
             data = await fetch_from(url, self.bot)
@@ -54,6 +55,72 @@ class ClashRoyale(commands.Cog):
                 im.save(output, format="JPEG")
                 output.seek(0)
                 await ctx.send(file=discord.File(output, filename="fancy.png"), embed=embed)
+
+    @clash_royale.command(aliases=["d"])
+    async def deck(self, ctx, tag: crtag):
+        async with ctx.typing():
+            url = f"{self.bot.config['base_url']}/clash_royale/players/{tag}"
+            data = await fetch_from(url, self.bot)
+            embed = discord.Embed()
+            embed.colour = self.bot.colour
+            embed.title = f"Statistics deck of {data['name']} ({data['tag']})"
+            embed.description = f"All of the stats you need to know about deck of {data['name']}, provided by [statgames](https://statgames.net)"
+            embed.set_image(url="attachment://fancy.png")
+            im = await self.generate_deck(data)
+            with io.BytesIO() as output:
+                im.save(output, format="JPEG")
+                output.seek(0)
+                await ctx.send(file=discord.File(output, filename="fancy.png"), embed=embed)
+
+    async def generate_deck(self, data):
+        deck = data["currentDeck"]
+        bg = Image.open("./assets/clashbanner.jpg")
+        bg_layer = Image.new("RGBA", bg.size, color=(24, 24, 24, 240))
+        draw = ImageDraw.Draw(bg_layer)
+        o = 20
+        fontcolour = (244, 244, 2444, 255)
+        bg.paste(bg_layer, (0, 0), bg_layer)
+        draw = ImageDraw.Draw(bg)
+        card_levels = [i["level"] + (13-i["maxLevel"]) for i in deck]
+        top_level = max(card_levels)
+        a = 0
+        for b in card_levels:
+            a+=b
+        avarage_level = a / 8
+        big = ImageFont.truetype("./assets/font.ttf", int(1.5*o))
+        small = ImageFont.truetype("./assets/font.ttf", o)
+        draw.text((o, o), "Name", font=big, fill=fontcolour)
+        draw.text((o, 3*o), str(data['name']), font=small, fill=fontcolour)
+        draw.text((9*o, o), "Tag", font=big, fill=fontcolour)
+        draw.text((9*o, 3*o), str(data['tag']), font=small, fill=fontcolour)
+        draw.text((16*o, o), "Top Level", font=big, fill=fontcolour)
+        draw.text((16*o, 3*o), str(top_level),
+                  font=small, fill=fontcolour)
+        draw.text((24*o, o), "Avarage Level", font=big, fill=fontcolour)
+        draw.text(
+            (24*o, 3*o), str(avarage_level), font=small, fill=fontcolour)
+
+        r = 0.45
+
+        for i, card in enumerate(deck):
+            buffer = tempfile.SpooledTemporaryFile(max_size=1e9)
+            async with self.bot.session.get(card["iconUrls"]["medium"]) as resp:
+                if resp.status != 200:
+                    raise Exception
+                buffer.write(await resp.content.read())
+                buffer.seek(0)
+                im = Image.open(io.BytesIO(buffer.read()))
+            im = im.resize((int(im.width*r), int(im.height*r)), Image.BOX)
+            if i < 4:
+                x = o + i*im.width + i*3*o
+                y = int(4.5*o)
+            else:
+                y = 12*o
+                i2 = i-4
+                x = o + i2*im.width + i2*3*o
+            bg.paste(im, (int(x), y), im)
+
+        return bg
 
     def generate_player(self, data, logdata):
         bg = Image.open("./assets/clashbanner.jpg")
@@ -100,10 +167,11 @@ class ClashRoyale(commands.Cog):
 
         history = charts.create_line_graph(
             "Battle History", "Trophies", y)
-        r = 0.5 # scaleing factor
+        r = 0.5  # scaleing factor
         history = history.resize(
             (int(history.width*r), int(history.height*r)), Image.BOX)
-        bg.paste(history, (int(20*o), int(7.5*o)), history)  # not 6.9 not noice
+        bg.paste(history, (int(20*o), int(7.5*o)),
+                 history)  # not 6.9 not noice
 
         return bg
 
