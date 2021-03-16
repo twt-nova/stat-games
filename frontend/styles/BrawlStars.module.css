@@ -1,0 +1,84 @@
+.bsContainer {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  color: var(--white-color);
+}
+
+.brawlStarsName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 2rem;
+}
+
+.brawlStarsName h1 {
+  font-size: var(--font-size-large);
+  font-weight: 400;
+}
+.brawlStarsName h2 {
+  font-size: var(--font-size-medium);
+  font-weight: 400;
+  color: var(--main-color);
+  margin-right: 1.5rem;
+}
+
+.brawlStarsTrophies,
+.brawlStarsInfo,
+.brawlStarsClanInfo {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: var(--white-color);
+
+  margin-bottom: 3rem;
+
+  text-align: center;
+}
+.brawlStarsClanInfo {
+  max-width: 900px !important;
+}
+
+.brawlStarsInfo, .brawlStarsClanInfo {
+  margin-top: 3rem;
+}
+.brawlStarsTemplate {
+  font-size: 21px;
+}
+
+.brawlStarsTemplate span {
+  color: var(--main-color);
+}
+
+.btn {
+  margin: 2rem 0rem;
+  padding: 0.5rem 2rem;
+
+  color: var(--bg-color);
+
+  outline: none;
+  border: var(--border);
+
+  border-radius: var(--border-radius);
+  background-color: var(--main-color);
+
+  font-size: var(--font-size-small);
+
+  transition: var(--transition);
+
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: transparent;
+  color: var(--white-color);
+}
