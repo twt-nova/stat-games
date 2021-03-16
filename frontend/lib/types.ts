@@ -338,3 +338,85 @@ export interface CocClanData {
     }
   ];
 }
+
+export interface BSPlayer {
+  tag: string;
+  name: string;
+  nameColor: string;
+  icon: { id: number };
+  trophies: number;
+  highestTrophies: number;
+  highestPowerPlayPoints: number;
+  expLevel: number;
+  expPoints: number;
+  isQualifiedFromChampionshipChallenge: boolean;
+  "3vs3Victories": number;
+  soloVictories: number;
+  duoVictories: number;
+  bestRoboRumbleTime: number;
+  bestTimeAsBigBrawler: number;
+  club: { tag: string; name: string };
+  brawlers: [
+    {
+      id: number;
+      name: string;
+      power: number;
+      rank: number;
+      trophies: number;
+      highestTrophies: number;
+      starPowers: [
+        {
+          id: number;
+          name: string;
+        }
+      ];
+      gadgets: [
+        {
+          id: number;
+          name: string;
+        }
+      ];
+    }
+  ];
+}
+
+export interface BSBattleLog {
+  battleTime: string;
+  event: {
+    id: number;
+    mode: string;
+    map: string;
+  };
+  battle: {
+    mode: string;
+    result: string;
+    duration: number;
+    starPlayer?: boolean;
+    teams: [
+      [
+        {
+          tag: string;
+          name: string;
+          brawler: {
+            id: number;
+            name: string;
+            power: number;
+            trophies: number;
+          };
+        }
+      ],
+      [
+        {
+          tag: string;
+          name: string;
+          brawler: {
+            id: number;
+            name: string;
+            power: number;
+            trophies: number;
+          };
+        }
+      ]
+    ];
+  };
+}
