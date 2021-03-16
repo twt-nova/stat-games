@@ -4,11 +4,7 @@ from utils.fetch_from import fetch_from
 from PIL import Image, ImageDraw, ImageFont
 import io
 from utils import charts
-<<<<<<< HEAD
 import tempfile
-=======
-
->>>>>>> 56286945732c90cfedd6849f6d451fb10fbd7070
 
 def crtag(tag):  # from clash_royale pypi
     tag = tag.strip('#').upper().replace('O', '0')
@@ -43,10 +39,6 @@ class ClashRoyale(commands.Cog):
     @clash_royale.command(aliases=["p", "person"],
                         description="Get statistics for a certain player")
     async def player(self, ctx, tag: crtag):
-<<<<<<< HEAD
-
-=======
->>>>>>> 56286945732c90cfedd6849f6d451fb10fbd7070
         async with ctx.typing():
             url = f"{self.bot.config['base_url']}/clash_royale/players/{tag}"
             data = await fetch_from(url, self.bot)
@@ -63,7 +55,6 @@ class ClashRoyale(commands.Cog):
                 output.seek(0)
                 await ctx.send(file=discord.File(output, filename="fancy.png"), embed=embed)
 
-<<<<<<< HEAD
     @clash_royale.command(aliases=["d"])
     async def deck(self, ctx, tag: crtag):
         async with ctx.typing():
@@ -82,14 +73,10 @@ class ClashRoyale(commands.Cog):
 
     async def generate_deck(self, data):
         deck = data["currentDeck"]
-=======
-    def generate_player(self, data, logdata):
->>>>>>> 56286945732c90cfedd6849f6d451fb10fbd7070
         bg = Image.open("./assets/clashbanner.jpg")
         bg_layer = Image.new("RGBA", bg.size, color=(24, 24, 24, 240))
         draw = ImageDraw.Draw(bg_layer)
         o = 20
-<<<<<<< HEAD
         fontcolour = (244, 244, 2444, 255)
         bg.paste(bg_layer, (0, 0), bg_layer)
         draw = ImageDraw.Draw(bg)
@@ -139,8 +126,6 @@ class ClashRoyale(commands.Cog):
         bg_layer = Image.new("RGBA", bg.size, color=(24, 24, 24, 240))
         draw = ImageDraw.Draw(bg_layer)
         o = 20
-=======
->>>>>>> 56286945732c90cfedd6849f6d451fb10fbd7070
         # This part was for making the border, which we decided to remove LLL
         # offset=15
         # draw.rectangle((offset,offset, bg.width - o, bg.height-o), fill=(24,24,24,240))
