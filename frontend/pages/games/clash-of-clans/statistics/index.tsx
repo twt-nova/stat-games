@@ -1,9 +1,9 @@
 import Head from "next/head";
 import React, { useState, useRef, useEffect } from "react";
 import Header from "../../../../components/Header";
-import { locations, Location, Player } from "../../../../lib/locations";
+import { locationsCoc, Location, CocPlayer } from "../../../../lib/locations";
 import Axios from "axios";
-import styles from "../../../../styles/CRStatistics.module.css";
+import styles from "../../../../styles/COCStatistic.module.css";
 import { url } from "../../../../lib/url";
 import Footer from "../../../../components/Footer";
 import Loader from "react-loader-spinner";
@@ -14,12 +14,12 @@ import {
 } from "react-notifications";
 
 interface PageProps {
-  res: Player[];
+  res: CocPlayer[];
 }
 
 export default function Statistics({ res }: PageProps) {
   const [results, setResults] = useState<Location[]>([]);
-  const [data, setData] = useState<Player[]>([]);
+  const [data, setData] = useState<CocPlayer[]>([]);
   const [number, setNumber] = useState<number>(0);
   const [locationId, setLocationId] = useState<number>(0);
   const [country, setCountry] = useState<string>("Global");
@@ -33,8 +33,8 @@ export default function Statistics({ res }: PageProps) {
     let arr: number[] = [];
     value = value.toUpperCase();
     if (value !== "") {
-      for (let i = 0; i < locations.length; i++) {
-        if (locations[i].name.toUpperCase().indexOf(value) > -1) {
+      for (let i = 0; i < locationsCoc.length; i++) {
+        if (locationsCoc[i].name.toUpperCase().indexOf(value) > -1) {
           arr.push(i);
         }
       }
@@ -48,13 +48,13 @@ export default function Statistics({ res }: PageProps) {
     if (results.length !== 0) {
       setLoading(true);
 
-      for (let i = 0; i < locations.length; i++) {
-        if (locations[i].id == locationId) {
-          setCountry(locations[i].name);
+      for (let i = 0; i < locationsCoc.length; i++) {
+        if (locationsCoc[i].id == locationId) {
+          setCountry(locationsCoc[i].name);
         }
       }
 
-      Axios.get(`${url}/clash_royale/locations/${locationId}/players`).then(
+      Axios.get(`${url}/clash_of_clans/locations/${locationId}/players`).then(
         (result) => {
           const data = result.data.items;
 
@@ -81,15 +81,15 @@ export default function Statistics({ res }: PageProps) {
       <Head>
         <meta
           name="description"
-          content="See statistics per country for clash royale"
+          content="See statistics per country for clash of clans"
         />
-        <title>StatGames | Statistics for player | Clash Royale</title>
+        <title>StatGames | Statistics for player | Clash Of Clans</title>
       </Head>
 
       <Header />
 
       <div className={styles.players}>
-        <h1 className={styles.tagline}>Clash Royale Players</h1>
+        <h1 className={styles.tagline}>Clash of Clans Players</h1>
         <div className={styles.underline}></div>
         {loading ? (
           <>
@@ -111,16 +111,16 @@ export default function Statistics({ res }: PageProps) {
                   if (arr.length === 0) {
                     setLocationId(0);
                   } else {
-                    setLocationId(locations[arr[0]].id);
+                    setLocationId(locationsCoc[arr[0]].id);
                   }
 
                   if (arr.length < 10) {
                     for (let i = 0; i < arr.length; i++) {
-                      results.push(locations[arr[i]]);
+                      results.push(locationsCoc[arr[i]]);
                     }
                   } else {
                     for (let i = 0; i < 10; i++) {
-                      results.push(locations[arr[i]]);
+                      results.push(locationsCoc[arr[i]]);
                     }
                   }
 
@@ -181,7 +181,7 @@ export default function Statistics({ res }: PageProps) {
               <span>Player Name</span>
             </div>
             <div className={styles.containerPlayer}>
-              <span>Player Arena</span>
+              <span>Player League</span>
             </div>
             <div className={styles.containerPlayer}>
               <span>Player Trophies</span>
@@ -204,7 +204,7 @@ export default function Statistics({ res }: PageProps) {
                       <span>{value.name}</span>
                     </div>
                     <div className={styles.containerPlayer}>
-                      <span>{value.arena.name}</span>
+                      <span>{value.league.name}</span>
                     </div>
                     <div className={styles.containerPlayer}>
                       <span>{value.trophies}</span>
@@ -232,7 +232,7 @@ export default function Statistics({ res }: PageProps) {
                       <span>{value.name}</span>
                     </div>
                     <div className={styles.containerPlayer}>
-                      <span>{value.arena.name}</span>
+                      <span>{value.league.name}</span>
                     </div>
                     <div className={styles.containerPlayer}>
                       <span>{value.trophies}</span>
@@ -259,10 +259,12 @@ export default function Statistics({ res }: PageProps) {
 
 export async function getStaticProps() {
   const result = await Axios.get(
-    `${url}/clash_royale/locations/global/players`
+    `${url}/clash_of_clans/locations/global/players`
   );
 
   const data = result.data.items;
+
+  console.log(data);
 
   let res = [];
 
