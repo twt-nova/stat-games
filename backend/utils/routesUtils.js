@@ -1,65 +1,57 @@
 const axios = require("axios");
 
-async function fetchFrom(url, token) {
+async function fetchFrom(url, token = "") {
   let result;
   try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "application/json",
-      },
-    };
+    const config = getDynamicConfig(token);
     const response = await axios.get(url, config);
     result = {
       status: response.status,
       data: response.data,
     };
   } catch (err) {
-    if (err.response) {
-      const response = err.response;
-      result = {
-        status: response.status,
-        data: response.data,
-      };
-    } else {
-      //send generic message
-      result = {
-        status: 400,
-        data: {
-          title: "Internal server error",
-          error: err,
-        },
-      };
-    }
-    console.error(err);
+    const errResponse = err.response;
+    result = {
+      status: errResponse ? errResponse.status : 404,
+      data: err,
+    };
+    console.error("SERVER_ERROR:", err);
   }
   return result;
 }
 
-async function fetchFromWithoutAuth(url) {
-  let result;
-  try {
-    const config = {
-      headers: {
-        Accept: "application/json",
-      },
+function getDynamicConfig(token = "") {
+  let config = {
+    headers: {
+      Accept: "application/json",
+    },
+  };
+
+  if (token !== "") {
+    config.headers = {
+      ...config.headers,
+      Authorization: `Bearer ${token}`,
     };
-    const response = await axios.get(url, config);
-    result = response.data;
-  } catch (err) {
-    result = { error: "Internal server error" };
-    console.error(err);
   }
-  return result;
+  return config;
 }
+
+function appendFilterValues(baseUrl, values) {
+  let resultValues = [];
+  for (const value of values) {
+    resultValues.push(value);
+  }
+  return baseUrl + resultValues.join(",");
+}
+
 // ensures a name or uuid is the uuid
 async function ensureUUID(name) {
   if (checkUUID(name)) {
-    return name
+    return name;
   }
-  const url = "https://api.mojang.com/users/profiles/minecraft/" + name
-  result = await fetchFromWithoutAuth(url)
-  return result.id
+  const url = "https://api.mojang.com/users/profiles/minecraft/" + name;
+  result = await fetchFromWithoutAuth(url);
+  return result.id;
 }
 
 function sanitazeTag(tag) {
@@ -73,18 +65,20 @@ function getLimitQuery(limit) {
 }
 
 function checkUUID(uuid) {
-  const reg = new RegExp(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i);
+  const reg = new RegExp(
+    /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
+  );
   return uuid.match(reg);
 }
 
 function encodeQueryData(data) {
   const ret = [];
   for (let d in data)
-    ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
-  return "?" + ret.join('&');
+    ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+  return "?" + ret.join("&");
 }
 
-async function fetchFromWithParams(url, params){
+async function fetchFromWithParams(url, params) {
   url = url + encodeQueryData(params);
   let result;
   try {
@@ -96,8 +90,12 @@ async function fetchFromWithParams(url, params){
     const response = await axios.get(url, config);
     result = response.data;
   } catch (err) {
-    result = { error: "Internal server error" };
-    console.error(err);
+    const errResponse = err.response;
+    result = {
+      status: errResponse ? errResponse.status : 404,
+      data: err,
+    };
+    console.error("SERVER_ERROR:", err);
   }
   return result;
 }
@@ -107,9 +105,6 @@ module.exports = {
   sanitazeTag,
   getLimitQuery,
   checkUUID,
-  fetchFromWithoutAuth,
   ensureUUID,
-  fetchFromWithParams
+  fetchFromWithParams,
 };
-
-
