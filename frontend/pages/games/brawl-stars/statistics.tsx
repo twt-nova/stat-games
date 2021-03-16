@@ -4,6 +4,7 @@ import Header from "../../../components/Header";
 import { locationsBs, LocationBS, CocPlayer } from "../../../lib/locations";
 import Axios from "axios";
 import styles from "../../../styles/COCStatistic.module.css";
+import bs from "../../../styles/BrawlStars.module.css";
 import { url } from "../../../lib/url";
 import Footer from "../../../components/Footer";
 import Loader from "react-loader-spinner";
@@ -168,7 +169,7 @@ export default function Statistics({ res }: PageProps) {
         )}
         <h2 className={styles.sCountry}>{country}</h2>
         <div className={styles.playersDiv}>
-          <div className={styles.player}>
+          <div className={bs.player}>
             <div className={styles.containerPlayer}>
               <span>Player Rank</span>
             </div>
@@ -185,7 +186,7 @@ export default function Statistics({ res }: PageProps) {
           {dataGet
             ? data.map((value, index) => {
                 return (
-                  <div className={styles.player} key={index}>
+                  <div className={bs.player} key={index}>
                     <div className={styles.containerPlayer}>
                       <span>{value.rank}</span>
                     </div>
@@ -203,7 +204,7 @@ export default function Statistics({ res }: PageProps) {
               })
             : res.map((value, index) => {
                 return (
-                  <div className={styles.player} key={index}>
+                  <div className={bs.player} key={index}>
                     <div className={styles.containerPlayer}>
                       <span>{value.rank}</span>
                     </div>
@@ -233,8 +234,6 @@ export async function getStaticProps() {
   const result = await Axios.get(`${url}/brawl_stars/rankings/global/`);
 
   const data = result.data.items;
-
-  console.log(data);
 
   let res = [];
 
