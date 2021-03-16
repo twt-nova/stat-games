@@ -228,3 +228,52 @@
   background-color: transparent;
   color: var(--white-color);
 }
+@media screen and (max-width: 1366px) {
+  .clashOfClansText {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .clashOfClansText {
+    flex-direction: column;
+  }
+  .clashOfClansLeft {
+    text-align: center;
+  }
+
+  .clashOfClansLeft form {
+    flex-direction: column;
+    padding: 0rem 1rem;
+  } 
+
+  .clashOfClansLeft form input {
+    max-width: auto !important;
+    width: 100%;
+  }
+
+  .clashOfClansLeft form button {
+    max-width: auto !important;
+    width: 100%;
+    margin-top: 0.7rem;
+  }
+
+  .buttonsClashOfClans {
+    padding: 0rem 1rem;
+  }
+}
+
+@media screen and (max-width: 350px) { 
+  .buttonsClashOfClans {
+    margin-top: 0.7rem !important;
+    flex-direction: column;
+  }
+
+  .buttonsClashOfClans > *:first-child {
+    margin-bottom: 0.7rem;
+  }
+
+  .buttonsClashOfClans a {
+    width: 100%;
+  }
+ }
