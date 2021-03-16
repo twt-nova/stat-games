@@ -42,14 +42,16 @@
 }
 
 .clashOfClansLeft form {
-  width: 97%;
+  width: 100%;
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .clashOfClansLeft form input {
-  width: 350px;
+  max-width: 390px;
+  width: 100%;
   height: 50px;
 
   padding: 0rem 1.5rem;
@@ -92,8 +94,58 @@
   background: none;
 }
 
+.buttonsClashOfClans {
+  width: 100%;
+
+  margin-top: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonsClashOfClans a {
+  width: 45%;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--bg-color);
+
+  outline: none;
+  border: var(--border);
+
+  border-radius: var(--border-radius);
+  background-color: var(--main-color);
+
+  font-size: var(--font-size-small);
+
+  transition: var(--transition);
+
+  cursor: pointer;
+}
+
+.buttonsClashOfClans a:hover {
+  background-color: transparent;
+  color: var(--white-color);
+}
+
 
 /* DATA */
+
+.containerData {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  color: var(--white-color);
+}
 
 .clashOfClansData {
   height: 100%;
