@@ -98,7 +98,7 @@ class ClashRoyale(commands.Cog):
                 await ctx.send(file=discord.File(output, filename="fancy.png"), embed=embed)
 
     def generate_clan(self, data, wardata, pastwardata):
-        bg = Image.open("./assets/clashbanner.jpg")
+        bg = Image.open("./assets/clashroyale.jpg")
         bg_layer = Image.new("RGBA", bg.size, color=(24, 24, 24, 240))
         bg.paste(bg_layer, (0, 0), bg_layer)
         draw = ImageDraw.Draw(bg)
@@ -182,7 +182,7 @@ class ClashRoyale(commands.Cog):
 
     async def generate_deck(self, data):
         deck = data["currentDeck"]
-        bg = Image.open("./assets/clashbanner.jpg")
+        bg = Image.open("./assets/clashroyale.jpg")
         bg_layer = Image.new("RGBA", bg.size, color=(24, 24, 24, 240))
         o = 20
         fontcolour = (244, 244, 2444, 255)
@@ -230,7 +230,7 @@ class ClashRoyale(commands.Cog):
         return bg
 
     def generate_player(self, data, logdata):
-        bg = Image.open("./assets/clashbanner.jpg")
+        bg = Image.open("./assets/clashroyale.jpg")
         bg_layer = Image.new("RGBA", bg.size, color=(24, 24, 24, 240))
         draw = ImageDraw.Draw(bg_layer)
         o = 20
