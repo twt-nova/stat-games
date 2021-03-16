@@ -32,7 +32,7 @@ def create_line_graph(xtitle, ytitle, y):
 
     size = 22
     ax1.spines['bottom'].set_color(color)
-    ax1.spines['top'].set_color(transp) 
+    ax1.spines['top'].set_color(transp)
     ax1.spines['right'].set_color(transp)
     ax1.spines['left'].set_color(color)
     ax1.tick_params(axis='x', colors=color)
@@ -43,4 +43,25 @@ def create_line_graph(xtitle, ytitle, y):
     buf = io.BytesIO()
     plt.savefig(buf, format='png', transparent=True)
     buf.seek(0)
+    return Image.open(buf)
+
+
+def create_sideways_bar(data, labels, ytitle, colours=None):
+    _, ax1 = plt.subplots()
+    font = fm.FontProperties(fname="./assets/font.ttf")
+    color = (.9, .9, .9)
+    transp = (.9, .9, .9, 0)
+    size = 22
+    ax1.spines['bottom'].set_color(color)
+    ax1.spines['top'].set_color(transp)
+    ax1.spines['right'].set_color(transp)
+    ax1.spines['left'].set_color(color)
+    ax1.tick_params(axis='x', colors=color)
+    ax1.tick_params(axis='y', colors=color)
+    ax1.barh(data, labels, color=colours)
+
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png', transparent=True)
+    buf.seek(0)
+    ax1.set_ylabel(ytitle, fontproperties=font, color=color, size=size)
     return Image.open(buf)

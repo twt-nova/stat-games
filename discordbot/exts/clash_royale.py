@@ -81,13 +81,17 @@ class ClashRoyale(commands.Cog):
         async with ctx.typing():
             url = f"{self.bot.config['base_url']}/clash_royale/clan/{tag}"
             data = await fetch_from(url, self.bot)
+            url = f"{self.bot.config['base_url']}/clash_royale/clan/{tag}/current_war"
+            wardata = await fetch_from(url, self.bot)
+            url = f"{self.bot.config['base_url']}/clash_royale/clan/{tag}/war_log"
+            logdata = await fetch_from(url, self.bot)
             embed = discord.Embed()
             embed.colour = self.bot.colour
             embed.title = f"Statistics deck of {data['name']} ({data['tag']})"
             embed.description = f"All of the stats you need to know about the clan {data['name']}, provided by [statgames](https://statgames.net)"
             embed.add_field(name="Clan Description", value=data["description"])
             embed.set_image(url="attachment://fancy.png")
-            im = self.generate_clan(data, {}, {})
+            im = self.generate_clan(data, wardata, logdata)
             with io.BytesIO() as output:
                 im.save(output, format="JPEG")
                 output.seek(0)
@@ -106,7 +110,8 @@ class ClashRoyale(commands.Cog):
         verysmall = ImageFont.truetype("./assets/font.ttf", int(0.75*o))
 
         draw.text((o, o), "Name", font=big, fill=fontcolour)
-        draw.text((o, 3*o), str(data['name']), font=verysmall if choose_font(data["name"]) else small, fill=fontcolour)
+        draw.text((o, 3*o), str(data['name']), font=verysmall if choose_font(
+            data["name"]) else small, fill=fontcolour)
         draw.text((9*o, o), "Tag", font=big, fill=fontcolour)
         draw.text((9*o, 3*o), str(data['tag']), font=small, fill=fontcolour)
         draw.text((18*o, o), "Score", font=big, fill=fontcolour)
@@ -117,18 +122,62 @@ class ClashRoyale(commands.Cog):
             (24*o, 3*o), str(data['clanWarTrophies']), font=small, fill=fontcolour)
 
         draw.text((o, 5.5*o), "Donatoins", font=big, fill=fontcolour)
-        draw.text((o, 7.5*o), str(data['donationsPerWeek']), font=small, fill=fontcolour)
+        draw.text(
+            (o, 7.5*o), str(data['donationsPerWeek']), font=small, fill=fontcolour)
         draw.text((9*o, 5.5*o), "Requirement", font=big, fill=fontcolour)
-        draw.text((9*o, 7.5*o), str(data['requiredTrophies']) + " Trophies", font=small, fill=fontcolour)
-        
-        leader_list = [leader for leader in data["memberList"] if leader["role"] == "leader"] #should only be leader
+        draw.text((9*o, 7.5*o), str(data['requiredTrophies']
+                                    ) + " Trophies", font=small, fill=fontcolour)
+
+        leader_list = [leader for leader in data["memberList"]
+                       if leader["role"] == "leader"]  # should only be leader
         leader = leader_list[0]
 
         draw.text((20*o, 5.5*o), "Members", font=big, fill=fontcolour)
-        draw.text((20*o, 7.5*o), str(data['members'])+"/50", font=small, fill=fontcolour)
+        draw.text((20*o, 7.5*o),
+                  str(data['members'])+"/50", font=small, fill=fontcolour)
         draw.text((28*o, 5.5*o), "Leader", font=big, fill=fontcolour)
-        draw.text((28*o, 7.5*o), str(leader["name"]), font=small, fill=fontcolour)
-        
+        draw.text((28*o, 7.5*o),
+                  str(leader["name"]), font=small, fill=fontcolour)
+
+        wartop = wardata["clan"]["participants"][-1]
+
+        draw.text((16*o, 10*o), "Top Member", font=big, fill=fontcolour)
+        draw.text((16*o, 12*o),
+                  str(data['memberList'][0]["name"]), font=small, fill=fontcolour)
+        draw.text((26*o, 10*o), "War Top", font=big, fill=fontcolour)
+        draw.text((26*o, 12*o),
+                  str(wartop["name"]), font=small, fill=fontcolour)
+
+        coleaders = [coleader["name"]
+                     for coleader in data["memberList"] if coleader["role"] == "coLeader"]
+        elders = [elder["name"]
+                  for elder in data["memberList"] if elder["role"] == "elder"]
+
+        coleaders = coleaders[:5:]  # only show 5 otherwise ugly
+        elders = elders[:3:]  # only show 5 otherwise ugly
+
+        draw.text((16*o, 14.5*o), "Co-Leaders", font=big, fill=fontcolour)
+        draw.text((16*o, 16.5*o),
+                  ", \n".join(coleaders), font=verysmall, fill=fontcolour)
+        draw.text((26*o, 14.5*o), "Elders", font=big, fill=fontcolour)
+        draw.text((26*o, 16.5*o),
+                  ", \n".join(elders), font=verysmall, fill=fontcolour)
+
+        xdata = [data["memberList"][i]["name"]
+                 for i in range(min(5, data['members']))]
+        ydata = [data["memberList"][i]["trophies"]
+                 for i in range(min(5, data['members']))]
+
+        xdata = tuple(reversed(xdata))
+        ydata = tuple(reversed(ydata))
+
+        history = charts.create_sideways_bar(xdata, ydata, "Trophies")
+        r = 0.5  # scaleing factor
+        history = history.resize(
+            (int(history.width*r), int(history.height*r)), Image.BOX)
+        bg.paste(history, (int(0.5*o), int(7.5*o)),
+                 history)  # not 6.9 not noice
+
         return bg
 
     async def generate_deck(self, data):
