@@ -6,6 +6,11 @@ import io
 from utils import charts
 import tempfile
 
+
+def choose_font(text, max_length=12):
+    return len(text) > max_length
+
+
 def crtag(tag):  # from clash_royale pypi
     tag = tag.strip('#').upper().replace('O', '0')
     allowed = '0289PYLQGRJCUV'
@@ -37,7 +42,7 @@ class ClashRoyale(commands.Cog):
             await ctx.send_group_help(self.clash_royale)
 
     @clash_royale.command(aliases=["p", "person"],
-                        description="Get statistics for a certain player")
+                          description="Get statistics for a certain player")
     async def player(self, ctx, tag: crtag):
         async with ctx.typing():
             url = f"{self.bot.config['base_url']}/clash_royale/players/{tag}"
@@ -72,17 +77,64 @@ class ClashRoyale(commands.Cog):
                 await ctx.send(file=discord.File(output, filename="fancy.png"), embed=embed)
 
     @clash_royale.command(aliases=["c", "clans"])
-    async def clan(self, ctx, tag:crtag):
+    async def clan(self, ctx, tag: crtag):
         async with ctx.typing():
             url = f"{self.bot.config['base_url']}/clash_royale/clan/{tag}"
             data = await fetch_from(url, self.bot)
-            await ctx.send(data["name"])
+            embed = discord.Embed()
+            embed.colour = self.bot.colour
+            embed.title = f"Statistics deck of {data['name']} ({data['tag']})"
+            embed.description = f"All of the stats you need to know about the clan {data['name']}, provided by [statgames](https://statgames.net)"
+            embed.add_field(name="Clan Description", value=data["description"])
+            embed.set_image(url="attachment://fancy.png")
+            im = self.generate_clan(data, {}, {})
+            with io.BytesIO() as output:
+                im.save(output, format="JPEG")
+                output.seek(0)
+                await ctx.send(file=discord.File(output, filename="fancy.png"), embed=embed)
+
+    def generate_clan(self, data, wardata, pastwardata):
+        bg = Image.open("./assets/clashbanner.jpg")
+        bg_layer = Image.new("RGBA", bg.size, color=(24, 24, 24, 240))
+        bg.paste(bg_layer, (0, 0), bg_layer)
+        draw = ImageDraw.Draw(bg)
+        fontcolour = (244, 244, 244, 255)
+        o = 20
+        big = ImageFont.truetype("./assets/font.ttf", int(1.5*o))
+        medium = ImageFont.truetype("./assets/font.ttf", int(1.25*o))
+        small = ImageFont.truetype("./assets/font.ttf", o)
+        verysmall = ImageFont.truetype("./assets/font.ttf", int(0.75*o))
+
+        draw.text((o, o), "Name", font=big, fill=fontcolour)
+        draw.text((o, 3*o), str(data['name']), font=verysmall if choose_font(data["name"]) else small, fill=fontcolour)
+        draw.text((9*o, o), "Tag", font=big, fill=fontcolour)
+        draw.text((9*o, 3*o), str(data['tag']), font=small, fill=fontcolour)
+        draw.text((18*o, o), "Score", font=big, fill=fontcolour)
+        draw.text((18*o, 3*o), str(data['clanScore']),
+                  font=small, fill=fontcolour)
+        draw.text((24*o, o), "War Trophies", font=big, fill=fontcolour)
+        draw.text(
+            (24*o, 3*o), str(data['clanWarTrophies']), font=small, fill=fontcolour)
+
+        draw.text((o, 5.5*o), "Donatoins", font=big, fill=fontcolour)
+        draw.text((o, 7.5*o), str(data['donationsPerWeek']), font=small, fill=fontcolour)
+        draw.text((9*o, 5.5*o), "Requirement", font=big, fill=fontcolour)
+        draw.text((9*o, 7.5*o), str(data['requiredTrophies']) + " Trophies", font=small, fill=fontcolour)
+        
+        leader_list = [leader for leader in data["memberList"] if leader["role"] == "leader"] #should only be leader
+        leader = leader_list[0]
+
+        draw.text((20*o, 5.5*o), "Members", font=big, fill=fontcolour)
+        draw.text((20*o, 7.5*o), str(data['members'])+"/50", font=small, fill=fontcolour)
+        draw.text((28*o, 5.5*o), "Leader", font=big, fill=fontcolour)
+        draw.text((28*o, 7.5*o), str(leader["name"]), font=small, fill=fontcolour)
+        
+        return bg
 
     async def generate_deck(self, data):
         deck = data["currentDeck"]
         bg = Image.open("./assets/clashbanner.jpg")
         bg_layer = Image.new("RGBA", bg.size, color=(24, 24, 24, 240))
-        draw = ImageDraw.Draw(bg_layer)
         o = 20
         fontcolour = (244, 244, 2444, 255)
         bg.paste(bg_layer, (0, 0), bg_layer)
@@ -91,7 +143,7 @@ class ClashRoyale(commands.Cog):
         top_level = max(card_levels)
         a = 0
         for b in card_levels:
-            a+=b
+            a += b
         avarage_level = a / 8
         big = ImageFont.truetype("./assets/font.ttf", int(1.5*o))
         small = ImageFont.truetype("./assets/font.ttf", o)

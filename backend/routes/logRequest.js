@@ -5,6 +5,7 @@ const StatModel = mongoose.model("Stat");
 
 router.use(async function (req, res, next) {
   res.on("finish", () => {
+    if (res.status != 200) { return next(); };
     const stat = StatModel({
       path: req.originalUrl,
     });
@@ -23,21 +24,21 @@ router.get("/v1/stats/", async (req, res) => {
   }
   let games = [
     { name: "hypixel" },
-    { name: "clash_royale"},
-    { name: "clash_of_clans"},
-    { name: "brawl_stars"},
+    { name: "clash_royale" },
+    { name: "clash_of_clans" },
+    { name: "brawl_stars" },
   ];
 
   for (let game in games) {
-      game = games[game]
-      let x = 0;
-      for (let i in data) {
-        i = data[i];
-        if (i.path.includes(game.name)) {
-          x++;
-        }
+    game = games[game]
+    let x = 0;
+    for (let i in data) {
+      i = data[i];
+      if (i.path.includes(game.name)) {
+        x++;
       }
-      game.amount = x
+    }
+    game.amount = x
   }
   res.send({
     success: true,
