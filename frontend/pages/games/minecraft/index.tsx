@@ -70,23 +70,21 @@ export default function minecraft() {
                 width={100}
               />
             ) : (
-              <div className="">
-                <form onSubmit={getData}>
-                  <input
-                    type="text"
-                    name="tag"
-                    placeholder="Your minecraft username...ex. Dream"
-                    required
-                  />
-                  <button style={{marginLeft:"1%"}}>
-                    Visualize your stats
-                  </button>
-                </form>
-              </div>
+              <form onSubmit={getData}>
+                <input
+                  type="text"
+                  name="tag"
+                  placeholder="Your minecraft username...ex. Dream"
+                  required
+                />
+                <button style={{ marginLeft: "1%" }}>
+                  Visualize your stats
+                </button>
+              </form>
             )}
           </div>
 
-          <img src="/clashOfClans.svg" alt="data" />
+          <img src="/minecraft.svg" alt="data" />
         </div>
       )}
     </div>
