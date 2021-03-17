@@ -68,39 +68,40 @@ module.exports.formatPlayer = (data) => {
   }
   clean.fullrank = cleanrank
   let r = ranks[cleanrank] || "&7"
-  clean.prefix =  r.replace("COLOR", cleancolor);
+  clean.prefix = r.replace("COLOR", cleancolor);
 
 
-  let achivements = data.achievementsOneTime;
-  let infos = achievements
+
   clean.oldNames = [];
   data.knownAliases.forEach((alias) => {
     if (alias != clean.displayName) {
       clean.oldNames.push(alias);
     }
   });
-  clean.achivements = {};
+  clean.achievements = {};
 
-  achivements.forEach((achivement) => {
-    let gameMode = achivement.split("_")[0];
-    let achivementName = achivement.split("_");
-    achivementName.shift();
-    achivementName = achivementName.join("_");
-    if (!clean.achivements[gameMode]) {
-      clean.achivements[gameMode] = [];
+  data.achievementsOneTime.forEach((achievement) => {
+    let gameMode = achievement.split("_")[0];
+    let achievementName = achievement.split("_");
+    achievementName.shift();
+    achievementName = achievementName.join("_");
+    if (!clean.achievements[gameMode]) {
+      clean.achievements[gameMode] = [];
     }
-    clean.achivements[gameMode].push(achivementName);
+    clean.achievements[gameMode].push(achievementName);
   });
   clean.info = {};
-  infos.forEach((achivement) => {
-    let gameMode = achivement.split("_")[0];
-    let achivementName = achivement.split("_");
-    achivementName.shift();
-    achivementName = achivementName.join("_");
+  clean.raw_achivments = data.achievements;
+  for (let key in data.achievements) {
+    let value = data.achievements[key]
+    let gameMode = key.split("_")[0];
+    let achievementName = key.split("_");
+    achievementName.shift();
+    achievementName = achievementName.join("_");
     if (!clean.info[gameMode]) {
-      clean.info[gameMode] = [];
+      clean.info[gameMode] = {};
     }
-    clean.info[gameMode].push(achivementName);
-  })
+    clean.info[gameMode][achievementName] = value;
+  }
   return clean;
 };
