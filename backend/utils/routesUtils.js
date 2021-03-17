@@ -36,12 +36,14 @@ function getDynamicConfig(token = "") {
   return config;
 }
 
-function appendFilterValues(baseUrl, values) {
-  let resultValues = [];
-  for (const value of values) {
-    resultValues.push(value);
+function trimParameters(parameter) {
+  if (parameter.includes(",")) {
+    let listOfValues = parameter.split(",");
+    if (listOfValues.length > 10) listOfValues = listOfValues.slice(0, 10);
+    let values = listOfValues.join(",");
+    return values;
   }
-  return baseUrl + resultValues.join(",");
+  return parameter;
 }
 
 // ensures a name or uuid is the uuid
@@ -102,6 +104,7 @@ async function fetchFromWithParams(url, params) {
 
 module.exports = {
   fetchFrom,
+  trimParameters,
   sanitazeTag,
   getLimitQuery,
   checkUUID,
