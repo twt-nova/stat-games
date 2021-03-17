@@ -103,5 +103,26 @@ module.exports.formatPlayer = (data) => {
     }
     clean.info[gameMode][achievementName] = value;
   }
+  clean.stats = {};
+  let wb = data.stats.Bedwars.wins_bedwars || 0
+  let wd = data.stats.Duels.wins || 0
+  let ws = data.stats.Skywars.wins || 0
+  let wt = data.stats.TNTGames.wins || 0
+  let whg = data.stats.HungerGames.wins || 0
+  let wMCGO = data.stats.MCGO.wins || 0
+  let wmm = data.stats.MurderMystery.wins || 0
+  let wuhc = data.stats.UHC.wins || 0
+  let ww3 = data.stats.Walls3.wins || 0
+  clean.totalWins =  sum(wb, wd, ws, wt, whg, wMCGO, wmm, wuhc, ww3)
+  let wb = data.stats.Bedwars.losses_bedwars || 0
+  let wd = data.stats.Duels.losses || 0
+  let ws = data.stats.Skywars.losses || 0
+  let wt = data.stats.TNTGames.losses || 0
+  let whg = data.stats.HungerGames.losses || 0
+  let wMCGO = data.stats.MCGO.losses || 0
+  let wmm = data.stats.MurderMystery.losses || 0
+  let wuhc = data.stats.UHC.losses || 0
+  let ww3 = data.stats.Walls3.losses || 0
+  clean.totalLosses =  sum(wb, wd, ws, wt, whg, wMCGO, wmm, wuhc, ww3)
   return clean;
 };

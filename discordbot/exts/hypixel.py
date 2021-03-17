@@ -13,10 +13,11 @@ def to_str(num):
     if num < 100000:
         x = num/1000
         x = round(x, 1)
-        return str(x) + "K"    
+        return str(x) + "K"
     x = num/1000000
     x = round(x, 2)
     return str(x) + "M"
+
 
 class Hypixel(commands.Cog):
     def __init__(self, bot):
@@ -80,6 +81,13 @@ class Hypixel(commands.Cog):
                   font=small, fill=fontcolour)
         draw.text((o, 5.5*o), "Version", font=big, fill=fontcolour)
         draw.text((o, 7.5*o), str(data['mcVersion']),
+                  font=small, fill=fontcolour)
+        draw.text((8*o, 5.5*o), "Total Wins", font=big, fill=fontcolour)
+        draw.text((8*o, 7.5*o), str(data["info"]["general"]["wins"]),
+                  font=small, fill=fontcolour)
+        draw.text((17*o, 5.5*o), "Bedwars Level",
+                  font=big, fill=fontcolour)
+        draw.text((17*o, 7.5*o), str(data["info"]["bedwars"]["level"]),
                   font=small, fill=fontcolour)
         render_mc(
             draw, f"&eLevel: &a{int(data['networkLevel'])}", (35*o, 3*o), int(1.5*o))
