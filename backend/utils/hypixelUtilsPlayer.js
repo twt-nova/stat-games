@@ -71,7 +71,8 @@ module.exports.formatPlayer = (data) => {
   clean.prefix =  r.replace("COLOR", cleancolor);
 
 
-
+  let achivements = data.achievementsOneTime;
+  let infos = achievements
   clean.oldNames = [];
   data.knownAliases.forEach((alias) => {
     if (alias != clean.displayName) {
@@ -80,7 +81,7 @@ module.exports.formatPlayer = (data) => {
   });
   clean.achivements = {};
 
-  data.achievementsOneTime.forEach((achivement) => {
+  achivements.forEach((achivement) => {
     let gameMode = achivement.split("_")[0];
     let achivementName = achivement.split("_");
     achivementName.shift();
@@ -91,8 +92,7 @@ module.exports.formatPlayer = (data) => {
     clean.achivements[gameMode].push(achivementName);
   });
   clean.info = {};
-  console.log(data)
-  data.achievements.forEach((achivement) => {
+  infos.forEach((achivement) => {
     let gameMode = achivement.split("_")[0];
     let achivementName = achivement.split("_");
     achivementName.shift();
