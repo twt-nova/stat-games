@@ -97,9 +97,9 @@ class eval(commands.Cog):
 
 def setup(bot):
     cog = eval(bot)
-    cog.help_cmd = {
-        "name": "Eval command.",
-        "description": "Only the bot owner(s) can use this command!",
-        "emoji": "\U0001f1ea"
-    }
+    #cog.help_cmd = {
+    #    "name": "Eval command.",
+    #    "description": "Only the bot owner(s) can use this command!",
+    #    "emoji": "\U0001f1ea"
+    #}
     bot.add_cog(cog)

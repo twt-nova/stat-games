@@ -85,10 +85,11 @@ class Hypixel(commands.Cog):
         draw.text((8*o, 5.5*o), "Total Wins", font=big, fill=fontcolour)
         draw.text((8*o, 7.5*o), str(data["info"]["general"]["wins"]),
                   font=small, fill=fontcolour)
-        draw.text((17*o, 5.5*o), "Bedwars Level",
+        draw.text((17*o, 5.5*o), "Total Losses",
                   font=big, fill=fontcolour)
-        draw.text((17*o, 7.5*o), str(data["info"]["bedwars"]["level"]),
+        draw.text((17*o, 7.5*o), str(data["totalLosses"]),
                   font=small, fill=fontcolour)
+                  
         render_mc(
             draw, f"&eLevel: &a{int(data['networkLevel'])}", (35*o, 3*o), int(1.5*o))
         p = -0.75 * len(f"{data['prefix']} {data['displayName']}") + 46

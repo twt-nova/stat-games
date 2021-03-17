@@ -287,7 +287,7 @@ def setup(bot):
     Cog = ClashRoyale(bot)
     Cog.help_cmd = {
         "name": "Clash Royale",
-        "emoji": "<:clashroyale:820959551821971466>",
+        "emoji": "<:clash_royale:821312387935240243>",
         "description": "Check and See your stats for clash royale"
     }
     bot.add_cog(Cog)
