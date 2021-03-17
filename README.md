@@ -9,7 +9,7 @@ As part of the timathon code jam, we, team nova, created a website which lets yo
 To begin with using our website, you can either run it locally on your machine (instructions below) or use our live demo [here](https://statgames.net/). Once you get there this is how you can use it. Firstly click on the sign in button. Once you are logged in, you can choose the games that you wish to view. Incase you dont actually play one or more of these games, here are some examples with codes that you can use:
 
 ### Clash Royale
-> Code: #TEST
+> Code: #EXAMPLE
 <img src="/imgs/clash_royale.jpg">
 
 ### Clash of Clans
