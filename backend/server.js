@@ -29,11 +29,12 @@ const limiter = rateLimit({
 
 
 
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true , useUnifiedTopology: true});
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on("error", function (e) {
   console.error(e);
 });
+
 
 //  apply to all requests
 app.use(limiter);

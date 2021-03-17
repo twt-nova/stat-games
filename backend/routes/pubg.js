@@ -27,7 +27,7 @@ router.get("/gameModes", (req, res) => {
 router.get("/players/name/:name/platform/:platform", async (req, res) => {
   const name = req.params.name;
   const platform = req.params.platform;
-  const result = await pubg.getPlayerByName(name, platform ?? null);
+  const result = await pubg.getPlayerByName(name, platform || null);
   res.status(result.status).json(result.data);
 });
 
@@ -37,7 +37,7 @@ router.get("/players/name/list/:names/platform/:platform", async (req, res) => {
   let names = req.params.names;
   const platform = req.params.platform;
   names = trimParameters(names);
-  const result = await pubg.getPlayerByName(names, platform ?? null);
+  const result = await pubg.getPlayerByName(names, platform || null);
   res.status(result.status).json(result.data);
 });
 
@@ -46,7 +46,7 @@ router.get("/players/name/list/:names/platform/:platform", async (req, res) => {
 router.get("/players/:id/platform/:platform", async (req, res) => {
   const playerId = req.params.id;
   const platform = req.params.platform;
-  const result = await pubg.getPlayerById(playerId, platform ?? null);
+  const result = await pubg.getPlayerById(playerId, platform || null);
   res.status(result.status).json(result.data);
 });
 
@@ -69,7 +69,7 @@ router.get(
     const result = await pubg.getPlayerSeasonStats(
       playerId,
       seasonsId,
-      platform ?? null
+      platform || null
     );
     res.status(result.status).json(result.data);
   }

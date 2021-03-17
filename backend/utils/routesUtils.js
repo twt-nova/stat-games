@@ -52,8 +52,8 @@ async function ensureUUID(name) {
     return name;
   }
   const url = "https://api.mojang.com/users/profiles/minecraft/" + name;
-  result = await fetchFromWithoutAuth(url);
-  return result.id;
+  result = await fetchFrom(url);
+  return result.data.id;
 }
 
 function sanitazeTag(tag) {
