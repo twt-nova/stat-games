@@ -420,3 +420,24 @@ export interface BSBattleLog {
     ];
   };
 }
+
+export interface MCPlayerData {
+  uuid: string;
+  firstLogin: string;
+  lastLogin: string;
+  displayName: string;
+  networkLevel: number;
+  networkExp: number;
+  achievementPoints: number;
+  karma: number;
+  mcVersion: string;
+  newPackageRank: string;
+  monthlyPackageRank: string;
+  rankPlusColor: string;
+  rank?: string;
+  fullrank: string;
+  prefix: string;
+  oldNames: string[];
+  achivements: any
+  raw_achivments:any
+}
