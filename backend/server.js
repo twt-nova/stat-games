@@ -7,9 +7,7 @@ const port = process.env.PORT || 5001;
 const mongoose = require("mongoose");
 require("./models/stats");
 
-
-
-const logRequest = require("./routes/logRequest")
+const logRequest = require("./routes/logRequest");
 const clashRoyale = require("./routes/clashRoyale");
 const brawlStars = require("./routes/brawlStars");
 const clashOfClans = require("./routes/clashOfClans");
@@ -27,14 +25,14 @@ const limiter = rateLimit({
   },
 });
 
-
-
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 mongoose.connection.on("error", function (e) {
   console.error(e);
 });
-
 
 //  apply to all requests
 app.use(limiter);
@@ -44,13 +42,13 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(logRequest)
+app.use(logRequest);
 app.use("/v1/clash_royale", clashRoyale);
 app.use("/v1/brawl_stars", brawlStars);
 app.use("/v1/clash_of_clans", clashOfClans);
 app.use("/v1/genshin_impact", genshinImpact);
 app.use("/v1/hypixel", hypixel);
-app.use("/api/v1/pubg", pubg);
+app.use("/v1/pubg", pubg);
 
 app.listen(port, () =>
   console.log(`Server listening on http://localhost:${port}/`)

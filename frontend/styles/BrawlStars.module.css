@@ -82,3 +82,19 @@
   background-color: transparent;
   color: var(--white-color);
 }
+
+.player {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  padding: 1rem 2rem;
+
+  border-bottom: var(--border);
+  border-left: var(--border);
+  border-right: var(--border)
+}
+
+.player:first-child {
+  border-top: var(--border);
+}
