@@ -264,8 +264,6 @@ export async function getStaticProps() {
 
   const data = result.data.items;
 
-  console.log(data);
-
   let res = [];
 
   for (let i = 0; i < 30; i++) {

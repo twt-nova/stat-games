@@ -32,7 +32,6 @@ export default function CocClanStats({ data }: PageProps) {
     const response = await Axios.get(`${url}/clash_of_clans/clans/${tag}`);
     const dataFromRes = response.data;
 
-    console.log(dataFromRes);
     setClanData(dataFromRes);
     localStorage.setItem("cocClanData", JSON.stringify(dataFromRes));
     setDataGet(true);

@@ -6,8 +6,6 @@ const envPath = path.resolve(process.cwd(), ".env");
 
 require("dotenv").config({ path: envPath });
 
-console.log(process.env.DISCORD_CLIENT_ID);
-
 const authHandler: NextApiHandler = (req, res) =>
   NextAuth(req, res, {
     providers: [

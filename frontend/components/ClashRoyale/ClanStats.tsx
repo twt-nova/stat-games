@@ -32,7 +32,6 @@ export default function ClanStats({ data }: PageProps) {
     const response = await Axios.get(`${url}/clash_royale/clan/${tag}`);
     const dataFromRes = response.data;
 
-    console.log(dataFromRes);
     setClanData(dataFromRes);
     localStorage.setItem("clanData", JSON.stringify(dataFromRes));
     setDataGet(true);
