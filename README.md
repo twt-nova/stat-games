@@ -17,7 +17,7 @@ To begin with using our website, you can either run it locally on your machine (
 <img src="/imgs/clash_of_clans.jpg">
 
 ### Brawl Stars
-> ID: 123456
+> CODE: #EXAMPLE
 <img src="/imgs/brawl_stars.jpg">
 
 ### Hypixel
