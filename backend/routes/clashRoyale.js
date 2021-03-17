@@ -3,6 +3,15 @@ const clashRoyale = require("../functions/clashRoyale");
 const router = express.Router();
 
 //  root:/api/v1/clash_royale/
+router.get("/", async (req, res) => {
+  const result = {
+    status: 200,
+    game: {
+      name: "Clash Royale",
+      id: "clash_royale",
+    },
+  };
+});
 
 //cards
 router.get("/cards/:limit", async (req, res) => {

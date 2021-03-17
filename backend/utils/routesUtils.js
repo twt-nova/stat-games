@@ -67,9 +67,8 @@ function getLimitQuery(limit) {
 }
 
 function checkUUID(uuid) {
-  const reg = new RegExp(
-    /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
-  );
+  // this regex was copied from internet, yes. 
+  const reg = new RegExp(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i);
   return uuid.match(reg);
 }
 

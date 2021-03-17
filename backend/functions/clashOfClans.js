@@ -32,7 +32,7 @@ module.exports = {
   },
 
   getBestPlayersByLocation: async function (locationId) {
-    const url = `${clashOfClansAPI}/locations/${locationId}/rankings/players?limit=10`;
+    const url = `${clashOfClansAPI}/locations/${locationId}/rankings/players?limit=30`;
     return await fetchFrom(url, TOKEN);
   },
 };

@@ -34,7 +34,7 @@ module.exports = {
 
   //rankings
   getRankingOf: async function (countryCode) {
-    const url = `${brawlStarsAPI}/rankings/${countryCode}/players?limit=10`;
+    const url = `${brawlStarsAPI}/rankings/${countryCode}/players?limit=30`;
     return await fetchFrom(url, TOKEN);
   },
 };

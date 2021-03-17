@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 import { NextApiHandler } from "next";
 const path = require("path");
-const envPath = path.resolve(process.cwd(), ".env.local");
+const envPath = path.resolve(process.cwd(), ".env");
 
 require("dotenv").config({ path: envPath });
 

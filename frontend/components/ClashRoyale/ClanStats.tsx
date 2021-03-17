@@ -29,7 +29,7 @@ export default function ClanStats({ data }: PageProps) {
     e.preventDefault();
     const tag = data.clan.tag.replace("#", "%23");
     setLoading(true);
-    const response = await Axios.get(`${url}/clan/${tag}`);
+    const response = await Axios.get(`${url}/clash_royale/clan/${tag}`);
     const dataFromRes = response.data;
 
     console.log(dataFromRes);
@@ -70,6 +70,23 @@ export default function ClanStats({ data }: PageProps) {
                     Location: <span>{clanData.location.name}</span>
                   </p>
                 </div>
+                <Line
+                  data={{
+                    labels: clanData.memberList.map(
+                      (value, index) => value.name
+                    ),
+                    datasets: [
+                      {
+                        data: clanData.memberList.map(
+                          (value, index) => value.trophies
+                        ),
+                        label: "Member trophies",
+                        borderColor: "#3ebfbb",
+                        fill: false,
+                      },
+                    ],
+                  }}
+                />
                 <div className={styles.clashRoyaleClanInfo}>
                   <p className={styles.clashRoyaleTemplate}>
                     Required Trophies: <span>{clanData.requiredTrophies}</span>

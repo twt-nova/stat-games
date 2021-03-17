@@ -21,7 +21,7 @@ export default function ClashRoyaleData({ data }: PageProps) {
       setBattleLog(JSON.parse(dataL));
     } else {
       const tag = data.tag.replace("#", "%23");
-      Axios.get(`${url}/player/${tag}/battles`).then((res) => {
+      Axios.get(`${url}/clash_royale/players/${tag}/battles`).then((res) => {
         const tempArr = res.data;
 
         for (let i = 0; i < tempArr.length; i++) {
@@ -38,6 +38,16 @@ export default function ClashRoyaleData({ data }: PageProps) {
     <div className={styles.clashRoyaleData}>
       <PlayerStats data={data} battleLog={battleLog} />
       {data.clan ? <ClanStats data={data} /> : <></>}
+      <button
+        className={styles.btn}
+        onClick={() => {
+          localStorage.removeItem("data");
+          localStorage.removeItem("clanData");
+          location.reload();
+        }}
+      >
+        New search for player
+      </button>
     </div>
   );
 }

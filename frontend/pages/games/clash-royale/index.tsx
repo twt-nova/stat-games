@@ -1,15 +1,17 @@
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import { useSession } from "next-auth/client";
 import Axios from "axios";
 import Head from "next/head";
-import styles from "../../styles/ClashRoyale.module.css";
+import styles from "../../../styles/ClashRoyale.module.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { url } from "../../lib/url";
+import { url } from "../../../lib/url";
 import { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
-import ClashRoyaleData from "../../components/ClashRoyale/ClashRoyaleData";
-import { Data } from "../../lib/types";
-import Footer from "../../components/Footer";
+import ClashRoyaleData from "../../../components/ClashRoyale/ClashRoyaleData";
+import { Data } from "../../../lib/types";
+import Footer from "../../../components/Footer";
+import Custom404 from "../../../components/404/Custom404";
+import Link from "next/link";
 
 export default function ClashRoyale() {
   const [session, loading] = useSession();
@@ -25,7 +27,7 @@ export default function ClashRoyale() {
 
   if (loading) return null;
 
-  if (!loading && !session) return <p>Access Denied</p>;
+  if (!loading && !session) return <Custom404 login={true} />;
 
   const getData = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading1(true);
@@ -34,7 +36,7 @@ export default function ClashRoyale() {
     const value = e.currentTarget.tag.value;
     const tag = value.replace("#", "%23");
 
-    const response = await Axios.get(`${url}/player/${tag}`);
+    const response = await Axios.get(`${url}/clash_royale/players/${tag}`);
     const data = response.data;
     setData(data);
     localStorage.setItem("data", JSON.stringify(data));
@@ -69,15 +71,23 @@ export default function ClashRoyale() {
                 width={100}
               />
             ) : (
-              <form onSubmit={getData}>
-                <input
-                  type="text"
-                  name="tag"
-                  placeholder="Your clash royale tag... ex. #123"
-                  required
-                />
-                <button>Visualize your stats</button>
-              </form>
+              <>
+                <form onSubmit={getData}>
+                  <input
+                    type="text"
+                    name="tag"
+                    placeholder="Your clash royale tag... ex. #123"
+                    required
+                  />
+                  <button>Visualize your stats</button>
+                </form>
+                <div className={styles.buttonsClashRoyale}>
+                  <Link href="/games/clash-royale/clans">Search for clan</Link>
+                  <Link href="/games/clash-royale/statistics">
+                    See statistics
+                  </Link>
+                </div>
+              </>
             )}
           </div>
 

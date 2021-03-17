@@ -11,8 +11,10 @@
   height: 35vh;
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+
+  padding-left: 2rem;
 
   background-image: url("/circle.svg");
   background-size: cover;
@@ -24,53 +26,60 @@
   font-weight: 400;
 }
 
-.header ul {
-  width: 30%;
+
+.menu {
+  height: 100vh !important;
+}
+
+.hamMenuBtn {
+  outline: none !important;
+}
+
+.hamMenuBtn:focus {
+  outline: none !important;
+}
+
+
+.bmItemList a {
+  transition: var(--transition);
+}
+
+.bmItemList a:hover { 
+  color: var(--secondary-color);
+}
+
+.elem {
   display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
 
-  margin-right: var(--margin);
+  outline: none;
 }
 
-.link:not(:last-child) {
-  font-size: var(--font-size-small);
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  position: relative;
-  overflow: hidden;
+.div {
+  height: 100%;
 }
-.link:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 51%;
-  right: 51%;
-  bottom: 0;
-  background: var(--white-color);
-  height: 2px;
-  -webkit-transition-property: left, right;
-  transition-property: left, right;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-.link:hover:before,
-.link:focus:before,
-.link:active:before {
-  left: 0;
-  right: 0;
+
+.icon {
+  height: 28px;
+  margin-right: 0.5rem;
+  color: var(--secondary-color);
+
+  outline: none;
 }
 
 .signin {
   border: var(--border);
+  background-color: transparent;
+  color: var(--white-color);
+  font-size: 18px;
   padding: 0.5rem 2rem;
   border-radius: var(--border-radius);
 
   transition: var(--transition);
 
   cursor: pointer;
+
+  outline: none;
 }
 
 .signin:hover {
@@ -78,49 +87,6 @@
   color: var(--bg-color);
 }
 
-.ddWrapper {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
-.ddHeader {
-  display: flex;
-  align-items: center;
-
-  cursor: pointer;
-}
-
-.iconDown {
-  height: var(--font-size-small);
-  margin-left: 0.5rem;
-}
-
-.ddList {
-  display: none;
-  position: absolute;
-  margin-top: 1.7rem;
-
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  animation-name: listAnimation;
-  animation-duration: 0.3s;
-  animation-timing-function: ease-in-out;
-}
-
-.arrowUp {
-  height: 10px;
-}
-
-.divUnder {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  border: var(--border);
-}
 
 @keyframes listAnimation {
   0% {
@@ -158,6 +124,12 @@
 
 @media screen and (max-width: 1450px) {
   .circleBg {
+    width: auto !important;
+    height: auto !important;
     background: none;
+  }
+
+  .header {
+    justify-content: space-around;
   }
 }
