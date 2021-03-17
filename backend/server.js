@@ -15,6 +15,7 @@ const brawlStars = require("./routes/brawlStars");
 const clashOfClans = require("./routes/clashOfClans");
 const genshinImpact = require("./routes/genshinImpact");
 const hypixel = require("./routes/hypixel");
+const pubg = require("./routes/pubg");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
 
@@ -48,6 +49,7 @@ app.use("/v1/brawl_stars", brawlStars);
 app.use("/v1/clash_of_clans", clashOfClans);
 app.use("/v1/genshin_impact", genshinImpact);
 app.use("/v1/hypixel", hypixel);
+app.use("/api/v1/pubg", pubg);
 
 app.listen(port, () =>
   console.log(`Server listening on http://localhost:${port}/`)

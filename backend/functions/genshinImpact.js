@@ -1,23 +1,8 @@
+const { fetchFrom } = require("../utils/routesUtils");
 const genhinImpactApi = "https://genshinlist.com/api";
-const axios = require("axios");
-
-async function fetch(url) {
-  let response;
-  try {
-    response = await axios.get(url);
-  } catch (error) {
-    if (error.response) {
-      response = error.response;
-    }
-  }
-  return {
-    data: response.data,
-    status: response.status,
-  };
-}
 
 async function getCharacters() {
-  const result = await fetch(`${genhinImpactApi}/characters`);
+  const result = await fetchFrom(`${genhinImpactApi}/characters`);
   try {
     const data = result.data.map((character) => {
       let img = `https://genshinlist.com/assets/img/characters/${character.slug}.png`;
@@ -27,10 +12,10 @@ async function getCharacters() {
     result.data = data;
   } catch (err) {
     result.data = {
-      title: "Erro at getting the characters",
+      title: "Error at getting the characters",
       error: err,
     };
-    result.status = 403;
+    result.status = 404;
   }
 
   return result;
@@ -91,7 +76,7 @@ async function getCharactersByRarity() {
 }
 
 async function getWeapons() {
-  return await fetch(`${genhinImpactApi}/weapons`);
+  return await fetchFrom(`${genhinImpactApi}/weapons`);
 }
 
 async function getWeaponsByType(type) {
@@ -135,7 +120,7 @@ async function getWeaponsByAttack() {
 }
 
 async function getArtifacts() {
-  const result = await fetch(`${genhinImpactApi}/artifacts`);
+  const result = await fetchFrom(`${genhinImpactApi}/artifacts`);
   return result;
 }
 async function getArtifactbyId(id) {
