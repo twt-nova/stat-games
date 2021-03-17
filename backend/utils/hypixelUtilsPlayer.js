@@ -114,15 +114,15 @@ module.exports.formatPlayer = (data) => {
   let wuhc = data.stats.UHC.wins || 0
   let ww3 = data.stats.Walls3.wins || 0
   clean.totalWins =  sum(wb, wd, ws, wt, whg, wMCGO, wmm, wuhc, ww3)
-  let wb = data.stats.Bedwars.losses_bedwars || 0
-  let wd = data.stats.Duels.losses || 0
-  let ws = data.stats.Skywars.losses || 0
-  let wt = data.stats.TNTGames.losses || 0
-  let whg = data.stats.HungerGames.losses || 0
-  let wMCGO = data.stats.MCGO.losses || 0
-  let wmm = data.stats.MurderMystery.losses || 0
-  let wuhc = data.stats.UHC.losses || 0
-  let ww3 = data.stats.Walls3.losses || 0
-  clean.totalLosses =  sum(wb, wd, ws, wt, whg, wMCGO, wmm, wuhc, ww3)
+  let lb = data.stats.Bedwars.losses_bedwars || 0
+  let ld = data.stats.Duels.losses || 0
+  let ls = data.stats.Skywars.losses || 0
+  let lt = data.stats.TNTGames.losses || 0
+  let lhg = data.stats.HungerGames.losses || 0
+  let lMCGO = data.stats.MCGO.losses || 0
+  let lmm = data.stats.MurderMystery.losses || 0
+  let luhc = data.stats.UHC.losses || 0
+  let lw3 = data.stats.Walls3.losses || 0
+  clean.totalLosses =  sum(lb, ld, ls, lt, lhg, lMCGO, lmm, luhc, lw3)
   return clean;
 };
