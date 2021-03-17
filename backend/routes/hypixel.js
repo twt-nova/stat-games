@@ -12,8 +12,8 @@ router.get("/", (req, res) => {
 
 router.get("/player/:name/", async (req, res) => {
   const name = req.params.name;
-  let player = await hypixel.getPlayerByUUID(name);
-  res.json(player.player);
+  let player = await hypixel.getPlayerCleanByUUID(name);
+  res.json(player);
 });
 
 router.get("/player/:name/raw", async (req, res) => {

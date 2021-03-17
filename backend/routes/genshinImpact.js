@@ -6,7 +6,7 @@ const genshinImpact = require("../functions/genshinImpact");
 //characters
 router.get("/characters", async (req, res) => {
   const result = await genshinImpact.getCharacters();
-  res.json(result.data);
+  res.status(result.status).json(result.data);
 });
 
 router.get("/characters/:id", async (req, res) => {

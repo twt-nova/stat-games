@@ -10,7 +10,7 @@ def run(config_file="./config.yaml"):
     bot = Bot(config)
     bot.load_all_exts()
 
-    bot.run(bot.config["TOKEN"])
+    bot.run(bot.config["token"])
 
 
 __name__ == "__main__" and run()
