@@ -90,5 +90,16 @@ module.exports.formatPlayer = (data) => {
     }
     clean.achivements[gameMode].push(achivementName);
   });
+  clean.info = {};
+  data.achivements.forEach((achivement) => {
+    let gameMode = achivement.split("_")[0];
+    let achivementName = achivement.split("_");
+    achivementName.shift();
+    achivementName = achivementName.join("_");
+    if (!clean.info[gameMode]) {
+      clean.info[gameMode] = [];
+    }
+    clean.info[gameMode].push(achivementName);
+  })
   return clean;
 };

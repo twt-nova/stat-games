@@ -6,6 +6,18 @@ from PIL import ImageFont, Image, ImageDraw, ImageOps
 import tempfile
 from utils.format_mc import render_mc
 
+
+def to_str(num):
+    if num < 1000:
+        return str(num)
+    if num < 100000:
+        x = num/1000
+        x = round(x, 1)
+        return str(x) + "K"    
+    x = num/1000000
+    x = round(x, 2)
+    return str(x) + "M"
+
 class Hypixel(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -58,7 +70,17 @@ class Hypixel(commands.Cog):
         im = im.resize((int(im.width * s), int(im.height * s)), Image.BOX)
         im = ImageOps.mirror(im)
         bg.paste(im, (30*o, 9*o), im)
-        print(data)
+        draw.text((o, o), "Karma", font=big, fill=fontcolour)
+        draw.text((o, 3*o), to_str(data['karma']), font=small, fill=fontcolour)
+        draw.text((8*o, o), "Experience", font=big, fill=fontcolour)
+        draw.text((8*o, 3*o), to_str(data['networkExp']),
+                  font=small, fill=fontcolour)
+        draw.text((17*o, o), "Achivement Points", font=big, fill=fontcolour)
+        draw.text((17*o, 3*o), to_str(data['achievementPoints']),
+                  font=small, fill=fontcolour)
+        draw.text((o, 5.5*o), "Version", font=big, fill=fontcolour)
+        draw.text((o, 7.5*o), str(data['mcVersion']),
+                  font=small, fill=fontcolour)
         render_mc(
             draw, f"&eLevel: &a{int(data['networkLevel'])}", (35*o, 3*o), int(1.5*o))
         p = -0.75 * len(f"{data['prefix']} {data['displayName']}") + 46
