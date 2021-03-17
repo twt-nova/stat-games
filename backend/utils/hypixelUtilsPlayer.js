@@ -56,7 +56,7 @@ module.exports.formatPlayer = (data) => {
   if (clean.newPackageRank) {
     cleanrank = clean.newPackageRank
   }
-  if (clean.monthlyPackageRank) {
+  if (clean.monthlyPackageRank && clean.monthlyPackageRank != "NONE") {
     cleanrank = clean.monthlyPackageRank
   }
   if (clean.rankPlusColor || clean.monthlyRankColor) {
