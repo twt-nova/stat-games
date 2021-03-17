@@ -113,7 +113,7 @@ module.exports.formatPlayer = (data) => {
   let wmm = data.stats.MurderMystery.wins || 0
   let wuhc = data.stats.UHC.wins || 0
   let ww3 = data.stats.Walls3.wins || 0
-  clean.totalWins =  sum(wb, wd, ws, wt, whg, wMCGO, wmm, wuhc, ww3)
+  clean.totalWins =  [wb, wd, ws, wt, whg, wMCGO, wmm, wuhc, ww3].reduce((a, b) => a + b, 0)
   let lb = data.stats.Bedwars.losses_bedwars || 0
   let ld = data.stats.Duels.losses || 0
   let ls = data.stats.SkyWars.losses || 0
@@ -123,6 +123,6 @@ module.exports.formatPlayer = (data) => {
   let lmm = data.stats.MurderMystery.losses || 0
   let luhc = data.stats.UHC.losses || 0
   let lw3 = data.stats.Walls3.losses || 0
-  clean.totalLosses =  sum(lb, ld, ls, lt, lhg, lMCGO, lmm, luhc, lw3)
+  clean.totalLosses =  [lb, ld, ls, lt, lhg, lMCGO, lmm, luhc, lw3].reduce((a, b) => a + b, 0)
   return clean;
 };
