@@ -106,7 +106,7 @@ module.exports.formatPlayer = (data) => {
   clean.stats = {};
   let wb = data.stats.Bedwars.wins_bedwars || 0
   let wd = data.stats.Duels.wins || 0
-  let ws = data.stats.Skywars.wins || 0
+  let ws = data.stats.SkyWars.wins || 0
   let wt = data.stats.TNTGames.wins || 0
   let whg = data.stats.HungerGames.wins || 0
   let wMCGO = data.stats.MCGO.wins || 0
@@ -116,7 +116,7 @@ module.exports.formatPlayer = (data) => {
   clean.totalWins =  sum(wb, wd, ws, wt, whg, wMCGO, wmm, wuhc, ww3)
   let lb = data.stats.Bedwars.losses_bedwars || 0
   let ld = data.stats.Duels.losses || 0
-  let ls = data.stats.Skywars.losses || 0
+  let ls = data.stats.SkyWars.losses || 0
   let lt = data.stats.TNTGames.losses || 0
   let lhg = data.stats.HungerGames.losses || 0
   let lMCGO = data.stats.MCGO.losses || 0
