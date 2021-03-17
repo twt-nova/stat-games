@@ -20,6 +20,7 @@
     "mysql": "^2.18.1",
     "next": "10.0.7",
     "next-auth": "^3.11.0",
+    "numeral": "^2.0.6",
     "react": "17.0.1",
     "react-burger-menu": "^3.0.4",
     "react-chartjs-2": "^2.11.1",

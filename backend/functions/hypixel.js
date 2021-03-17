@@ -21,7 +21,7 @@ module.exports = {
     uuid = await ensureUUID(uuid);
     const url = `${hypixelAPI}/player`;
     const data = await fetchFromWithParams(url, { key: KEY, uuid: uuid });
-    return data.success ? formatPlayer(data.player) : data;
+    return data.success === true ? formatPlayer(data.player) : data;
   },
   getBedwarsByUUID: async function (uuid) {
     uuid = await ensureUUID(uuid);
