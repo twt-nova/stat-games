@@ -53,4 +53,34 @@ router.get("/clan/:tag/war_log", async (req, res) => {
   res.status(result.status).json(result.data);
 });
 
+router.get("/locations", async (req, res) => {
+  const result = await clashRoyale.getAllLocations(100);
+  res.status(result.status).json(result.data);
+});
+router.get("/locations/:limit", async (req, res) => {
+  const limit = req.params.limit;
+  const result = await clashRoyale.getAllLocations(limit);
+  res.status(result.status).json(result.data);
+});
+router.get("/locations/:id", async (req, res) => {
+  const id = req.params.id;
+  const result = await clashRoyale.getLocationByID(id);
+  res.status(result.status).json(result.data);
+});
+router.get("/locations/:id/players", async (req, res) => {
+  const id = req.params.id;
+  const result = await clashRoyale.getLocationTopPlayersByID(id);
+  res.status(result.status).json(result.data);
+});
+router.get("/locations/:id/clans", async (req, res) => {
+  const id = req.params.id;
+  const result = await clashRoyale.getLocationTopClansByID(id);
+  res.status(result.status).json(result.data);
+});
+router.get("/locations/:id/clan_wars", async (req, res) => {
+  const id = req.params.id;
+  const result = await clashRoyale.getLocationTopClanWarByID(id);
+  res.status(result.status).json(result.data);
+});
+
 module.exports = router;

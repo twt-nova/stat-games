@@ -5,7 +5,7 @@ import io
 from PIL import ImageFont, Image, ImageDraw, ImageOps
 import tempfile
 from utils.format_mc import render_mc
-
+from utils import charts
 
 def to_str(num):
     if num < 1000:
@@ -36,10 +36,28 @@ class Hypixel(commands.Cog):
 
             embed = discord.Embed()
             embed.colour = self.bot.colour
-            embed.title = f"Statistics deck of {data['displayName']}"
+            embed.title = f"Statistics of {data['displayName']}"
             embed.description = f"All of the stats you need to know about {data['displayName']} on hypixel, provided by [statgames](https://statgames.net)"
             embed.set_image(url="attachment://fancy.png")
             im = await self.generate_player(data)
+            with io.BytesIO() as output:
+                im.save(output, format="JPEG")
+                output.seek(0)
+                await ctx.send(file=discord.File(output, filename="fancy.png"), embed=embed)
+
+    @hypixel.command(aliases=["b", "bw"])
+    async def bedwars(self, ctx, name):
+        async with ctx.typing():
+            url = f"{self.bot.config['base_url']}/hypixel/player/{name}/bedwars"
+            bw = await fetch_from(url, self.bot)
+            url = f"{self.bot.config['base_url']}/hypixel/player/{name}/"
+            player = await fetch_from(url, self.bot)
+            embed = discord.Embed()
+            embed.colour = self.bot.colour
+            embed.title = f"Statistics of {player['displayName']}"
+            embed.description = f"All of the stats you need to know about {player['displayName']} on hypixel, provided by [statgames](https://statgames.net)"
+            embed.set_image(url="attachment://fancy.png")
+            im = await self.generate_player_bw(player, bw)
             with io.BytesIO() as output:
                 im.save(output, format="JPEG")
                 output.seek(0)
@@ -80,10 +98,10 @@ class Hypixel(commands.Cog):
         draw.text((17*o, 3*o), to_str(data['achievementPoints']),
                   font=small, fill=fontcolour)
         draw.text((o, 5.5*o), "Version", font=big, fill=fontcolour)
-        draw.text((o, 7.5*o), str(data['mcVersion']),
+        draw.text((o, 7.5*o), str(data.get('mcVersion', "Unknown")),
                   font=small, fill=fontcolour)
         draw.text((8*o, 5.5*o), "Total Wins", font=big, fill=fontcolour)
-        draw.text((8*o, 7.5*o), str(data["info"]["general"]["wins"]),
+        draw.text((8*o, 7.5*o), str(data["totalWins"]),
                   font=small, fill=fontcolour)
         draw.text((17*o, 5.5*o), "Total Losses",
                   font=big, fill=fontcolour)
@@ -92,9 +110,16 @@ class Hypixel(commands.Cog):
                   
         render_mc(
             draw, f"&eLevel: &a{int(data['networkLevel'])}", (35*o, 3*o), int(1.5*o))
-        p = -0.75 * len(f"{data['prefix']} {data['displayName']}") + 46
+        p = -0.7 * len(f"{data['prefix']} {data['displayName']}") + 46
         render_mc(
-            draw, f"{data['prefix']} {data['displayName']}", (p*o, 6*o), int(1.5*o))
+            draw, f"{data['prefix']} {data['displayName']}", (p*o, 6*o), int(1.4*o))
+
+        wlchart = charts.create_pie_chart(
+            ("Wins", "Losses"), (data["totalWins"], data["totalLosses"]), (0, 0), colours=((.3, .3, 1), (1, .3, .3)))
+        r = 1.5  # scaleing factor
+        wlchart = wlchart.resize(
+            (int(wlchart.width*r), int(wlchart.height*r)), Image.NEAREST)
+        bg.paste(wlchart, (int(2*o), int(9.6*o)), wlchart)  # noice 9.6
 
         return bg
 
