@@ -1,7 +1,7 @@
 import { MCPlayerData } from "../../lib/types";
 import { Bar, Pie } from "react-chartjs-2";
 import styles from "../../styles/Minecraft.module.css";
-import numeral from "numeral"
+import numeral from "numeral";
 import Link from "next/link";
 
 interface PageProps {
@@ -49,8 +49,6 @@ export default function PlayerStatsCoc({ data }: PageProps) {
         </p>
       </div>
 
-      <hr style={{ color: "whitesmoke", width: "100%", marginBottom: "2%" }} />
-
       <Bar
         data={{
           labels: [
@@ -75,8 +73,6 @@ export default function PlayerStatsCoc({ data }: PageProps) {
           ],
         }}
       />
-
-      <hr style={{ color: "whitesmoke", width: "100%", marginBottom: "2%" }} />
 
       <div className={styles.minecraftInfo}>
         <p className={styles.minecraftTemplate}>
@@ -106,8 +102,6 @@ export default function PlayerStatsCoc({ data }: PageProps) {
         </p>
       </div>
 
-      <hr style={{ color: "whitesmoke", width: "100%", marginBottom: "2%" }} />
-
       <div className={styles.minecraftName}>
         <h1>Skywars Stats</h1>
       </div>
@@ -135,8 +129,6 @@ export default function PlayerStatsCoc({ data }: PageProps) {
           ],
         }}
       />
-      {/* <CocClanStats data={data} /> */}
-
       <button
         className={styles.btn}
         onClick={() => {
