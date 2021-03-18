@@ -60,7 +60,7 @@ module.exports.formatPlayer = (data) => {
     cleanrank = clean.monthlyPackageRank
   }
   if (clean.rankPlusColor || clean.monthlyRankColor) {
-    cleancolor = clean.monthlyRankColor || clean.rankPlusColor
+    cleancolor = clean.rankPlusColor || clean.monthlyRankColor
     cleancolor = rankColors[cleancolor] || rankColors.RED
   }
   if (clean.rank) {
