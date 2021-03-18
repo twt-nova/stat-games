@@ -39,7 +39,7 @@ class ClashRoyale(commands.Cog):
                     description="See stats for Clash Royale!")
     async def clash_royale(self, ctx):
         if not ctx.invoked_subcommand:
-            await ctx.send_group_help(self.clash_royale)
+            await ctx.send_help(self.clash_royale)
 
     @clash_royale.command(aliases=["p", "person"],
                           description="Get statistics for a certain player")
