@@ -26,7 +26,7 @@ const rankColors = {
   BLACK: "0"
 }
 
-const rankPlusColor = {
+const plusplusColors = {
   GOLD: "6",
   AQUA: "b"
 }
