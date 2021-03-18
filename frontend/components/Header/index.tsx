@@ -92,18 +92,6 @@ export default function Header() {
           itemListClassName={styles.bmItemList}
           burgerBarClassName={styles.hamMenuBtn}
         >
-          {session ? <div className={styles.elem}>
-            <img
-              src={session.user.image}
-              className={styles.pfp}
-              style={{ height: "28px" }}
-            />
-            <Link href="#">
-              {session.user.name.length < 15
-                ? session.user.name
-                : session.user.name.slice(0, 15) + "..."}
-            </Link>
-          </div> : ""}
           <div className={styles.elem}>
             <FontAwesomeIcon
               icon={faHome}
