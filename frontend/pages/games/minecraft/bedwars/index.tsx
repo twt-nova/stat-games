@@ -1,26 +1,25 @@
-import Header from "../../../components/Header";
+import Header from "../../../../components/Header";
 import { useSession } from "next-auth/client";
 import Axios from "axios";
 import Head from "next/head";
-import styles from "../../../styles/Minecraft.module.css";
+import styles from "../../../../styles/Minecraft.module.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { url } from "../../../lib/url";
-import React, { useEffect, useState } from "react";
+import { url } from "../../../../lib/url";
+import { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
-import { MCPlayerData } from "../../../lib/types";
-import Footer from "../../../components/Footer";
-import Custom404 from "../../../components/404/Custom404";
-import PlayerStatsMC from "../../../components/Minecraft/PlayerStats";
+import Footer from "../../../../components/Footer";
+import Custom404 from "../../../../components/404/Custom404";
+import BedwarsStatsMC from "../../../../components/Minecraft/BedwarsStats";
 import Link from "next/link"
 
 export default function minecraft() {
   const [session, loading] = useSession();
 
   const [loading1, setLoading1] = useState(false);
-  const [data, setData] = useState<MCPlayerData>();
+  const [data, setData] = useState<any>();
 
   useEffect(() => {
-    const dataL: string | null = localStorage.getItem("minecraftData");
+    const dataL: string | null = localStorage.getItem("bedwarsData");
     const dataFrom = JSON.parse(dataL!);
     if (dataFrom) setData(dataFrom);
   }, []);
@@ -35,39 +34,40 @@ export default function minecraft() {
 
     const value = e
       ? e.currentTarget.tag.value
-      : JSON.parse(localStorage.getItem("minecraftData")).displayName;
+      : JSON.parse(localStorage.getItem("bedwarsData")).displayName;
     const tag = value.trim();
 
-    const response = await Axios.get(`${url}/hypixel/player/${tag}`);
+    const response = await Axios.get(`${url}/hypixel/player/${tag}/bedwars`);
     const data = response.data;
+    const avRes = await Axios.get(`${url}/hypixel/player/${tag}`);
+    const avResData = avRes.data;
+    data.uuid = avResData.uuid;
+    data.displayName = tag;
     setData(data);
-    localStorage.setItem("minecraftData", JSON.stringify(data));
+    localStorage.setItem("bedwarsData", JSON.stringify(data));
     setLoading1(false);
   };
-  const replace = (route:string) => {
-    window.location.replace(route)
-  }
   return (
     <div className={styles.minecraft}>
       <Head>
         <meta
           name="description"
-          content="Visualize your stats from Minecraft in few clicks. Enter your username, and visualize your data"
+          content="Visualize your stats from Bedwars in few clicks. Enter your username, and visualize your data"
         />
-        <title>StatGames | Visualize data for Minecraft</title>
+        <title>StatGames | Visualize data for Bedwars</title>
       </Head>
       <Header />
 
       {data ? (
         <>
-          <PlayerStatsMC data={data} />
+          <BedwarsStatsMC data={data} />
           <Footer />
         </>
       ) : (
         <div className={styles.minecraftText}>
           <div className={styles.minecraftLeft}>
-            <h1>Minecraft</h1>
-            <span>Visualize your stats from minecraft!</span>
+            <h1>Minecraft Bedwars</h1>
+            <span>Visualize your stats from bedwars!</span>
             {loading1 ? (
               <Loader
                 type="TailSpin"
@@ -92,8 +92,8 @@ export default function minecraft() {
                   <Link href="/games/minecraft/skywars">
                     <button style={{ width: "45%" }}>Skywars</button>
                   </Link>
-                  <Link href="/games/minecraft/bedwars">
-                    <button style={{ width: "45%" }}>Bedwars</button>
+                  <Link href="/games/minecraft">
+                    <button style={{ width: "45%" }}>Overall</button>
                   </Link>
                 </form>
               </>
