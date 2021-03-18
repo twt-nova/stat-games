@@ -26,7 +26,7 @@ router.get("/player/:tag", async (req, res) => {
 router.get("/player/:tag/battles", async (req, res) => {
   const tag = req.params.tag;
   const result = await brawlStars.getPlayerBattleLogByTag(tag);
-  res.status(result.status).json(result.data);
+  res.status(result.status).json(result.data.items);
 });
 
 //rankings

@@ -37,7 +37,7 @@ class ErrorHandler(commands.Cog):
                 embed.description = m.format(e=error)
                 await ctx.send(embed=embed)
                 return
-        print(e)  # if the error is not known
+        raise error   # if the error is not known
 
 
 def setup(bot):
