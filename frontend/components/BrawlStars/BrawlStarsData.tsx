@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Line, Pie } from "react-chartjs-2";
 import { BSBattleLog, BSPlayer } from "../../lib/types";
 import styles from "../../styles/BrawlStars.module.css";
@@ -8,6 +9,20 @@ interface PageProps {
 }
 
 export default function BrawlStarsData({ data, battleLog }: PageProps) {
+  const [loses, setLoses] = useState(0);
+  const [wins, setWins] = useState(0);
+
+  useEffect(() => {
+    let w = 0;
+    for (let i = 0; i < battleLog.length; i++) {
+      if (battleLog[i].battle.result === "victory") {
+        w++;
+      }
+    }
+
+    setLoses(battleLog.length - w);
+    setWins(w);
+  }, []);
   return (
     <div className={styles.bsContainer}>
       <div className={styles.brawlStarsName}>
@@ -66,6 +81,26 @@ export default function BrawlStarsData({ data, battleLog }: PageProps) {
               label: "Trophies by every brawler",
               borderColor: "#3ebfbb",
               fill: false,
+            },
+          ],
+        }}
+      />
+
+      <Pie
+        width={3}
+        height={1}
+        data={{
+          labels: ["Victories", "Loses"],
+          datasets: [
+            {
+              label: "Victories/Loses in last 25 battles",
+              data: [wins, loses],
+              backgroundColor: [
+                "rgba(127,255,0, 0.4)",
+                "rgba(255, 99, 132, 0.5)",
+              ],
+              borderColor: ["rgba(127,255,0, 1)", "rgba(255, 99, 132, 1)"],
+              borderWidth: 1,
             },
           ],
         }}
