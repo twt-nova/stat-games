@@ -3,7 +3,7 @@ const ranks = {
   "VIP_PLUS": "&a[VIP&6+&a]",
   "MVP": "&b[MVP]",
   "MVP_PLUS": "&b[MVP&COLOR+&b]",
-  "SUPERSTAR": "&6[MVP&COLOR++&6]",
+  "SUPERSTAR": "&PPC[MVP&COLOR++&PPC]",
   "HELPER": "&1[HELPER]",
   "YOUTUBER": "&c[&fYOUTUBE&c]",
   "MOD": "&2[MOD]",
@@ -24,6 +24,11 @@ const rankColors = {
   DARK_PURPLE: "5",
   DARK_GREY: "8",
   BLACK: "0"
+}
+
+const rankPlusColor = {
+  GOLD: "6",
+  AQUA: "b"
 }
 
 module.exports.formatPlayer = (data) => {
@@ -59,16 +64,18 @@ module.exports.formatPlayer = (data) => {
   if (clean.monthlyPackageRank && clean.monthlyPackageRank != "NONE") {
     cleanrank = clean.monthlyPackageRank
   }
+  let cleanpluspluscolor;
   if (clean.rankPlusColor || clean.monthlyRankColor) {
-    cleancolor = clean.rankPlusColor || clean.monthlyRankColor
+    cleancolor = clean.rankPlusColor 
     cleancolor = rankColors[cleancolor] || rankColors.RED
+    cleanpluspluscolor = plusplusColors[clean.monthlyRankColor] || plusplusColors["default"]
   }
   if (clean.rank) {
     cleanrank = clean.rank
   }
   clean.fullrank = cleanrank
   let r = ranks[cleanrank] || "&7"
-  clean.prefix = r.replace("COLOR", cleancolor);
+  clean.prefix = r.replace("COLOR", cleancolor).split("PPC").join(cleanpluspluscolor);;
 
 
 
