@@ -5,13 +5,12 @@ import Head from "next/head";
 import styles from "../../../styles/Minecraft.module.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { url } from "../../../lib/url";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 import { MCPlayerData } from "../../../lib/types";
 import Footer from "../../../components/Footer";
 import Custom404 from "../../../components/404/Custom404";
 import PlayerStatsMC from "../../../components/Minecraft/PlayerStats";
-import Link from "next/link"
 
 export default function minecraft() {
   const [session, loading] = useSession();
@@ -29,14 +28,12 @@ export default function minecraft() {
 
   if (!loading && !session) return <Custom404 login={true} />;
 
-  const getData = async (e?: React.FormEvent<HTMLFormElement>) => {
+  const getData = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading1(true);
-    e?.preventDefault();
+    e.preventDefault();
 
-    const value = e
-      ? e.currentTarget.tag.value
-      : JSON.parse(localStorage.getItem("minecraftData")).displayName;
-    const tag = value.trim();
+    const value = e.currentTarget.tag.value;
+    const tag = value.replace("#", "%23");
 
     const response = await Axios.get(`${url}/hypixel/player/${tag}`);
     const data = response.data;
@@ -44,9 +41,6 @@ export default function minecraft() {
     localStorage.setItem("minecraftData", JSON.stringify(data));
     setLoading1(false);
   };
-  const replace = (route:string) => {
-    window.location.replace(route)
-  }
   return (
     <div className={styles.minecraft}>
       <Head>
@@ -76,27 +70,17 @@ export default function minecraft() {
                 width={100}
               />
             ) : (
-              <>
-                <form onSubmit={getData}>
-                  <input
-                    type="text"
-                    name="tag"
-                    placeholder="Your minecraft tag... ex. Dream"
-                    required
-                  />
-                  <button style={{ marginLeft: "1%" }}>
-                    Visualize your stats
-                  </button>
-                </form>
-                <form onSubmit={(e) => e.preventDefault()}>
-                  <Link href="/games/minecraft/skywars">
-                    <button style={{ width: "45%" }}>Skywars</button>
-                  </Link>
-                  <Link href="/games/minecraft/bedwars">
-                    <button style={{ width: "45%" }}>Bedwars</button>
-                  </Link>
-                </form>
-              </>
+              <form onSubmit={getData}>
+                <input
+                  type="text"
+                  name="tag"
+                  placeholder="Your minecraft username...ex. Dream"
+                  required
+                />
+                <button style={{ marginLeft: "1%" }}>
+                  Visualize your stats
+                </button>
+              </form>
             )}
           </div>
 
