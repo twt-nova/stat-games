@@ -3,7 +3,7 @@ const ranks = {
   "VIP_PLUS": "&a[VIP&6+&a]",
   "MVP": "&b[MVP]",
   "MVP_PLUS": "&b[MVP&COLOR+&b]",
-  "MVP_PLUS_PLUS": "&6[MVP&COLOR++&6]",
+  "SUPERSTAR": "&6[MVP&COLOR++&6]",
   "HELPER": "&1[HELPER]",
   "YOUTUBER": "&c[&fYOUTUBE&c]",
   "MOD": "&2[MOD]",
