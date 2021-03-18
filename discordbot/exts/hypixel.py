@@ -134,6 +134,7 @@ class Hypixel(commands.Cog):
         bg.paste(fkdrchart, (int(15*o), int(10*o)), fkdrchart)  # noice 9.6
         kdrchart = charts.create_pie_chart(
             ("Total\nKills", "Total\nDeaths"), (bw['overall']['kills_bedwars'], bw['overall']['deaths_bedwars']), (0, 0), colours=((.3, .3, 1), (1, .3, .3)), rotation=-40)
+
         kdrchart = kdrchart.resize(
             (int(kdrchart.width*r), int(kdrchart.height*r)), Image.NEAREST)
         bg.paste(kdrchart, (int(8*o), int(17*o)), kdrchart)  # noice 9.6
