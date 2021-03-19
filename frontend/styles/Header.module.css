@@ -26,7 +26,6 @@
   font-weight: 400;
 }
 
-
 .menu {
   height: 100vh !important;
 }
@@ -39,12 +38,11 @@
   outline: none !important;
 }
 
-
 .bmItemList a {
   transition: var(--transition);
 }
 
-.bmItemList a:hover { 
+.bmItemList a:hover {
   color: var(--secondary-color);
 }
 
@@ -86,7 +84,6 @@
   background-color: var(--main-color);
   color: var(--bg-color);
 }
-
 
 @keyframes listAnimation {
   0% {
@@ -132,4 +129,11 @@
   .header {
     justify-content: space-around;
   }
+}
+
+.pfp {
+  border-radius: 50%;
+  height: 28px;
+  margin-right: 0.40rem;
+  margin-left: -2% !important;
 }
