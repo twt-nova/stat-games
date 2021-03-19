@@ -1,4 +1,3 @@
-import { MCPlayerData } from "../../lib/types";
 import { Bar, Pie } from "react-chartjs-2";
 import styles from "../../styles/Minecraft.module.css";
 import numeral from "numeral";
@@ -6,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 interface PageProps {
-  data: MCPlayerData;
+  data: any;
 }
 
 export default function PlayerStatsMC({ data }: PageProps) {
