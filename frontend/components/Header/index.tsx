@@ -11,7 +11,7 @@ const stylesForMenu = {
     position: "fixed",
     width: "36px",
     height: "30px",
-    right: "36px",
+    right: "2rem",
     top: "36px",
     outline: "none",
   },
@@ -48,7 +48,7 @@ const stylesForMenu = {
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "flex-start",
-    height: "70%",
+    height: "75%",
   },
   bmItem: {
     display: "flex",
@@ -90,20 +90,20 @@ export default function Header() {
           overlayClassName={styles.menu}
           styles={stylesForMenu}
           itemListClassName={styles.bmItemList}
-          burgerBarClassName={styles.hamMenuBtn}
+          burgerButtonClassName={styles.btnHamMenu}
         >
-          {session ? <div className={styles.elem}>
-            <img
-              src={session.user.image}
-              className={styles.pfp}
-              style={{ height: "28px" }}
-            />
-            <Link href="#">
-              {session.user.name.length < 15
-                ? session.user.name
-                : session.user.name.slice(0, 15) + "..."}
-            </Link>
-          </div> : ""}
+          {session ? (
+            <div className={styles.elem}>
+              <img src={session.user.image} className={styles.pfp} />
+              <p style={{ fontSize: "22px" }}>
+                {session.user.name.length < 15
+                  ? session.user.name
+                  : session.user.name.slice(0, 15) + "..."}
+              </p>
+            </div>
+          ) : (
+            ""
+          )}
           <div className={styles.elem}>
             <FontAwesomeIcon
               icon={faHome}

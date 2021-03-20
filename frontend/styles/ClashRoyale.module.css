@@ -185,11 +185,11 @@
   max-width: 900px !important;
 }
 
-.clashRoyaleInfo, .clashRoyaleClanInfo {
+.clashRoyaleInfo {
   margin-top: 3rem;
 }
 .clashRoyaleTemplate {
-  font-size: 21px;
+  font-size: var(--font-size-template);
 }
 
 .clashRoyaleTemplate span {
@@ -274,7 +274,7 @@
   .clashRoyaleLeft form {
     flex-direction: column;
     padding: 0rem 1rem;
-  } 
+  }
 
   .clashRoyaleLeft form input {
     max-width: auto !important;
@@ -292,7 +292,7 @@
   }
 }
 
-@media screen and (max-width: 350px) { 
+@media screen and (max-width: 350px) {
   .buttonsClashRoyale {
     margin-top: 0.7rem !important;
     flex-direction: column;
@@ -305,4 +305,16 @@
   .buttonsClashRoyale a {
     width: 100%;
   }
- }
+}
+
+@media screen and (max-width: 500px) {
+  .clashRoyaleName {
+    flex-direction: column;
+  }
+
+  .clashRoyaleTrophies,
+  .clashRoyaleInfo,
+  .clashRoyaleClanInfo {
+    flex-direction: column;
+  }
+}

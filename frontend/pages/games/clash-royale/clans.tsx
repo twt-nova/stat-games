@@ -107,7 +107,7 @@ export default function ClashRoyale() {
               location.reload();
             }}
           >
-            New search for player
+            New search for clan
           </button>
           <Footer />
         </div>
