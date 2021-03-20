@@ -4,7 +4,7 @@ const {
   fetchFrom,
   sanitazeTag,
   getLimitQuery,
-} = require("../utils/routesUtils");
+} = require("../routes/utils/routesUtils");
 
 module.exports = {
   getPlayerByTag: async function (playerTag) {
