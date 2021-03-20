@@ -48,7 +48,8 @@
   max-width: 900px !important;
 }
 
-.brawlStarsInfo, .brawlStarsClanInfo {
+.brawlStarsInfo,
+.brawlStarsClanInfo {
   margin-top: 3rem;
 }
 .brawlStarsTemplate {
@@ -87,14 +88,26 @@
   width: 100%;
 
   display: grid;
-  grid-template-columns:1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 1rem 2rem;
 
   border-bottom: var(--border);
   border-left: var(--border);
-  border-right: var(--border)
+  border-right: var(--border);
 }
 
 .player:first-child {
   border-top: var(--border);
+}
+
+@media screen and (max-width: 500px) {
+  .brawlStarsName {
+    flex-direction: column;
+  }
+
+  .brawlStarsTrophies,
+  .brawlStarsInfo,
+  .brawlStarsClanInfo {
+    flex-direction: column;
+  }
 }

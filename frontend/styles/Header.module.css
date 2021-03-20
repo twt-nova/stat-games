@@ -1,4 +1,5 @@
 .header {
+  min-height: 100px;
   height: 10vh;
   display: flex;
   justify-content: space-between;
@@ -30,14 +31,6 @@
   height: 100vh !important;
 }
 
-.hamMenuBtn {
-  outline: none !important;
-}
-
-.hamMenuBtn:focus {
-  outline: none !important;
-}
-
 .bmItemList a {
   transition: var(--transition);
 }
@@ -48,7 +41,8 @@
 
 .elem {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 
   outline: none;
 }
@@ -119,21 +113,25 @@
   border-bottom: var(--border);
 }
 
+.pfp {
+  border-radius: 50%;
+  height: 42px;
+  margin-right: 0.5rem;
+}
+
 @media screen and (max-width: 1450px) {
   .circleBg {
     width: auto !important;
-    height: auto !important;
+    height: 100% !important;
     background: none;
-  }
-
-  .header {
-    justify-content: space-around;
   }
 }
 
-.pfp {
-  border-radius: 50%;
-  height: 28px;
-  margin-right: 0.40rem;
-  margin-left: -2% !important;
+@media screen and (max-width: 310px) {
+  .circleBg {
+    padding-left: 1rem;
+  }
+  .btnHamMenu {
+    right: 1rem !important;
+  }
 }

@@ -4,7 +4,6 @@
   width: 100%;
 
   background: var(--gradient);
-
 }
 
 .clashOfClansText {
@@ -132,7 +131,6 @@
   color: var(--white-color);
 }
 
-
 /* DATA */
 
 .containerData {
@@ -179,7 +177,7 @@
 }
 
 .clashOfClansTrophies,
-.clashOfClansInfo  {
+.clashOfClansInfo {
   max-width: 800px;
   width: 100%;
   display: flex;
@@ -245,7 +243,7 @@
   .clashOfClansLeft form {
     flex-direction: column;
     padding: 0rem 1rem;
-  } 
+  }
 
   .clashOfClansLeft form input {
     max-width: auto !important;
@@ -263,7 +261,7 @@
   }
 }
 
-@media screen and (max-width: 350px) { 
+@media screen and (max-width: 350px) {
   .buttonsClashOfClans {
     margin-top: 0.7rem !important;
     flex-direction: column;
@@ -276,4 +274,16 @@
   .buttonsClashOfClans a {
     width: 100%;
   }
- }
+}
+
+@media screen and (max-width: 500px) {
+  .clashOfClansName {
+    flex-direction: column;
+  }
+
+  .clashOfClansTrophies,
+  .clashOfClansInfo,
+  .clashOfClansClanInfo {
+    flex-direction: column;
+  }
+}
