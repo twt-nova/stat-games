@@ -4,11 +4,11 @@ const {
   getLimitQuery,
   ensureUUID,
   fetchFromWithParams,
-} = require("../utils/routesUtils");
+} = require("../routes/utils/routesUtils");
 
-const { formatBedwars } = require("../utils/hypixelUtilsBedwars");
-const { formatSkyWars } = require("../utils/hypixelUtilsSkywars");
-const { formatPlayer } = require("../utils/hypixelUtilsPlayer");
+const { formatBedwars } = require("../routes/utils/hypixelUtilsBedwars");
+const { formatSkyWars } = require("../routes/utils/hypixelUtilsSkywars");
+const { formatPlayer } = require("../routes/utils/hypixelUtilsPlayer");
 
 module.exports = {
   getPlayerByUUID: async function (uuid) {
