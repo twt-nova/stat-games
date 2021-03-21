@@ -73,6 +73,89 @@ class Hypixel(commands.Cog):
                 output.seek(0)
                 await ctx.send(file=discord.File(output, filename="fancy.png"), embed=embed)
 
+    @hypixel.command(aliases=["s", "sw"])
+    async def skywars(self, ctx, name):
+        async with ctx.typing():
+            url = f"{self.bot.config['base_url']}/hypixel/player/{name}/skywars"
+            sw = await fetch_from(url, self.bot)
+            url = f"{self.bot.config['base_url']}/hypixel/player/{name}/"
+            player = await fetch_from(url, self.bot)
+            embed = discord.Embed()
+            embed.colour = self.bot.colour
+            embed.title = f"Statistics of {player['displayName']}"
+            embed.description = f"All of the stats you need to know about {player['displayName']} on hypixel skywars, provided by [statgames](https://statgames.net)"
+            embed.set_image(url="attachment://fancy.png")
+            im = await self.generate_player_sw(sw, player)
+            with io.BytesIO() as output:
+                im.save(output, format="JPEG")
+                output.seek(0)
+                await ctx.send(file=discord.File(output, filename="fancy.png"), embed=embed)
+
+
+
+    async def generate_player_sw(self, sw, player):
+        bg = Image.open("./assets/minecraft.jpg")
+        bg_layer = Image.new("RGBA", bg.size, color=(24, 24, 24, 240))
+        bg.paste(bg_layer, (0, 0), bg_layer)
+        draw = ImageDraw.Draw(bg)
+        fontcolour = (244, 244, 244, 255)
+        o = 40
+        big = ImageFont.truetype("./assets/font.ttf", int(1.5*o))
+        medium = ImageFont.truetype("./assets/font.ttf", int(1.25*o))
+        small = ImageFont.truetype("./assets/font.ttf", o)
+        verysmall = ImageFont.truetype("./assets/font.ttf", int(0.75*o))
+
+        url = "https://visage.surgeplay.com/bust/%s" % player["uuid"]
+
+        s = 2.75  # scale factor
+
+        buffer = tempfile.SpooledTemporaryFile(max_size=1e9)
+        async with self.bot.session.get(url) as resp:
+            if resp.status != 200:
+                raise Exception
+            buffer.write(await resp.content.read())
+            buffer.seek(0)
+            im = Image.open(io.BytesIO(buffer.read()))
+        im = im.resize((int(im.width * s), int(im.height * s)), Image.BOX)
+        im = ImageOps.mirror(im)
+        bg.paste(im, (30*o, int(9.5*o)), im)
+
+        draw.text((o, o), "Wins", font=big, fill=fontcolour)
+        draw.text((o, 3*o), to_str(sw['overall']['wins']), font=small, fill=fontcolour)
+        draw.text((8*o, o), "Losses", font=big, fill=fontcolour)
+        draw.text((8*o, 3*o), to_str(sw['overall']['losses']),
+                  font=small, fill=fontcolour)
+        draw.text((17*o, o), "SkyWars Level", font=big, fill=fontcolour)
+        render_mc(draw, sw['overall']["levelFormatted"].replace("§", "&"), (17*o, 3*o), o)
+        draw.text((o, 5.5*o), "Total Kills", font=big, fill=fontcolour)
+        draw.text((o, 7.5*o), str(sw["overall"]["kills"]),
+                  font=small, fill=fontcolour)
+        draw.text((8*o, 5.5*o), "Deaths", font=big, fill=fontcolour)
+        draw.text((8*o, 7.5*o), str(sw["overall"]["deaths"]),
+                  font=small, fill=fontcolour)
+        draw.text((17*o, 5.5*o), "Heads",
+                  font=big, fill=fontcolour)
+        draw.text((17*o, 7.5*o), str(sw["overall"]["heads"]),
+                  font=small, fill=fontcolour)
+
+        render_level_and_ign(player, draw, o)
+
+        r = 1.5 # scaleing factor
+        wlchart = charts.create_pie_chart(
+            ("Wins", "Losses"), (sw['overall']['wins'], sw['overall']['losses']), (0, 0), colours=((.3, .3, 1), (1, .3, .3)))
+        wlchart = wlchart.resize(
+            (int(wlchart.width*r), int(wlchart.height*r)), Image.NEAREST)
+        bg.paste(wlchart, (int(-4*o), int(10*o)), wlchart)  # noice 9.6        
+        kdrchart = charts.create_pie_chart(
+            ("Kills", "Deaths"), (sw['overall']['kills'], sw['overall']['deaths']), (0, 0), colours=((.3, .3, 1), (1, .3, .3)), rotation=30)
+        kdrchart = kdrchart.resize(
+            (int(kdrchart.width*r), int(kdrchart.height*r)), Image.NEAREST)
+        bg.paste(kdrchart, (int(10*o), int(10*o)), kdrchart)  # noice 9.6
+        
+        return bg
+
+
+
     async def generate_player_bw(self, bw, player):
         bg = Image.open("./assets/minecraft.jpg")
         bg_layer = Image.new("RGBA", bg.size, color=(24, 24, 24, 240))
