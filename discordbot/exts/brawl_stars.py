@@ -47,13 +47,13 @@ class BrawlStars(commands.Cog):
             embed.title = f"Statistics for {data['name']} ({data['tag']})"
             embed.description = f"All of the stats you need to know about {data['name']}, provided by [statgames](https://statgames.net)"
             embed.set_image(url="attachment://fancy.png")
-            im = self.generate_player(data)
+            im = await self.generate_player(data)
             with io.BytesIO() as output:
                 im.save(output, format="JPEG")
                 output.seek(0)
                 await ctx.send(file=discord.File(output, filename="fancy.png"), embed=embed)
 
-    def generate_player(self, data, logdata):
+    async def generate_player(self, data):
         bg = Image.open("./assets/brawlstars.jpg")
         bg_layer = Image.new("RGBA", bg.size, color=(24, 24, 24, 240))
         draw = ImageDraw.Draw(bg_layer)
@@ -91,17 +91,21 @@ class BrawlStars(commands.Cog):
         r = 0.85 # scaleing factor
         wlchart = wlchart.resize(
             (int(wlchart.width*r), int(wlchart.height*r)), Image.NEAREST)
-        bg.paste(wlchart, (int(15*o), int(8*o)), wlchart)  # noice 6.9
+        bg.paste(wlchart, (int(16*o), int(8*o)), wlchart)  # noice 6.9
         
-        trophie_changes = [0-i if i["battle"]["result"] == "defeat" else i for i in logdata]
 
-        brawlers = charts.create_line_graph("Trophies", "Battle", )
-        r = .85 # scaleing factor
-        brawlers = brawlers.resize(
-            (int(brawlers.width*r), int(brawlers.height*r)), Image.BOX)
-        bg.paste(brawlers, (int(0.5*o), int(8*o)),
-                 brawlers)  
 
+        url = "https://cdn.brawlstats.com/player-thumbnails/%d.png" % data["icon"]["id"]
+        buffer = tempfile.SpooledTemporaryFile(max_size=1e9)
+        r = 1.5
+        async with self.bot.session.get(url) as resp:
+            if resp.status != 200:
+                raise Exception
+            buffer.write(await resp.content.read())
+            buffer.seek(0)
+            im = Image.open(io.BytesIO(buffer.read()))
+        im = im.resize((int(im.width*r), int(im.height*r)), Image.BOX)
+        bg.paste(im, (int(2*o), int(10*o)))
 
 
         return bg
