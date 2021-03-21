@@ -1,4 +1,4 @@
-const { fetchFrom } = require("../utils/routesUtils");
+const { fetchFrom } = require("../routes/utils/routesUtils");
 const {
   platforms,
   platformRegions,

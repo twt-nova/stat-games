@@ -1,21 +1,22 @@
 import { Bar, Pie } from "react-chartjs-2";
 import styles from "../../styles/Minecraft.module.css";
 import numeral from "numeral";
-import Link from "next/link";
 import { useState } from "react";
 
 interface PageProps {
   data: any;
 }
 
-export default function PlayerStatsMC({ data }: PageProps) {
-  const [showAv, setShowAv] = useState(false)
+export default function BedwarsStatsCoc({ data }: PageProps) {
+  const [showAv, setShowAv] = useState(false);
+
   let achievements = [
-    data.info.bedwars.wins || 0,
-    data.info.bedwars.beds || 0,
-    data.info.duels.bridge_wins || 0,
-    data.info.skywars.kills_solo || 0,
-    data.info.skywars.wins_solo || 0,
+    data.overall.games_played_bedwars || 0,
+    data.overall.kills_bedwars || 0,
+    data.overall.items_purchased_bedwars || 0,
+    data.overall.beds_broken_bedwars || 0,
+    data.overall.beds_lost_bedwars || 0,
+    data.overall.deaths_bedwars || 0,
   ];
   let arr: string[] = [];
   for (let i = 0; i < achievements.length; i++) {
@@ -37,17 +38,21 @@ export default function PlayerStatsMC({ data }: PageProps) {
       </div>
       <div className={styles.minecraftTrophies}>
         <p className={styles.minecraftTemplate}>
-          Minecraft Version: <span>{data.mcVersion}</span>
+          Bedwars Experience:{" "}
+          <span>{numeral(data.overall.Experience).format("0,0")}</span>
         </p>
         <p className={styles.minecraftTemplate}>
-          Network EXP <span>{numeral(data.networkExp).format("0,0")}</span>
+          Winstreak:{" "}
+          <span>{numeral(data.overall.winstreak).format("0,0")}</span>
         </p>
         <p className={styles.minecraftTemplate}>
-          Karma: <span>{numeral(data.karma).format("0,0")}</span>
+          Resources Collected:{" "}
+          <span>
+            {numeral(data.overall.resources_collected_bedwars).format("0,0")}
+          </span>
         </p>
         <p className={styles.minecraftTemplate}>
-          Network Level:{" "}
-          <span>{numeral(data.networkLevel).format("0,0.00")}</span>
+          Coins: <span>{numeral(data.overall.coins).format("0,0")}</span>
         </p>
       </div>
 
@@ -57,15 +62,18 @@ export default function PlayerStatsMC({ data }: PageProps) {
           if (showAv === true) {
             setShowAv(false);
           } else {
-            setShowAv(true)
+            setShowAv(true);
           }
         }}
       >
         {showAv ? "Hide Avatar" : "Show Avatar"}
       </button>
-      
-      {showAv ? <img src={`https://visage.surgeplay.com/full/${data.uuid}`} /> : ""}
 
+      {showAv ? (
+        <img src={`https://visage.surgeplay.com/full/${data.uuid}`} />
+      ) : (
+        ""
+      )}
 
       <Pie
         width={3}
@@ -75,7 +83,7 @@ export default function PlayerStatsMC({ data }: PageProps) {
           datasets: [
             {
               label: "Wins/Losses",
-              data: [data.totalWins, data.totalLosses],
+              data: [data.overall.wins_bedwars, data.overall.losses_bedwars],
               backgroundColor: [
                 "rgba(127,255,0, 0.4)",
                 "rgba(255, 99, 132, 0.5)",
@@ -87,21 +95,30 @@ export default function PlayerStatsMC({ data }: PageProps) {
 
       <div className={styles.minecraftInfo}>
         <p className={styles.minecraftTemplate}>
-          Bedwars Level:{" "}
-          <span>{numeral(data.info.bedwars.wins).format("0, 0") || 0}</span>
-        </p>
-        <p className={styles.minecraftTemplate}>
-          General Wins:{" "}
-          <span>{numeral(data.info.general.wins).format("0, 0") || 0}</span>
-        </p>
-        <p className={styles.minecraftTemplate}>
-          General Coins:{" "}
-          <span>{numeral(data.info.general.coins).format("0, 0") || 0}</span>
-        </p>
-        <p className={styles.minecraftTemplate}>
-          Bridge Win Streak:{" "}
+          Fall Kills:{" "}
           <span>
-            {numeral(data.info.duels.bridge_win_streak).format("0, 0") || 0}
+            {numeral(data.overall.fall_kills_bedwars).format("0, 0") || 0}
+          </span>
+        </p>
+        <p className={styles.minecraftTemplate}>
+          Projectile Kills:{" "}
+          <span>
+            {numeral(data.overall.projectile_final_kills_bedwars).format(
+              "0, 0"
+            ) || 0}
+          </span>
+        </p>
+        <p className={styles.minecraftTemplate}>
+          Magic Kills:{" "}
+          <span>
+            {numeral(data.overall.magic_final_kills_bedwars).format("0, 0") ||
+              0}
+          </span>
+        </p>
+        <p className={styles.minecraftTemplate}>
+          Void Kills:{" "}
+          <span>
+            {numeral(data.overall.void_final_kills_bedwars).format("0, 0") || 0}
           </span>
         </p>
       </div>
@@ -109,21 +126,23 @@ export default function PlayerStatsMC({ data }: PageProps) {
       <Bar
         data={{
           labels: [
-            "Bedwar Wins",
-            "Bedwar Beds",
-            "Duel Wins",
-            "Skywar Kills",
-            "Skywar Wins",
+            "Games Played",
+            "Kills",
+            "Items Purchased",
+            "Beds Broken",
+            "Beds Lost",
+            "Deaths",
           ],
           datasets: [
             {
-              label: "Minecraft Stats",
+              label: "Bedwars Stats",
               backgroundColor: [
                 "#3e95cd",
                 "#8e5ea2",
                 "#3cba9f",
                 "#e8c3b9",
                 "#c45850",
+                "rgba(255, 99, 132, 0.5)",
               ],
               data: achievements,
             },
@@ -134,8 +153,8 @@ export default function PlayerStatsMC({ data }: PageProps) {
       <button
         className={styles.btn}
         onClick={() => {
-          localStorage.removeItem("minecraftData");
-          localStorage.removeItem("minecraftData");
+          localStorage.removeItem("bedwarsData");
+          localStorage.removeItem("bedwarsData");
           location.reload();
         }}
       >

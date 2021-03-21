@@ -86,7 +86,10 @@ export default function ClanStats({ data }: PageProps) {
                     ],
                   }}
                 />
-                <div className={styles.clashRoyaleClanInfo}>
+                <div
+                  className={styles.clashRoyaleClanInfo}
+                  style={{ marginTop: "3rem" }}
+                >
                   <p className={styles.clashRoyaleTemplate}>
                     Required Trophies: <span>{clanData.requiredTrophies}</span>
                   </p>

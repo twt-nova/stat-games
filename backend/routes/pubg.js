@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pubg = require("../functions/pubg");
-const { trimParameters } = require("../utils/routesUtils");
+const { trimParameters } = require("../routes/utils/routesUtils");
 //  root:/api/v1/pubg
 
 //  get general api info

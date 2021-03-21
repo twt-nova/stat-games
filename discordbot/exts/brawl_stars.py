@@ -48,6 +48,7 @@ class BrawlStars(commands.Cog):
             embed.description = f"All of the stats you need to know about {data['name']}, provided by [statgames](https://statgames.net)"
             embed.set_image(url="attachment://fancy.png")
             im = await self.generate_player(data)
+
             with io.BytesIO() as output:
                 im.save(output, format="JPEG")
                 output.seek(0)
@@ -91,6 +92,7 @@ class BrawlStars(commands.Cog):
         r = 0.85 # scaleing factor
         wlchart = wlchart.resize(
             (int(wlchart.width*r), int(wlchart.height*r)), Image.NEAREST)
+
         bg.paste(wlchart, (int(16*o), int(8*o)), wlchart)  # noice 6.9
         
 
@@ -106,6 +108,7 @@ class BrawlStars(commands.Cog):
             im = Image.open(io.BytesIO(buffer.read()))
         im = im.resize((int(im.width*r), int(im.height*r)), Image.BOX)
         bg.paste(im, (int(2*o), int(10*o)))
+
 
 
         return bg

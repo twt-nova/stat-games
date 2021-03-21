@@ -13,16 +13,12 @@ import Custom404 from "../../../components/404/Custom404";
 import Link from "next/link";
 import BrawlStarsData from "../../../components/BrawlStars/BrawlStarsData";
 
-interface getDataItems {
-  items: BSBattleLog[];
-}
-
 export default function ClashRoyale() {
   const [session, loading] = useSession();
 
   const [loading1, setLoading1] = useState(false);
   const [data, setData] = useState<BSPlayer>();
-  const [battleLog, setBattleLog] = useState<getDataItems>();
+  const [battleLog, setBattleLog] = useState<BSBattleLog[]>();
 
   useEffect(() => {
     const dataL: string | null = localStorage.getItem("bsData");
@@ -70,7 +66,7 @@ export default function ClashRoyale() {
 
       {data ? (
         <>
-          <BrawlStarsData data={data} battleLog={battleLog.items} />
+          <BrawlStarsData data={data} battleLog={battleLog} />
           <Footer />
         </>
       ) : (
