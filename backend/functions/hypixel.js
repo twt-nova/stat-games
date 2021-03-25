@@ -4,11 +4,11 @@ const {
   getLimitQuery,
   ensureUUID,
   fetchFromWithParams,
-} = require("../utils/routesUtils");
+} = require("../routes/utils/routesUtils");
 
-const { formatBedwars } = require("../utils/hypixelUtilsBedwars");
-const { formatSkyWars } = require("../utils/hypixelUtilsSkywars");
-const { formatPlayer } = require("../utils/hypixelUtilsPlayer");
+const { formatBedwars } = require("../routes/utils/hypixelUtilsBedwars");
+const { formatSkyWars } = require("../routes/utils/hypixelUtilsSkywars");
+const { formatPlayer } = require("../routes/utils/hypixelUtilsPlayer");
 
 module.exports = {
   getPlayerByUUID: async function (uuid) {
@@ -17,7 +17,7 @@ module.exports = {
     const data = await fetchFromWithParams(url, { key: KEY, uuid: uuid });
     return data.success ? data.player : data;
   },
-  getPlayerCleanByUUID: async function(uuid) {
+  getPlayerCleanByUUID: async function (uuid) {
     uuid = await ensureUUID(uuid);
     const url = `${hypixelAPI}/player`;
     const data = await fetchFromWithParams(url, { key: KEY, uuid: uuid });
@@ -34,5 +34,11 @@ module.exports = {
     const url = `${hypixelAPI}/player`;
     const data = await fetchFromWithParams(url, { key: KEY, uuid: uuid });
     return formatSkyWars(data.player.stats.SkyWars);
+  },
+  getGuildByUUID: async function (uuid) {
+    uuid = await ensureUUID(uuid);
+    const url = `${hypixelAPI}/guild`;
+    const data = await fetchFromWithParams(url, { key: KEY, player: uuid });
+    return data.guild;
   },
 };

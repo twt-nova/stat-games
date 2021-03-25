@@ -1,0 +1,87 @@
+.container {
+  min-height: 100vh;
+  height: 100%;
+
+  background: var(--gradient);
+}
+
+.image {
+  max-width: 700px;
+  width: 100%;
+}
+
+.discord {
+  min-height: 90vh;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: var(--white-color);
+}
+
+.text h1 {
+  font-size: var(--font-size-large);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  color: var(--main-color);
+}
+
+.text p {
+  font-size: var(--font-size-template);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.btn {
+  padding: 0.5rem 2rem;
+
+  color: var(--bg-color);
+
+  outline: none;
+  border: var(--border);
+
+  border-radius: var(--border-radius);
+  background-color: var(--main-color);
+
+  font-size: var(--font-size-small);
+
+  transition: var(--transition);
+
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: transparent;
+  color: var(--white-color);
+}
+
+@media screen and (max-width: 1024px) {
+  .image {
+    max-width: 500px !important;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .discord {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .image {
+    padding: 0rem 1rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .text {
+    padding: 0rem 1rem;
+  }
+}

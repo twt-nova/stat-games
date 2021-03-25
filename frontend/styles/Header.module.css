@@ -1,4 +1,5 @@
 .header {
+  min-height: 100px;
   height: 10vh;
   display: flex;
   justify-content: space-between;
@@ -26,31 +27,22 @@
   font-weight: 400;
 }
 
-
 .menu {
   height: 100vh !important;
 }
-
-.hamMenuBtn {
-  outline: none !important;
-}
-
-.hamMenuBtn:focus {
-  outline: none !important;
-}
-
 
 .bmItemList a {
   transition: var(--transition);
 }
 
-.bmItemList a:hover { 
+.bmItemList a:hover {
   color: var(--secondary-color);
 }
 
 .elem {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 
   outline: none;
 }
@@ -87,7 +79,6 @@
   color: var(--bg-color);
 }
 
-
 @keyframes listAnimation {
   0% {
     transform: rotateX(-90deg);
@@ -122,14 +113,25 @@
   border-bottom: var(--border);
 }
 
+.pfp {
+  border-radius: 50%;
+  height: 42px;
+  margin-right: 0.5rem;
+}
+
 @media screen and (max-width: 1450px) {
   .circleBg {
     width: auto !important;
-    height: auto !important;
+    height: 100% !important;
     background: none;
   }
+}
 
-  .header {
-    justify-content: space-around;
+@media screen and (max-width: 310px) {
+  .circleBg {
+    padding-left: 1rem;
+  }
+  .btnHamMenu {
+    right: 1rem !important;
   }
 }

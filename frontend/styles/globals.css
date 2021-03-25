@@ -46,6 +46,7 @@ a {
   --font-size-large: 3rem;
   --font-size-medium: 2rem;
   --font-size-small: 1rem;
+  --font-size-template: 21px;
 
   --padding: 1.5rem;
   --margin: 4rem;
@@ -83,3 +84,21 @@ a {
 }
 
 /* =========================== */
+
+@media screen and (max-width: 766px) {
+  :root {
+    --font-size-large: 2.7rem;
+    --font-size-medium: 1.7rem;
+    --font-size-small: 0.8rem;
+    --font-size-template: 18px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  :root {
+    --font-size-large: 2.2rem;
+    --font-size-medium: 1.3rem;
+    --font-size-small: 0.8rem;
+    --font-size-template: 14px;
+  }
+}

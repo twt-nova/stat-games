@@ -438,6 +438,8 @@ export interface MCPlayerData {
   fullrank: string;
   prefix: string;
   oldNames: string[];
-  achivements: any
-  raw_achivments:any
+  achivements: any;
+  info: any;
+  totalLosses: number;
+  totalWins: number
 }
