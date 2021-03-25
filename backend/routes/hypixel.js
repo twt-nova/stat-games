@@ -34,5 +34,11 @@ router.get("/player/:name/skywars/", async (req, res) => {
   res.json(data);
 });
 
+router.get("/player/:name/guild/", async (req, res) => {
+  const name = req.params.name;
+  let data = await hypixel.getGuildByUUID(name);
+  res.json(data);
+});
+
 
 module.exports = router;
