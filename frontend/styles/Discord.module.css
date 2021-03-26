@@ -26,6 +26,21 @@
   color: var(--white-color);
 }
 
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.buttons a {
+  width: 47%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .text h1 {
   font-size: var(--font-size-large);
   font-weight: 400;
@@ -77,6 +92,18 @@
 @media screen and (max-width: 500px) {
   .image {
     padding: 0rem 1rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .buttons a {
+    width: 100%;
+  }
+
+  .buttons a:nth-child(1) {
+    margin-bottom: 0.5rem;
   }
 }
 
