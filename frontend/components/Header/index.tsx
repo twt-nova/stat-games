@@ -96,7 +96,7 @@ export default function Header() {
           {session ? (
             <div className={styles.elem}>
               <img src={session.user.image} className={styles.pfp} />
-              <p style={{ fontSize: "22px" }}>
+              <p style={{ fontSize: "32px" }}>
                 {session.user.name.length < 15
                   ? session.user.name
                   : session.user.name.slice(0, 15) + "..."}
@@ -106,18 +106,14 @@ export default function Header() {
             <></>
           )}
           <div className={styles.elem}>
-            <FontAwesomeIcon
-              icon={faHome}
-              className={styles.icon}
-              height="28px"
-            />
+            <FontAwesomeIcon icon={faHome} className={styles.icon} size="2x" />
             <Link href="/">Home</Link>
           </div>
           <div className={styles.elem}>
             <img
               src="/clash-royale.png"
               className={styles.icon}
-              style={{ height: "28px" }}
+              style={{ height: "32px" }}
             />
             <Link href="/games/clash-royale">Clash Royale</Link>
           </div>
@@ -125,7 +121,7 @@ export default function Header() {
             <img
               src="/clash-of-clans.png"
               className={styles.icon}
-              style={{ height: "28px" }}
+              style={{ height: "32px" }}
             />
             <Link href="/games/clash-of-clans">Clash Of Clans</Link>
           </div>
@@ -133,7 +129,7 @@ export default function Header() {
             <img
               src="/brawl-stars.png"
               className={styles.icon}
-              style={{ height: "28px" }}
+              style={{ height: "32px" }}
             />
             <Link href="/games/brawl-stars">Brawl Stars</Link>
           </div>
@@ -141,7 +137,7 @@ export default function Header() {
             <img
               src="/minecraft.png"
               className={styles.icon}
-              style={{ height: "28px" }}
+              style={{ height: "32px" }}
             />
             <Link href="/games/minecraft">Minecraft</Link>
           </div>
@@ -149,7 +145,7 @@ export default function Header() {
             <img
               src="/pubg.png"
               className={styles.icon}
-              style={{ height: "28px" }}
+              style={{ height: "32px" }}
             />
             <Link href="/games/pubg">Pubg</Link>
           </div>
@@ -157,12 +153,16 @@ export default function Header() {
             <FontAwesomeIcon
               icon={faDiscord}
               className={styles.icon}
-              height="28px"
+              size="2x"
             />
             <Link href="/discord">Discord</Link>
           </div>
           <div className={styles.elem}>
-            <FontAwesomeIcon icon={faAddressCard} className={styles.icon} />
+            <FontAwesomeIcon
+              icon={faAddressCard}
+              className={styles.icon}
+              size="2x"
+            />
             <Link href="/about">About Us</Link>
           </div>
           {!session && (
