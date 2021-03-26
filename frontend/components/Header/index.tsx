@@ -13,7 +13,7 @@ const stylesForMenu = {
     width: "36px",
     height: "30px",
     right: "2rem",
-    top: "36px",
+    top: "28px",
     outline: "none",
   },
   bmBurgerBars: {
@@ -82,7 +82,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.circleBg}>
-        <Link href="/">StatGames</Link>
+        <Link href='/'>StatGames</Link>
       </div>
       <div className={styles.div}>
         <Menu
@@ -109,61 +109,61 @@ export default function Header() {
             <FontAwesomeIcon
               icon={faHome}
               className={styles.icon}
-              height="28px"
+              height='28px'
             />
-            <Link href="/">Home</Link>
+            <Link href='/'>Home</Link>
           </div>
           <div className={styles.elem}>
             <img
-              src="/clash-royale.png"
+              src='/clash-royale.png'
               className={styles.icon}
               style={{ height: "28px" }}
             />
-            <Link href="/games/clash-royale">Clash Royale</Link>
+            <Link href='/games/clash-royale'>Clash Royale</Link>
           </div>
           <div className={styles.elem}>
             <img
-              src="/clash-of-clans.png"
+              src='/clash-of-clans.png'
               className={styles.icon}
               style={{ height: "28px" }}
             />
-            <Link href="/games/clash-of-clans">Clash Of Clans</Link>
+            <Link href='/games/clash-of-clans'>Clash Of Clans</Link>
           </div>
           <div className={styles.elem}>
             <img
-              src="/brawl-stars.png"
+              src='/brawl-stars.png'
               className={styles.icon}
               style={{ height: "28px" }}
             />
-            <Link href="/games/brawl-stars">Brawl Stars</Link>
+            <Link href='/games/brawl-stars'>Brawl Stars</Link>
           </div>
           <div className={styles.elem}>
             <img
-              src="/minecraft.png"
+              src='/minecraft.png'
               className={styles.icon}
               style={{ height: "28px" }}
             />
-            <Link href="/games/minecraft">Minecraft</Link>
+            <Link href='/games/minecraft'>Minecraft</Link>
           </div>
           <div className={styles.elem}>
             <img
-              src="/pubg.png"
+              src='/pubg.png'
               className={styles.icon}
               style={{ height: "28px" }}
             />
-            <Link href="/games/pubg">Pubg</Link>
+            <Link href='/games/pubg'>Pubg</Link>
           </div>
           <div className={styles.elem}>
             <FontAwesomeIcon
               icon={faDiscord}
               className={styles.icon}
-              height="28px"
+              height='28px'
             />
-            <Link href="/discord">Discord</Link>
+            <Link href='/discord'>Discord</Link>
           </div>
           <div className={styles.elem}>
             <FontAwesomeIcon icon={faAddressCard} className={styles.icon} />
-            <Link href="/about">About Us</Link>
+            <Link href='/about'>About Us</Link>
           </div>
           {!session && (
             <button className={styles.signin} onClick={() => signIn("discord")}>

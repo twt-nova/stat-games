@@ -1,29 +1,27 @@
 .header {
-  min-height: 100px;
+  min-height: 80px;
   height: 10vh;
   display: flex;
   justify-content: space-between;
-  color: var(--white-color);
   align-items: center;
+  color: var(--white-color);
+  box-shadow: 0px 10px 12px -10px rgba(0, 0, 0, 0.33);
+  padding: 0.5rem 2rem;
 }
 
 .circleBg {
-  width: 540px;
-  height: 35vh;
-
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
-  padding-left: 2rem;
-
+  /* width: 540px;
+  height: 35vh;
   background-image: url("/circle.svg");
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 }
 
 .circleBg a {
-  font-size: var(--font-size-large);
+  font-size: clamp(2.8rem, 2.5vw, var(--font-size-large));
   font-weight: 400;
 }
 
@@ -43,7 +41,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   outline: none;
 }
 
@@ -55,14 +52,13 @@
   height: 28px;
   margin-right: 0.5rem;
   color: var(--secondary-color);
-
   outline: none;
 }
 
 .signin {
   border: var(--border);
   background-color: transparent;
-  color: var(--white-color);
+  color: var(--main-color);
   font-size: 18px;
   padding: 0.5rem 2rem;
   border-radius: var(--border-radius);
@@ -122,7 +118,6 @@
 @media screen and (max-width: 1450px) {
   .circleBg {
     width: auto !important;
-    height: 100% !important;
     background: none;
   }
 }
