@@ -96,7 +96,7 @@ export default function Header() {
           {session ? (
             <div className={styles.elem}>
               <img src={session.user.image} className={styles.pfp} />
-              <p style={{ fontSize: "32px" }}>
+              <p style={{ fontSize: "28px" }}>
                 {session.user.name.length < 15
                   ? session.user.name
                   : session.user.name.slice(0, 15) + "..."}
@@ -140,14 +140,6 @@ export default function Header() {
               style={{ height: "32px" }}
             />
             <Link href="/games/minecraft">Minecraft</Link>
-          </div>
-          <div className={styles.elem}>
-            <img
-              src="/pubg.png"
-              className={styles.icon}
-              style={{ height: "32px" }}
-            />
-            <Link href="/games/pubg">Pubg</Link>
           </div>
           <div className={styles.elem}>
             <FontAwesomeIcon
