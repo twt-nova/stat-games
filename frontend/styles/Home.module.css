@@ -89,3 +89,46 @@
   background-color: transparent;
   color: var(--white-color);
 }
+
+@media screen and (max-width: 1366px) {
+  .main {
+    flex-direction: column;
+  }
+  .left {
+    height: auto;
+  }
+  .left h1 {
+    text-align: center;
+  }
+  .buttons {
+    margin-top: 0.5rem;
+    justify-content: center;
+    width: 100%;
+  }
+  .buttons a {
+    margin-left: 1rem;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .chart {
+    padding: 0rem 1rem;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .left {
+    padding: 0rem 1rem;
+  }
+  .buttons {
+    flex-direction: column;
+  }
+  .buttons a {
+    margin-left: 0rem !important;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+  .buttons select {
+    width: 100%;
+  }
+}
