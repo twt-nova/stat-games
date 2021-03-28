@@ -3,11 +3,12 @@ import { useEffect } from "react";
 import styles from "../../styles/Notification.module.css";
 
 export default function index({ noti, setNoti }) {
+  const notificationDuration = 2000;
   useEffect(() => {
     if (noti !== null) {
       setTimeout(() => {
         setNoti(null);
-      }, 1000);
+      }, notificationDuration);
     }
   }, [noti]);
 
