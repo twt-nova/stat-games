@@ -22,7 +22,7 @@ To begin with using our website, you can either run it locally on your machine (
 
 ### Brawl Stars
 
-> CODE: #EXAMPLE
+> CODE: #20L88L2J
 > <img src="/branding/brawl_stars.jpg">
 
 ### Hypixel / Minecraft

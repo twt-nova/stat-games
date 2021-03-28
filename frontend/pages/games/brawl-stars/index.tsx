@@ -40,17 +40,17 @@ export default function ClashRoyale() {
     const value = e.currentTarget.tag.value;
     const tag = value.replace("#", "%23");
 
-    const response = await Axios.get(`${url}/brawl_stars/player/${tag}`);
-    const data = response.data;
-    setData(data);
-    localStorage.setItem("bsData", JSON.stringify(data));
-
     const response1 = await Axios.get(
       `${url}/brawl_stars/player/${tag}/battles`
     );
     const data1 = response1.data;
-    setData(data1);
     localStorage.setItem("bsBattleLog", JSON.stringify(data1));
+    setBattleLog(data1);
+
+    const response = await Axios.get(`${url}/brawl_stars/player/${tag}`);
+    const data = response.data;
+    setData(data);
+    localStorage.setItem("bsData", JSON.stringify(data));
     setLoading1(false);
   };
   return (

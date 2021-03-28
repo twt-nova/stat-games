@@ -9,6 +9,8 @@
 }
 
 .circleBg {
+  width: 580px;
+  height: 370px;
   display: flex;
   justify-content: flex-start;
   align-items: center;

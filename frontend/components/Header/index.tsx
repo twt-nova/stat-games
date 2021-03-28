@@ -97,9 +97,9 @@ export default function Header() {
             <div className={styles.elem}>
               <img src={session.user.image} className={styles.pfp} />
               <p style={{ fontSize: "28px" }}>
-                {session.user.name.length < 15
+                {session.user.name.length < 10
                   ? session.user.name
-                  : session.user.name.slice(0, 15) + "..."}
+                  : session.user.name.slice(0, 10) + "..."}
               </p>
             </div>
           ) : (
