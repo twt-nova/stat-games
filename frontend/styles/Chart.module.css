@@ -62,7 +62,7 @@
 }
 
 #humanGroup {
-  animation: slowZoom 5s var(--human-delay) ease alternate infinite;
+  animation: slowZoom 4s var(--human-delay) ease alternate infinite;
 }
 
 /* ids for the hexagon */
@@ -82,7 +82,10 @@
 }
 
 /* stuff */
-#blueDots,
+#blueDots {
+  animation: slowZoom 4s var(--dots-delay) var(--e-dots) alternate-reverse
+    infinite;
+}
 #whiteDots {
   animation: slowZoom 5s var(--dots-delay) var(--e-dots) alternate infinite;
 }
@@ -112,9 +115,9 @@
 
 @keyframes slowZoom {
   from {
-    transform: translateY(-1%);
+    transform: scale(1.2%);
   }
   to {
-    transform: translateY(0%);
+    transform: translateY(1%);
   }
 }

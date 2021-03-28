@@ -13,7 +13,6 @@
   align-items: center;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
-  /* overflow: hidden; */
   color: var(--white-color);
 }
 
@@ -39,6 +38,18 @@
   font-weight: 400;
   text-align: left;
   font-size: clamp(2.4rem, 3.5vw, var(--font-size-large));
+  animation: fadeIn 0.66s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
 }
 
 .left h1 span {
@@ -63,9 +74,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* for the animation delay */
+  opacity: 0;
+  transform: translateY(50%);
+  animation: fadeUp 0.66s 0.33s ease forwards;
 }
 .buttons > * {
   margin: 0.5rem;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
 
 @media only screen and (max-width: 380px) {

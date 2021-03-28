@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "../../styles/Chart.module.css";
-// This component is cursed don't change it or a horse will rape you
+
+// This component is cursed don't change it or a horse will rape you 🐴
+
 export default function Chart() {
   return (
     <svg
@@ -11,8 +13,8 @@ export default function Chart() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id={styles.chart} clip-path="url(#clip0)">
-        <g id="statistic_chart">
+      <g id={styles.chart} clipPath="url(#clip0)">
+        <g id="statisticChart">
           <g id={styles.dots}>
             <g id={styles.whiteDots}>
               <path
