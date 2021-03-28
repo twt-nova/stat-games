@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
-import Footer from "../components/Footer";
+import Chart from "../components/Chart";
 import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
 
@@ -39,7 +39,8 @@ export default function Home() {
             <Link href={l}>Check stats</Link>
           </div>
         </div>
-        <img src="/chart.svg" alt="chart" className={styles.chart} />
+        {/* <img src="/chart.svg" alt="chart" className={styles.chart} /> */}
+        <Chart />
       </main>
     </div>
   );
