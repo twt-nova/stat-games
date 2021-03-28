@@ -1,0 +1,27 @@
+.notification {
+  position: fixed;
+  top: 10%;
+  left: calc(50% - 250px);
+  color: var(--white-color);
+  font-size: clamp(1.4rem, 1.2vw, 1.8rem);
+  background-color: var(--secondary-color);
+  padding: 0.8rem 1rem;
+  margin: 1rem auto;
+  width: 500px;
+  animation: popIn 0.8s cubic-bezier(0.19, 0.82, 0.165, 1) forwards;
+  border-radius: 0.5rem;
+}
+
+@keyframes popIn {
+  0% {
+    transform: translateY(25%);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}

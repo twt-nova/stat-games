@@ -12,12 +12,15 @@ import { Data } from "../../../lib/types";
 import Footer from "../../../components/Footer";
 import Custom404 from "../../../components/404/Custom404";
 import Link from "next/link";
+import Notification from "../../../components/Notification";
 
 export default function ClashRoyale() {
   const [session, loading] = useSession();
 
   const [loading1, setLoading1] = useState(false);
   const [data, setData] = useState<Data>();
+
+  const [noti, setNoti] = useState(null);
 
   useEffect(() => {
     const dataL: string | null = localStorage.getItem("data");
@@ -35,11 +38,14 @@ export default function ClashRoyale() {
 
     const value = e.currentTarget.tag.value;
     const tag = value.replace("#", "%23");
-
-    const response = await Axios.get(`${url}/clash_royale/players/${tag}`);
-    const data = response.data;
-    setData(data);
-    localStorage.setItem("data", JSON.stringify(data));
+    try {
+      const response = await Axios.get(`${url}/clash_royale/players/${tag}`);
+      const data = response.data;
+      setData(data);
+      localStorage.setItem("data", JSON.stringify(data));
+    } catch (err) {
+      setNoti("The given tag wasn't found");
+    }
     setLoading1(false);
   };
   return (
@@ -87,6 +93,8 @@ export default function ClashRoyale() {
                     See statistics
                   </Link>
                 </div>
+                {/* Only will show up if the noti isn't equal to null */}
+                <Notification noti={noti} setNoti={setNoti}></Notification>
               </>
             )}
           </div>

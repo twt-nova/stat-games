@@ -12,13 +12,14 @@ import Footer from "../../../components/Footer";
 import Custom404 from "../../../components/404/Custom404";
 import Link from "next/link";
 import BrawlStarsData from "../../../components/BrawlStars/BrawlStarsData";
+import Notification from "../../../components/Notification";
 
-export default function ClashRoyale() {
+export default function BrawlStars() {
   const [session, loading] = useSession();
-
   const [loading1, setLoading1] = useState(false);
   const [data, setData] = useState<BSPlayer>();
   const [battleLog, setBattleLog] = useState<BSBattleLog[]>();
+  const [noti, setNoti] = useState(null);
 
   useEffect(() => {
     const dataL: string | null = localStorage.getItem("bsData");
@@ -40,17 +41,21 @@ export default function ClashRoyale() {
     const value = e.currentTarget.tag.value;
     const tag = value.replace("#", "%23");
 
-    const response1 = await Axios.get(
-      `${url}/brawl_stars/player/${tag}/battles`
-    );
-    const data1 = response1.data;
-    localStorage.setItem("bsBattleLog", JSON.stringify(data1));
-    setBattleLog(data1);
+    try {
+      const response1 = await Axios.get(
+        `${url}/brawl_stars/player/${tag}/battles`
+      );
+      const data1 = response1.data;
+      localStorage.setItem("bsBattleLog", JSON.stringify(data1));
+      setBattleLog(data1);
 
-    const response = await Axios.get(`${url}/brawl_stars/player/${tag}`);
-    const data = response.data;
-    setData(data);
-    localStorage.setItem("bsData", JSON.stringify(data));
+      const response = await Axios.get(`${url}/brawl_stars/player/${tag}`);
+      const data = response.data;
+      setData(data);
+      localStorage.setItem("bsData", JSON.stringify(data));
+    } catch (err) {
+      setNoti("The given tag wasn't found");
+    }
     setLoading1(false);
   };
   return (
@@ -97,6 +102,8 @@ export default function ClashRoyale() {
                     See statistics
                   </Link>
                 </div>
+                {/* Only will show up if the noti isn't equal to null */}
+                <Notification noti={noti} setNoti={setNoti}></Notification>
               </>
             )}
           </div>

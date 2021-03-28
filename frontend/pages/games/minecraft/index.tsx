@@ -11,13 +11,16 @@ import { MCPlayerData } from "../../../lib/types";
 import Footer from "../../../components/Footer";
 import Custom404 from "../../../components/404/Custom404";
 import PlayerStatsMC from "../../../components/Minecraft/PlayerStats";
-import Link from "next/link"
+import Link from "next/link";
+import Notification from "../../../components/Notification";
 
 export default function minecraft() {
   const [session, loading] = useSession();
 
   const [loading1, setLoading1] = useState(false);
   const [data, setData] = useState<MCPlayerData>();
+
+  const [noti, setNoti] = useState(null);
 
   useEffect(() => {
     const dataL: string | null = localStorage.getItem("minecraftData");
@@ -38,15 +41,19 @@ export default function minecraft() {
       : JSON.parse(localStorage.getItem("minecraftData")).displayName;
     const tag = value.trim();
 
-    const response = await Axios.get(`${url}/hypixel/player/${tag}`);
-    const data = response.data;
-    setData(data);
-    localStorage.setItem("minecraftData", JSON.stringify(data));
+    try {
+      const response = await Axios.get(`${url}/hypixel/player/${tag}`);
+      const data = response.data;
+      setData(data);
+      localStorage.setItem("minecraftData", JSON.stringify(data));
+    } catch (err) {
+      setNoti("The given tag wasn't found");
+    }
     setLoading1(false);
   };
-  const replace = (route:string) => {
-    window.location.replace(route)
-  }
+  const replace = (route: string) => {
+    window.location.replace(route);
+  };
   return (
     <div className={styles.minecraft}>
       <Head>
@@ -96,6 +103,8 @@ export default function minecraft() {
                     <button style={{ width: "45%" }}>Bedwars</button>
                   </Link>
                 </form>
+                {/* Only will show up if the noti isn't equal to null */}
+                <Notification noti={noti} setNoti={setNoti}></Notification>
               </>
             )}
           </div>
