@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Chart from "../components/Effects/Chart";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>StatGames - Visualize stats for your favorite game</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
@@ -27,15 +28,15 @@ export default function Home() {
           <div className={styles.buttons}>
             <select
               className={`${styles.button} ${styles.game}`}
-              name='options'
+              name="options"
               onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
                 setSelected(event.currentTarget.value);
               }}
             >
-              <option value='clash-royale'>Clash Royale</option>
-              <option value='clash-of-clans'>Clash Of Clans</option>
-              <option value='brawl-stars'>Brawl Stars</option>
-              <option value='minecraft'>Minecraft</option>
+              <option value="clash-royale">Clash Royale</option>
+              <option value="clash-of-clans">Clash Of Clans</option>
+              <option value="brawl-stars">Brawl Stars</option>
+              <option value="minecraft">Minecraft</option>
             </select>
 
             <Link href={l}>
@@ -45,7 +46,8 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <img src='/chart.svg' alt='chart' className={styles.chart} />
+        <Chart />
+        {/* <img src='/chart.svg' alt='chart' className={styles.chart} /> */}
       </main>
     </div>
   );

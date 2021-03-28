@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   color: var(--white-color);
-  box-shadow: 0px 10px 12px -10px rgba(0, 0, 0, 0.33);
+  /* box-shadow: 0px 10px 12px -10px rgba(0, 0, 0, 0.33); */
   padding: 0.5rem 2rem;
 }
 
@@ -13,15 +13,15 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* width: 540px;
+  width: 540px;
   height: 35vh;
   background-image: url("/circle.svg");
   background-size: cover;
-  background-repeat: no-repeat; */
+  background-repeat: no-repeat;
 }
 
 .circleBg a {
-  font-size: clamp(2.8rem, 2.5vw, var(--font-size-large));
+  font-size: clamp(2rem, 5vw, var(--font-size-large));
   font-weight: 400;
 }
 
