@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Chart from "../components/Effects/Chart";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -27,7 +26,6 @@ export default function Home() {
           </h1>
           <div className={styles.buttons}>
             <select
-              className={`${styles.button} ${styles.game}`}
               name="options"
               onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
                 setSelected(event.currentTarget.value);
@@ -38,16 +36,10 @@ export default function Home() {
               <option value="brawl-stars">Brawl Stars</option>
               <option value="minecraft">Minecraft</option>
             </select>
-
-            <Link href={l}>
-              <div className={`${styles.button} ${styles.check}`}>
-                Check stats
-              </div>
-            </Link>
+            <Link href={l}>Check stats</Link>
           </div>
         </div>
-        <Chart />
-        {/* <img src='/chart.svg' alt='chart' className={styles.chart} /> */}
+        <img src="/chart.svg" alt="chart" className={styles.chart} />
       </main>
     </div>
   );
