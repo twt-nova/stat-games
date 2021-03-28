@@ -14,8 +14,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 540px;
-  height: 35vh;
+
   background-image: url("/circle.svg");
   background-size: cover;
   background-repeat: no-repeat;
