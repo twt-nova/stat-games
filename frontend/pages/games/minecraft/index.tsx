@@ -13,6 +13,7 @@ import Custom404 from "../../../components/404/Custom404";
 import PlayerStatsMC from "../../../components/Minecraft/PlayerStats";
 import Link from "next/link";
 import Notification from "../../../components/Notification";
+import Creeper from "../../../components/Creeper";
 
 export default function minecraft() {
   const [session, loading] = useSession();
@@ -108,8 +109,7 @@ export default function minecraft() {
               </>
             )}
           </div>
-
-          <img src="/minecraft.svg" alt="data" />
+          <Creeper />
         </div>
       )}
     </div>

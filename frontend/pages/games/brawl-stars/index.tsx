@@ -13,6 +13,7 @@ import Custom404 from "../../../components/404/Custom404";
 import Link from "next/link";
 import BrawlStarsData from "../../../components/BrawlStars/BrawlStarsData";
 import Notification from "../../../components/Notification";
+import BigGraph from "../../../components/BigGraph";
 
 export default function BrawlStars() {
   const [session, loading] = useSession();
@@ -107,8 +108,7 @@ export default function BrawlStars() {
               </>
             )}
           </div>
-
-          <img src="/brawl-stars.svg" alt="data" />
+          <BigGraph />
         </div>
       )}
     </div>
