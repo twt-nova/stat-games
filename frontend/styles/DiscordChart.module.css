@@ -16,9 +16,7 @@
 }
 
 #commentOnWindow {
-  animation: slideFromRight 1s;
-  animation-iteration-count: initial;
-  animation: allOverX 1s 1s infinite;
+  animation: allOverX 1s infinite;
 }
 
 #womanOnTop {
@@ -32,9 +30,7 @@
 }
 
 #comment {
-  animation: slideFromLeft 0.8s;
-  animation-iteration-count: initial;
-  animation: allOver 1s 1s infinite;
+  animation: allOver 1s infinite;
 }
 
 @keyframes slideFromLeft {
