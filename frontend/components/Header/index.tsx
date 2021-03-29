@@ -86,6 +86,7 @@ export default function Header() {
       </div>
       <div className={styles.div}>
         <Menu
+          id={styles.menuWrapper}
           right
           menuClassName={styles.menu}
           overlayClassName={styles.menu}

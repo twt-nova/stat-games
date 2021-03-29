@@ -27,6 +27,7 @@ export default function Home() {
           </h1>
           <div className={`${anim.del1} ${anim.fadeL} ${styles.buttons}`}>
             <select
+              className={`${styles.button} ${styles.game}`}
               name="options"
               onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
                 setSelected(event.currentTarget.value);
@@ -37,10 +38,11 @@ export default function Home() {
               <option value="brawl-stars">Brawl Stars</option>
               <option value="minecraft">Minecraft</option>
             </select>
-            <Link href={l}>Check stats</Link>
+            <div className={`${styles.button} ${styles.check}`}>
+              <Link href={l}>Check stats</Link>
+            </div>
           </div>
         </div>
-        {/* <img src="/chart.svg" alt="chart" className={styles.chart} /> */}
         <Chart />
       </main>
     </div>

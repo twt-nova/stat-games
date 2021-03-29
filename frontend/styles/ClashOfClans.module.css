@@ -22,7 +22,6 @@
 }
 
 .clashOfClansLeft {
-  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
