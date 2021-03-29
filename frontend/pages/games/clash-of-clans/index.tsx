@@ -3,6 +3,7 @@ import { useSession } from "next-auth/client";
 import Axios from "axios";
 import Head from "next/head";
 import styles from "../../../styles/ClashOfClans.module.css";
+import utils from "../../../styles/Utils.module.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { url } from "../../../lib/url";
 import { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ import Custom404 from "../../../components/404/Custom404";
 import PlayerStatsCoc from "../../../components/ClashOfClans/PlayerStats";
 import Link from "next/link";
 import Notification from "../../../components/Notification";
+import Gamers from "../../../components/Gamers";
 
 export default function clashOfClans() {
   const [session, loading] = useSession();
@@ -66,7 +68,7 @@ export default function clashOfClans() {
         </>
       ) : (
         <div className={styles.clashOfClansText}>
-          <div className={styles.clashOfClansLeft}>
+          <div className={`${styles.clashOfClansLeft} ${utils.front}`}>
             <h1>Clash Of Clans</h1>
             <span>Visualize your stats from clash of clans</span>
             {loading1 ? (
@@ -101,7 +103,7 @@ export default function clashOfClans() {
             )}
           </div>
 
-          <img src="/clashOfClans.svg" alt="data" />
+          <Gamers />
         </div>
       )}
     </div>

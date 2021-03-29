@@ -3,6 +3,7 @@ import { useSession } from "next-auth/client";
 import Axios from "axios";
 import Head from "next/head";
 import styles from "../../../styles/Minecraft.module.css";
+import utils from "../../../styles/Utils.module.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { url } from "../../../lib/url";
 import React, { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ import Custom404 from "../../../components/404/Custom404";
 import PlayerStatsMC from "../../../components/Minecraft/PlayerStats";
 import Link from "next/link";
 import Notification from "../../../components/Notification";
+import Creeper from "../../../components/Creeper";
 
 export default function minecraft() {
   const [session, loading] = useSession();
@@ -72,7 +74,7 @@ export default function minecraft() {
         </>
       ) : (
         <div className={styles.minecraftText}>
-          <div className={styles.minecraftLeft}>
+          <div className={`${styles.minecraftLeft} ${utils.front}`}>
             <h1>Minecraft</h1>
             <span>Visualize your stats from minecraft!</span>
             {loading1 ? (
@@ -108,8 +110,7 @@ export default function minecraft() {
               </>
             )}
           </div>
-
-          <img src="/minecraft.svg" alt="data" />
+          <Creeper />
         </div>
       )}
     </div>

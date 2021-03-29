@@ -4,6 +4,7 @@ import { useState } from "react";
 import Chart from "../components/Chart";
 import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
+import anim from "../styles/Anim.module.css";
 
 export default function Home() {
   const [selected, setSelected] = useState("clash-royale");
@@ -18,13 +19,13 @@ export default function Home() {
       </Head>
 
       <Header />
-      <main className={styles.main}>
+      <main className={`${styles.main} ${anim.root}`}>
         <div className={styles.left}>
-          <h1>
+          <h1 className={`${anim.del1} ${anim.fadeD}`}>
             Visualize stats for your <br />
             <span>Favorite game</span>
           </h1>
-          <div className={styles.buttons}>
+          <div className={`${anim.del1} ${anim.fadeL} ${styles.buttons}`}>
             <select
               name="options"
               onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
