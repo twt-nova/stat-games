@@ -17,30 +17,30 @@ export default function About() {
       <div className={about.cardContainer}>
         <h2 className={about.mainLine}>
           Here at StatGames, you can view yours or other's game stats easily and
-          elegantly! We support games like Clash Of Clans, Clash Royale etc as
-          well as Brawl Stars and Minecraft! What are you waiting for? A whole
-          world of data awaits!
+          elegantly! We support games like Clash Of Clans, Clash Royale,Brawl
+          Stars and Minecraft! What are you waiting for? A whole world of data
+          awaits!
         </h2>
         <main className={about.pageContent}>
           <div className={about.card}>
             <div className={about.content}>
               <h2 className={about.title}>Clash Of Clans</h2>
               <p className={about.copy}>Visualize data for Clash Of Clans</p>
-              <Link href="/games/clashOfClans">View Stats</Link>
+              <Link href="/games/clash-of-clans">View Stats</Link>
             </div>
           </div>
           <div className={about.card}>
             <div className={about.content}>
               <h2 className={about.title}>Clash Royale</h2>
               <p className={about.copy}>Visualize data for Clash Royale</p>
-              <Link href="/games/clashRoyale">View Stats</Link>
+              <Link href="/games/clash-royale">View Stats</Link>
             </div>
           </div>
           <div className={about.card}>
             <div className={about.content}>
               <h2 className={about.title}>Brawl Stars</h2>
               <p className={about.copy}>Visualize data for Brawl Stars</p>
-              <Link href="/games/brawlStars">View Stats</Link>
+              <Link href="/games/brawl-stars">View Stats</Link>
             </div>
           </div>
           <div className={about.card}>
