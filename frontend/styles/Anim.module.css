@@ -1,3 +1,136 @@
+.root {
+  --duration: 1s;
+  --delay-1: 0.5s;
+  --delay-2: 1s;
+  --delay-3: 1.5s;
+  --delay-4: 1.75s;
+  --delay-5: 2s;
+  --e-1: cubic-bezier(0.53, 0.02, 0.3, 1.1);
+  --e-2: cubic-bezier(0.77, 0.01, 0.6, 1);
+  --e-3: cubic-bezier(0.76, 0.07, 0.35, 1.02);
+  --e-4: cubic-bezier(0.8, 0.19, 0.4, 1.05);
+}
+
+.svg {
+  display: inline-block;
+  max-width: 45rem;
+  width: 100%;
+  height: 100%;
+}
+
+:is(.fadeR, .fadeL, .fadeD, .fadeU) {
+  opacity: 0;
+}
+
+.fadeR {
+  animation: fadeRight var(--duration) 0s var(--e-1) forwards;
+}
+.fadeL {
+  animation: fadeLeft var(--duration) 0s var(--e-1) forwards;
+}
+.fadeU {
+  animation: fadeUp var(--duration) 0s var(--e-1) forwards;
+}
+.fadeD {
+  animation: fadeDown var(--duration) 0s var(--e-1) forwards;
+}
+.lev {
+  animation: levitate var(--duration) 0s var(--e-1) alternate infinite;
+}
+
+/* Fade animations */
+
+/* delay 1 */
+.del1:is(.fadeR) {
+  animation: fadeRight var(--duration) var(--delay-1) var(--e-1) forwards;
+}
+.del1:is(.fadeL) {
+  animation: fadeLeft var(--duration) var(--delay-1) var(--e-1) forwards;
+}
+.del1:is(.fadeU) {
+  animation: fadeUp var(--duration) var(--delay-1) var(--e-1) forwards;
+}
+.del1:is(.fadeD) {
+  animation: fadeDown var(--duration) var(--delay-1) var(--e-1) forwards;
+}
+.del1:is(.lev) {
+  animation: levitate var(--duration) var(--delay-1) var(--e-2) alternate
+    infinite;
+}
+
+/* delay 2 */
+.del2:is(.fadeR) {
+  animation: fadeRight var(--duration) var(--delay-2) var(--e-1) forwards;
+}
+.del2:is(.fadeL) {
+  animation: fadeLeft var(--duration) var(--delay-2) var(--e-1) forwards;
+}
+.del2:is(.fadeU) {
+  animation: fadeUp var(--duration) var(--delay-2) var(--e-1) forwards;
+}
+.del2:is(.fadeD) {
+  animation: fadeDown var(--duration) var(--delay-2) var(--e-1) forwards;
+}
+.del2:is(.lev) {
+  animation: levitate var(--duration) var(--delay-2) var(--e-2) alternate
+    infinite;
+}
+
+/* delay 3 */
+.del3:is(.fadeR) {
+  animation: fadeRight var(--duration) var(--delay-3) var(--e-1) forwards;
+}
+.del3:is(.fadeL) {
+  animation: fadeLeft var(--duration) var(--delay-3) var(--e-1) forwards;
+}
+.del3:is(.fadeU) {
+  animation: fadeUp var(--duration) var(--delay-3) var(--e-1) forwards;
+}
+.del3:is(.fadeD) {
+  animation: fadeDown var(--duration) var(--delay-3) var(--e-1) forwards;
+}
+.del3:is(.lev) {
+  animation: levitate var(--duration) var(--delay-3) var(--e-2) alternate
+    infinite;
+}
+
+/* delay 4 */
+.del4:is(.fadeR) {
+  animation: fadeRight var(--duration) var(--delay-4) var(--e-1) forwards;
+}
+.del4:is(.fadeL) {
+  animation: fadeLeft var(--duration) var(--delay-4) var(--e-1) forwards;
+}
+.del4:is(.fadeU) {
+  animation: fadeUp var(--duration) var(--delay-4) var(--e-1) forwards;
+}
+.del4:is(.fadeD) {
+  animation: fadeDown var(--duration) var(--delay-4) var(--e-1) forwards;
+}
+.del4:is(.lev) {
+  animation: levitate var(--duration) var(--delay-4) var(--e-2) alternate
+    infinite;
+}
+
+/* delay 5 */
+.del5:is(.fadeR) {
+  animation: fadeRight var(--duration) var(--delay-5) var(--e-1) forwards;
+}
+.del5:is(.fadeL) {
+  animation: fadeLeft var(--duration) var(--delay-5) var(--e-1) forwards;
+}
+.del5:is(.fadeU) {
+  animation: fadeUp var(--duration) var(--delay-5) var(--e-1) forwards;
+}
+.del5:is(.fadeD) {
+  animation: fadeDown var(--duration) var(--delay-5) var(--e-1) forwards;
+}
+.del5:is(.lev) {
+  animation: levitate var(--duration) var(--delay-5) var(--e-2) alternate
+    infinite;
+}
+
+/* Animations */
 @keyframes fadeRight {
   from {
     opacity: 0;
@@ -38,84 +171,35 @@
     transform: translateY(0%);
   }
 }
-
-.root {
-  --duration: 1s;
-  --delay-one: 0.5s;
-  --delay-two: 1s;
-  --delay-three: 1.5s;
-  --delay-four: 1.75s;
-  --e-fade: cubic-bezier(0.53, 0.02, 0.3, 1.1);
-  --e-2: cubic-bezier(0.77, 0.01, 0.6, 1);
-  --e-3: cubic-bezier(0.76, 0.07, 0.35, 1.02);
+/* loop animations */
+@keyframes levitate {
+  0% {
+    transform: translateY(-20%);
+  }
+  50% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-20%);
+  }
+}
+@keyframes wiggle {
+  0% {
+    transform: translate(1%, -1%);
+  }
+  50% {
+    transform: translate(0%, -1%);
+  }
+  100% {
+    transform: translate(-1%, -1%);
+  }
 }
 
-:is(.fadeR, .fadeL, .fadeD, .fadeU) {
-  opacity: 0;
-}
-
-.fadeR {
-  animation: fadeRight var(--duration) 0s var(--e-fade) forwards;
-}
-.fadeL {
-  animation: fadeLeft var(--duration) 0s var(--e-fade) forwards;
-}
-.fadeU {
-  animation: fadeUp var(--duration) 0s var(--e-fade) forwards;
-}
-.fadeD {
-  animation: fadeDown var(--duration) 0s var(--e-fade) forwards;
-}
-
-/* delays */
-.del1:is(.fadeR) {
-  animation: fadeRight var(--duration) var(--delay-one) var(--e-fade) forwards;
-}
-.del1:is(.fadeL) {
-  animation: fadeLeft var(--duration) var(--delay-one) var(--e-fade) forwards;
-}
-.del1:is(.fadeU) {
-  animation: fadeUp var(--duration) var(--delay-one) var(--e-fade) forwards;
-}
-.del1:is(.fadeD) {
-  animation: fadeDown var(--duration) var(--delay-one) var(--e-fade) forwards;
-}
-
-.del2:is(.fadeR) {
-  animation: fadeRight var(--duration) var(--delay-two) var(--e-fade) forwards;
-}
-.del2:is(.fadeL) {
-  animation: fadeLeft var(--duration) var(--delay-two) var(--e-fade) forwards;
-}
-.del2:is(.fadeU) {
-  animation: fadeUp var(--duration) var(--delay-two) var(--e-fade) forwards;
-}
-.del2:is(.fadeD) {
-  animation: fadeDown var(--duration) var(--delay-two) var(--e-fade) forwards;
-}
-
-.del3:is(.fadeR) {
-  animation: fadeRight var(--duration) var(--delay-three) var(--e-fade) forwards;
-}
-.del3:is(.fadeL) {
-  animation: fadeLeft var(--duration) var(--delay-three) var(--e-fade) forwards;
-}
-.del3:is(.fadeU) {
-  animation: fadeUp var(--duration) var(--delay-three) var(--e-fade) forwards;
-}
-.del3:is(.fadeD) {
-  animation: fadeDown var(--duration) var(--delay-three) var(--e-fade) forwards;
-}
-
-.del4:is(.fadeR) {
-  animation: fadeRight var(--duration) var(--delay-four) var(--e-fade) forwards;
-}
-.del4:is(.fadeL) {
-  animation: fadeLeft var(--duration) var(--delay-four) var(--e-fade) forwards;
-}
-.del4:is(.fadeU) {
-  animation: fadeUp var(--duration) var(--delay-four) var(--e-fade) forwards;
-}
-.del4:is(.fadeD) {
-  animation: fadeDown var(--duration) var(--delay-four) var(--e-fade) forwards;
+@keyframes slowZoom {
+  from {
+    transform: scale(0.98);
+  }
+  to {
+    transform: scale(1.2);
+  }
 }

@@ -3,6 +3,7 @@ import { useSession } from "next-auth/client";
 import Axios from "axios";
 import Head from "next/head";
 import styles from "../../../styles/ClashRoyale.module.css";
+import utils from "../../../styles/Utils.module.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { url } from "../../../lib/url";
 import { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ import Footer from "../../../components/Footer";
 import Custom404 from "../../../components/404/Custom404";
 import Link from "next/link";
 import Notification from "../../../components/Notification";
+import DataSet from "../../../components/DataSet";
 
 export default function ClashRoyale() {
   const [session, loading] = useSession();
@@ -66,7 +68,7 @@ export default function ClashRoyale() {
         </>
       ) : (
         <div className={styles.clashRoyaleText}>
-          <div className={styles.clashRoyaleLeft}>
+          <div className={`${styles.clashRoyaleLeft} ${utils.front}`}>
             <h1>Clash Royale</h1>
             <span>Visualize your stats from clash royale</span>
             {loading1 ? (
@@ -99,7 +101,7 @@ export default function ClashRoyale() {
             )}
           </div>
 
-          <img src="/data.svg" alt="data" />
+          <DataSet />
         </div>
       )}
     </div>
