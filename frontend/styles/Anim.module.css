@@ -1,5 +1,7 @@
 .root {
   --duration: 1s;
+  --duration-3: 3s;
+  --duration-5: 5s;
   --delay-1: 0.5s;
   --delay-2: 1s;
   --delay-3: 1.5s;
@@ -13,9 +15,8 @@
 
 .svg {
   display: inline-block;
-  max-width: 45rem;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 :is(.fadeR, .fadeL, .fadeD, .fadeU) {
@@ -37,6 +38,9 @@
 .lev {
   animation: levitate var(--duration) 0s var(--e-1) alternate infinite;
 }
+.zoom {
+  animation: zoom var(--duration) 0s var(--e-3) alternate infinite;
+}
 
 /* Fade animations */
 
@@ -57,6 +61,9 @@
   animation: levitate var(--duration) var(--delay-1) var(--e-2) alternate
     infinite;
 }
+.del1:is(.zoom) {
+  animation: zoom var(--duration) var(--delay-1) var(--e-3) alternate infinite;
+}
 
 /* delay 2 */
 .del2:is(.fadeR) {
@@ -74,6 +81,9 @@
 .del2:is(.lev) {
   animation: levitate var(--duration) var(--delay-2) var(--e-2) alternate
     infinite;
+}
+.del2:is(.zoom) {
+  animation: zoom var(--duration) var(--delay-2) var(--e-3) alternate infinite;
 }
 
 /* delay 3 */
@@ -93,6 +103,12 @@
   animation: levitate var(--duration) var(--delay-3) var(--e-2) alternate
     infinite;
 }
+.del3:is(.zoom) {
+  animation: zoom var(--duration) var(--delay-3) var(--e-3) alternate infinite;
+}
+.dur5.del3:is(.zoom) {
+  animation: zoom var(--duration-3) var(--delay-3) var(--e-3) alternate infinite;
+}
 
 /* delay 4 */
 .del4:is(.fadeR) {
@@ -111,6 +127,12 @@
   animation: levitate var(--duration) var(--delay-4) var(--e-2) alternate
     infinite;
 }
+.del4:is(.zoom) {
+  animation: zoom var(--duration) var(--delay-4) var(--e-3) alternate infinite;
+}
+.dur5.del4:is(.zoom) {
+  animation: zoom var(--duration-5) var(--delay-4) var(--e-3) alternate infinite;
+}
 
 /* delay 5 */
 .del5:is(.fadeR) {
@@ -126,8 +148,13 @@
   animation: fadeDown var(--duration) var(--delay-5) var(--e-1) forwards;
 }
 .del5:is(.lev) {
-  animation: levitate var(--duration) var(--delay-5) var(--e-2) alternate
-    infinite;
+  animation: zoom var(--duration) var(--delay-5) var(--e-2) alternate infinite;
+}
+.del5:is(.zoom) {
+  animation: zoom var(--duration) var(--delay-5) var(--e-3) alternate infinite;
+}
+.dur5.del5:is(.zoom) {
+  animation: zoom var(--duration-5) var(--delay-5) var(--e-3) alternate infinite;
 }
 
 /* Animations */
@@ -195,11 +222,11 @@
   }
 }
 
-@keyframes slowZoom {
+@keyframes zoom {
   from {
-    transform: scale(0.98);
+    transform: scale(0.995);
   }
   to {
-    transform: scale(1.2);
+    transform: scale(1.005);
   }
 }

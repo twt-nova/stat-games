@@ -6,87 +6,108 @@
 }
 
 .main {
-  height: 90vh;
   width: 100%;
-  display: flex;
-  justify-content: space-around;
+  height: 100%;
+  min-height: 90vh;
+  display: grid;
+  justify-items: center;
   align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
   color: var(--white-color);
 }
 
-.left {
-  height: 200px;
+@media only screen and (max-width: 780px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
 
+.left {
+  min-height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
+  padding: 0 1rem;
 }
 
 .left h1 {
   font-weight: 400;
-  font-size: var(--font-size-large);
+  font-size: clamp(2.4rem, 3.5vw, var(--font-size-large));
 }
 
 .left h1 span {
   color: var(--main-color);
 }
 
+@media only screen and (max-width: 780px) {
+  .left {
+    align-items: center;
+  }
+  .left h1 {
+    text-align: center;
+  }
+}
+
 .chart {
-  max-width: 700px;
   width: 100%;
+  height: auto;
 }
 
 .buttons {
-  width: 75%;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.buttons select {
-  padding: 0.5rem 2rem;
+.buttons > * {
+  margin: 0.5rem;
+}
 
-  color: var(--bg-color);
+@media only screen and (max-width: 380px) {
+  .buttons {
+    flex-direction: column;
+  }
+}
 
-  outline: none;
+.button {
+  display: inline-block;
+  color: var(--white-color);
+  background-color: var(--main-color);
+  padding: 0.5rem 1rem;
   border-radius: var(--border-radius);
-  border: var(--border-white);
-
-  font-size: var(--font-size-small);
-
+  outline: none;
+  font-size: clamp(var(--font-size-small), 1.5vw, 1.8rem);
+  transition: background-color 0.33s ease-in;
+  transition: color 0.33s ease-out;
   cursor: pointer;
 }
 
-.buttons select option {
+.button.game {
   color: var(--bg-color);
+  background-color: var(--white-color);
+  border: var(--border-white);
+}
 
+.button.game option {
+  color: var(--bg-color);
   outline: none;
   border: none;
 }
-
-.buttons a {
-  padding: 0.5rem 2rem;
-
-  color: var(--bg-color);
-
-  outline: none;
-  border: var(--border);
-
-  border-radius: var(--border-radius);
-  background-color: var(--main-color);
-
-  font-size: var(--font-size-small);
-
-  transition: var(--transition);
-
-  cursor: pointer;
+.button.game option::selection {
+  background-color: aqua;
 }
 
-.buttons a:hover {
+.button.check {
+  color: var(--bg-color);
+  border: var(--border);
+  background-color: var(--main-color);
+}
+
+.button.check:hover {
   background-color: transparent;
-  color: var(--white-color);
+  color: var(--main-color);
 }
 
 @media screen and (max-width: 1366px) {
@@ -104,9 +125,6 @@
     justify-content: center;
     width: 100%;
   }
-  .buttons a {
-    margin-left: 1rem;
-  }
 }
 
 @media screen and (max-width: 720px) {
@@ -122,12 +140,7 @@
   .buttons {
     flex-direction: column;
   }
-  .buttons a {
-    margin-left: 0rem !important;
+  .buttons .check {
     margin-top: 0.5rem;
-    width: 100%;
-  }
-  .buttons select {
-    width: 100%;
   }
 }

@@ -4,7 +4,7 @@ import anim from "../../styles/Anim.module.css";
 export default function index() {
   return (
     <svg
-      className={anim.root}
+      className={`${anim.root} ${anim.svg}`}
       width="831"
       height="737"
       viewBox="0 0 831 737"

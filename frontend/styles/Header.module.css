@@ -29,6 +29,9 @@
 
 #menuWrapper {
   top: 0px !important;
+  width: 30vw !important;
+  max-width: 300px !important;
+  min-width: 250px !important;
 }
 
 .menu {
