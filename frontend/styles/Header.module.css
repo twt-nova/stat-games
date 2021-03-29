@@ -25,8 +25,13 @@
   font-weight: 400;
 }
 
+#menuWrapper {
+  top: 0px !important;
+}
+
 .menu {
   height: 100vh !important;
+  background-color: red;
 }
 
 .bmItemList a {
