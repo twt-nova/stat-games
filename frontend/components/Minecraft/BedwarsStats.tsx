@@ -11,12 +11,14 @@ export default function BedwarsStatsCoc({ data }: PageProps) {
   const [showAv, setShowAv] = useState(false);
 
   let achievements = [
-    data.overall.games_played_bedwars || 0,
-    data.overall.kills_bedwars || 0,
-    data.overall.items_purchased_bedwars || 0,
-    data.overall.beds_broken_bedwars || 0,
-    data.overall.beds_lost_bedwars || 0,
-    data.overall.deaths_bedwars || 0,
+    data.overall.games_played_bedwars ? data.overall.games_played_bedwars : 0,
+    data.overall.kills_bedwars ? data.overall.kills_bedwars : 0,
+    data.overall.items_purchased_bedwars
+      ? data.overall.items_purchased_bedwars
+      : 0,
+    data.overall.beds_broken_bedwars ? data.overall.beds_broken_bedwars : 0,
+    data.overall.beds_lost_bedwars ? data.data.overall.beds_lost_bedwars : 0,
+    data.overall.deaths_bedwars ? data.overall.beds_lost_bedwars : 0,
   ];
   let arr: string[] = [];
   for (let i = 0; i < achievements.length; i++) {
@@ -39,20 +41,20 @@ export default function BedwarsStatsCoc({ data }: PageProps) {
       <div className={styles.minecraftTrophies}>
         <p className={styles.minecraftTemplate}>
           Bedwars Experience:{" "}
-          <span>{numeral(data.overall.Experience).format("0,0")}</span>
+          <span>{numeral(data.overall.Experience || 0).format("0,0")}</span>
         </p>
         <p className={styles.minecraftTemplate}>
           Winstreak:{" "}
-          <span>{numeral(data.overall.winstreak).format("0,0")}</span>
+          <span>{numeral(data.overall.winstreak || 0).format("0,0")}</span>
         </p>
         <p className={styles.minecraftTemplate}>
           Resources Collected:{" "}
           <span>
-            {numeral(data.overall.resources_collected_bedwars).format("0,0")}
+            {numeral(data.overall.resources_collected_bedwars || 0).format("0,0")}
           </span>
         </p>
         <p className={styles.minecraftTemplate}>
-          Coins: <span>{numeral(data.overall.coins).format("0,0")}</span>
+          Coins: <span>{numeral(data.overall.coins || 0).format("0,0")}</span>
         </p>
       </div>
 
@@ -97,13 +99,13 @@ export default function BedwarsStatsCoc({ data }: PageProps) {
         <p className={styles.minecraftTemplate}>
           Fall Kills:{" "}
           <span>
-            {numeral(data.overall.fall_kills_bedwars).format("0, 0") || 0}
+            {numeral(data.overall.fall_kills_bedwars || 0).format("0, 0") || 0}
           </span>
         </p>
         <p className={styles.minecraftTemplate}>
           Projectile Kills:{" "}
           <span>
-            {numeral(data.overall.projectile_final_kills_bedwars).format(
+            {numeral(data.overall.projectile_final_kills_bedwars || 0).format(
               "0, 0"
             ) || 0}
           </span>
@@ -111,14 +113,14 @@ export default function BedwarsStatsCoc({ data }: PageProps) {
         <p className={styles.minecraftTemplate}>
           Magic Kills:{" "}
           <span>
-            {numeral(data.overall.magic_final_kills_bedwars).format("0, 0") ||
+            {numeral(data.overall.magic_final_kills_bedwars || 0).format("0, 0") ||
               0}
           </span>
         </p>
         <p className={styles.minecraftTemplate}>
           Void Kills:{" "}
           <span>
-            {numeral(data.overall.void_final_kills_bedwars).format("0, 0") || 0}
+            {numeral(data.overall.void_final_kills_bedwars || 0).format("0, 0") || 0}
           </span>
         </p>
       </div>

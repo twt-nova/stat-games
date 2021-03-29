@@ -10,12 +10,12 @@ interface PageProps {
 export default function SkywarsStatsCoc({ data }: PageProps) {
   const [showAv, setShowAv] = useState(false);
   let achievements = [
-    data.overall.games_played_skywars || 0,
-    data.overall.kills || 0,
-    data.overall.items_enchanted || 0,
-    data.overall.assists || 0,
-    data.overall.arrows_hit || 0,
-    data.overall.deaths || 0,
+    data.overall.games_played_skywars ? data.overall.games_played_skywars : 0,
+    data.overall.kills ? data.overall.kills : 0,
+    data.overall.items_enchanted ? data.overall.items_enchanted : 0,
+    data.overall.assists ? data.overall.assists : 0,
+    data.overall.arrows_hit ? data.overall.arrows_hit : 0,
+    data.overall.deaths ? data.overall.deaths : 0,
   ];
   let arr: string[] = [];
   for (let i = 0; i < achievements.length; i++) {
@@ -37,18 +37,18 @@ export default function SkywarsStatsCoc({ data }: PageProps) {
       </div>
       <div className={styles.minecraftTrophies}>
         <p className={styles.minecraftTemplate}>
-          Games Played: <span>{numeral(data.overall.games).format("0,0")}</span>
+          Games Played: <span>{numeral(data.overall.games || 0).format("0,0")}</span>
         </p>
         <p className={styles.minecraftTemplate}>
           Winstreak:{" "}
-          <span>{numeral(data.overall.winstreak).format("0,0")}</span>
+          <span>{numeral(data.overall.winstreak || 0).format("0,0")}</span>
         </p>
         <p className={styles.minecraftTemplate}>
           Skywars Experience:{" "}
-          <span>{numeral(data.overall.skywars_experience).format("0,0")}</span>
+          <span>{numeral(data.overall.skywars_experience || 0).format("0,0")}</span>
         </p>
         <p className={styles.minecraftTemplate}>
-          Coins: <span>{numeral(data.overall.coins).format("0,0")}</span>
+          Coins: <span>{numeral(data.overall.coins || 0).format("0,0")}</span>
         </p>
       </div>
 
@@ -93,20 +93,20 @@ export default function SkywarsStatsCoc({ data }: PageProps) {
         <p className={styles.minecraftTemplate}>
           Longest Bow Kill:{" "}
           <span>
-            {numeral(data.overall.longest_bow_kill).format("0, 0") || 0}
+            {numeral(data.overall.longest_bow_kill || 0).format("0, 0") || 0}
           </span>
         </p>
         <p className={styles.minecraftTemplate}>
           Melee Kills:{" "}
-          <span>{numeral(data.overall.melee_kills).format("0, 0") || 0}</span>
+          <span>{numeral(data.overall.melee_kills || 0).format("0, 0") || 0}</span>
         </p>
         <p className={styles.minecraftTemplate}>
           Fastest Win:{" "}
-          <span>{numeral(data.overall.fastest_win).format("0, 0") || 0}</span>
+          <span>{numeral(data.overall.fastest_win || 0).format("0, 0") || 0}</span>
         </p>
         <p className={styles.minecraftTemplate}>
           Void Kills:{" "}
-          <span>{numeral(data.overall.void_kills).format("0, 0") || 0}</span>
+          <span>{numeral(data.overall.void_kills || 0).format("0, 0") || 0}</span>
         </p>
       </div>
 
