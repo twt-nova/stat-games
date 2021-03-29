@@ -1,6 +1,6 @@
 import discord
-import bot_utlis as utils
-import assets.pyson as pyson
+import paimon_utils as utils
+import paimon.pyson as pyson
 
 '''
   please use the prefix: p!

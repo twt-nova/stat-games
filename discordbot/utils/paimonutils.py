@@ -1,6 +1,7 @@
 import discord
-import assets.pyson as pyson
-import assets.scrapper as scrapper
+import paimon.pyson as pyson
+import paimon.scrapper as scrapper
+from discord.ext.commands import BadArgument
 
 def get_token():
   f = open("./token.txt", "r")
@@ -16,14 +17,14 @@ def generate_json():
   scrapper.generate_characters_json()
 
 def get_characters():
-  return pyson.read_json("./assets/characters.json")["characters"]
+  return pyson.read_json("./paimon/characters.json")["characters"]
 
-def  get_character(name):
+def get_character(name):
   characters = get_characters()
   if name in characters.keys():
     return characters[name]
   else:
-    return -1
+    raise BadArgument(name)
 
 def format_character(character):
   bold = lambda str: f"**{str}**"

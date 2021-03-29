@@ -52,3 +52,4 @@ backend/.env
 
 discordbot/config.yaml
 *.pyc
+.DS_Store

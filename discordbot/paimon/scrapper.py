@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
-from assets.genshin_character import Character
-from assets.pyson import write_json
+from paimon.genshin_character import Character
+from paimon.pyson import write_json
 import os
 
 def to_number(stat):
