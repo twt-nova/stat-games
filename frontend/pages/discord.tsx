@@ -1,4 +1,5 @@
 import Head from "next/head";
+import DiscordChart from "../components/DiscordChart";
 import Header from "../components/Header";
 import styles from "../styles/Discord.module.css";
 
@@ -39,7 +40,8 @@ export default function Discord() {
             </a>
           </div>
         </div>
-        <img src="/discord.svg" alt="discord" className={styles.image} />
+        {/* <img src="/discord.svg" alt="discord" className={styles.image} /> */}
+        <DiscordChart />
       </div>
     </div>
   );
