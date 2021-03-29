@@ -61,9 +61,9 @@ export default function minecraft() {
       <Head>
         <meta
           name="description"
-          content="Visualize your stats from Minecraft in few clicks. Enter your username, and visualize your data"
+          content="Visualize your stats from Hypixel in few clicks. Enter your username, and visualize your data"
         />
-        <title>StatGames | Visualize data for Minecraft</title>
+        <title>StatGames | Visualize data for Hypixel</title>
       </Head>
       <Header />
 
@@ -76,7 +76,7 @@ export default function minecraft() {
         <div className={styles.minecraftText}>
           <div className={`${styles.minecraftLeft} ${utils.front}`}>
             <h1>Minecraft</h1>
-            <span>Visualize your stats from minecraft!</span>
+            <span>Visualize your stats from hypixel!</span>
             {loading1 ? (
               <Loader
                 type="TailSpin"
