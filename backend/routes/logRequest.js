@@ -5,7 +5,6 @@ const StatModel = mongoose.model("Stat");
 
 router.use(async function (req, res, next) {
   res.on("finish", () => {
-    if (res.status != 200) { return next(); };
     const stat = StatModel({
       path: req.originalUrl,
     });
