@@ -1,4 +1,4 @@
-<img src="branding/statgames long with slogan.png">
+<a href="https://statgames.net"><img src="branding/statgames long with slogan.png"></a>
 
 ---
 
