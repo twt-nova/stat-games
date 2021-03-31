@@ -40,7 +40,7 @@ export default function PlayerStatsMC({ data }: PageProps) {
           Minecraft Version: <span>{data.mcVersion}</span>
         </p>
         <p className={styles.minecraftTemplate}>
-          Network EXP <span>{numeral(data.networkExp).format("0,0")}</span>
+          Network EXP: <span>{numeral(data.networkExp).format("0,0")}</span>
         </p>
         <p className={styles.minecraftTemplate}>
           Karma: <span>{numeral(data.karma).format("0,0")}</span>
