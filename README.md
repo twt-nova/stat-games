@@ -1,14 +1,18 @@
 <a href="https://statgames.net"><img src="branding/statgames long with slogan.png"></a>
 
 ---
+Please consider voting for us [here](https://twtcodejam.net/timathon/team/vote/667/)
+
+---
+
 
 ## What is this?
 
-As part of the timathon code jam, we, team nova, created a website which lets you see statistics for a multitude of different games, ranging from clash royale, to hypixel. In this read me we'll be quickly going over what this website is, how you can use it, and integrate it into your own app.
+As part of the [timathon code jam](https://twtcodejam.net/), we, team nova, created a website and discord bot which let you see statistics for a range of different games, from clash royale, to hypixel. In this read me we'll be quickly going over what this project is, how you can use it, and integrate it into your own app. 
 
 ## Getting started
 
-To begin with using our website, you can either run it locally on your machine (instructions below) or use our live demo [here](https://statgames.net/). Once you get there this is how you can use it. Firstly click on the sign in button. Once you are logged in, you can choose the games that you wish to view. Incase you dont actually play one or more of these games, here are some examples with codes that you can use:
+To begin with using our website, you can either run it locally on your machine (instructions below) or use our live demo [here](https://statgames.net/). For the discord bot you can run it on your machine or you can try it out in our server, or in your own [here](https://statgames.net/discord). Once you get there this is how you can use it. Firstly click on the sign in button. Once you are logged in, you can choose the games that you wish to view. Incase you dont actually play one or more of these games, here are some examples with codes that you can use:
 
 ### Clash Royale
 
@@ -30,9 +34,17 @@ To begin with using our website, you can either run it locally on your machine (
 > Name: gamerboy80
 > <img src="/branding/hypixel.jpg">
 
+## Requirements:
++ Python3.8+ [download](https://python.org/downloads)
++ NodeJS 12+ [download](https://nodejs.org/en/download/)
++ NPM 7+ [download](https://nodejs.org/en/download/) 
+
+> Note: When installing these, make sure to add them to path, so you can use them.
+
+
 ## Starting the app
 
-Please create .env files before running app.
+Please create enviorment variables and configuration files before running app (mentioned below).
 
 ### Frontend
 
@@ -51,7 +63,15 @@ npm start --> for deployment
 npm run devstart --> for development
 ```
 
-## Creating enviorment variables
+### Discord Bot
+
+```
+cd discordbot
+pip install -r requirements.txt
+python bot.py
+```
+
+## Configuring Everything
 
 ### Frontend
 
@@ -79,3 +99,9 @@ BRAWL_STARS_TOKEN=api_key
 HYPIXEL_KEY=api_key
 MONGO_URL=mongo_url
 ```
+
+
+### Discord Bot
+
+1. Make a file `discordbot/config.yaml`
+2. Copy the contents of the config.example.yaml file and insert it into the config file. Make sure that you put in all significant details
