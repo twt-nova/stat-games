@@ -3,6 +3,7 @@ import { useSession } from "next-auth/client";
 import Axios from "axios";
 import Head from "next/head";
 import styles from "../../../styles/ClashRoyale.module.css";
+import utils from "../../../styles/Utils.module.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { url } from "../../../lib/url";
 import { useEffect, useState } from "react";
@@ -12,12 +13,16 @@ import { Data } from "../../../lib/types";
 import Footer from "../../../components/Footer";
 import Custom404 from "../../../components/404/Custom404";
 import Link from "next/link";
+import Notification from "../../../components/Notification";
+import DataSet from "../../../components/DataSet";
 
 export default function ClashRoyale() {
   const [session, loading] = useSession();
 
   const [loading1, setLoading1] = useState(false);
   const [data, setData] = useState<Data>();
+
+  const [noti, setNoti] = useState(null);
 
   useEffect(() => {
     const dataL: string | null = localStorage.getItem("data");
@@ -35,11 +40,14 @@ export default function ClashRoyale() {
 
     const value = e.currentTarget.tag.value;
     const tag = value.replace("#", "%23");
-
-    const response = await Axios.get(`${url}/clash_royale/players/${tag}`);
-    const data = response.data;
-    setData(data);
-    localStorage.setItem("data", JSON.stringify(data));
+    try {
+      const response = await Axios.get(`${url}/clash_royale/players/${tag}`);
+      const data = response.data;
+      setData(data);
+      localStorage.setItem("data", JSON.stringify(data));
+    } catch (err) {
+      setNoti("The given tag wasn't found");
+    }
     setLoading1(false);
   };
   return (
@@ -60,7 +68,7 @@ export default function ClashRoyale() {
         </>
       ) : (
         <div className={styles.clashRoyaleText}>
-          <div className={styles.clashRoyaleLeft}>
+          <div className={`${styles.clashRoyaleLeft} ${utils.front}`}>
             <h1>Clash Royale</h1>
             <span>Visualize your stats from clash royale</span>
             {loading1 ? (
@@ -87,11 +95,13 @@ export default function ClashRoyale() {
                     See statistics
                   </Link>
                 </div>
+                {/* Only will show up if the noti isn't equal to null */}
+                <Notification noti={noti} setNoti={setNoti}></Notification>
               </>
             )}
           </div>
 
-          <img src="/data.svg" alt="data" />
+          <DataSet />
         </div>
       )}
     </div>
