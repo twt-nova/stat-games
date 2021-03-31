@@ -11,11 +11,11 @@ interface PageProps {
 export default function PlayerStatsMC({ data }: PageProps) {
   const [showAv, setShowAv] = useState(false)
   let achievements = [
-    data.info.bedwars.wins ? data.info.bedwars.wins : "NA",
-    data.info.bedwars.beds ? data.info.bedwars.beds : "NA",
-    data.info.duels.bridge_wins ? data.info.duels.bridge_wins : "NA",
-    data.info.skywars.kills_solo ? data.info.skywars.kills_solo : "NA",
-    data.info.skywars.wins_solo ? data.info.skywars.wins_solo : "NA",
+    data.info.bedwars?.wins ? data.info.bedwars.wins : "NA",
+    data.info.bedwars?.beds ? data.info.bedwars.beds : "NA",
+    data.info.duels?.bridge_wins ? data.info.duels.bridge_wins : "NA",
+    data.info.skywars?.kills_solo ? data.info.skywars.kills_solo : "NA",
+    data.info.skywars?.wins_solo ? data.info.skywars.wins_solo : "NA",
   ];
   let arr: string[] = [];
   for (let i = 0; i < achievements.length; i++) {
@@ -93,7 +93,7 @@ export default function PlayerStatsMC({ data }: PageProps) {
           Bedwars Level:{" "}
           <span>
             {numeral(
-              data.info.bedwars.wins ? data.info.bedwars.wins : 0
+              data.info.bedwars?.wins ? data.info.bedwars?.wins : 0
             ).format("0, 0") || 0}
           </span>
         </p>
@@ -101,7 +101,7 @@ export default function PlayerStatsMC({ data }: PageProps) {
           General Wins:{" "}
           <span>
             {numeral(
-              data.info.general.wins ? data.info.general.wins : 0
+              data.info.general?.wins ? data.info.general?.wins : 0
             ).format("0, 0") || 0}
           </span>
         </p>
@@ -109,14 +109,14 @@ export default function PlayerStatsMC({ data }: PageProps) {
           General Coins:{" "}
           <span>
             {numeral(
-              data.info.general.coins ? data.info.general.coins : 0
+              data.info.general?.coins ? data.info.general?.coins : 0
             ).format("0, 0") || 0}
           </span>
         </p>
         <p className={styles.minecraftTemplate}>
           Bridge Win Streak:{" "}
           <span>
-            {numeral(data.info.duels.bridge_win_streak ? data.info.duels.bridge_win_streak : 0).format("0, 0") || 0}
+            {numeral(data.info.duels?.bridge_win_streak ? data.info.duels?.bridge_win_streak : 0).format("0, 0") || 0}
           </span>
         </p>
       </div>
