@@ -16,22 +16,22 @@ To begin with using our website, you can either run it locally on your machine (
 
 ### Clash Royale
 
-> Code: #2JRLG8PUQ
+Code: #2JRLG8PUQ
 > <img src="/branding/clash_royale.jpg">
 
 ### Clash of Clans
 
-> Code: #LRLVRLV8
+Code: #LRLVRLV8
 > <img src="/branding/clash_of_clans.jpg">
 
 ### Brawl Stars
 
-> CODE: #20L88L2J
+Code: #20L88L2J
 > <img src="/branding/brawl_stars.jpg">
 
 ### Hypixel / Minecraft
 
-> Name: gamerboy80
+Name: gamerboy80
 > <img src="/branding/hypixel.jpg">
 
 ## Requirements:
